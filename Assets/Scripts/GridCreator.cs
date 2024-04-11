@@ -6,7 +6,7 @@ using UnityEngine;
 public class GridCreator : MonoBehaviour
 {
     [SerializeField]
-    private GameObject cubePrefab; // Assign the cube prefab in the Unity Editor
+    private GameObject basePrefab; // Assign the cube prefab in the Unity Editor
     [SerializeField]
     private int gridSizeX = 5; // Number of cubes along X axis
     [SerializeField]
@@ -52,7 +52,8 @@ public class GridCreator : MonoBehaviour
                 for (int z = 0; z < gridSizeZ; z++)
                 {
                     Vector3 spawnPosition = new Vector3(x * spacing, y * spacing, z * spacing);
-                    GameObject cube = Instantiate(cubePrefab, spawnPosition, Quaternion.identity);
+                    Quaternion spawnRotation = basePrefab.transform.rotation;
+                    GameObject cube = Instantiate(basePrefab, spawnPosition, spawnRotation);
                     cube.transform.parent = transform;
                     cubesArray[x, y, z] = cube; // Store reference to cube in the array
                 }
