@@ -18,10 +18,10 @@ public class GridCreator : MonoBehaviour
 
     public GameObject[,,] cubesArray; // 3D array to store references to cubes
 
-    void Start()
-    {
-        GenerateCubeGrid(); // Call this method automatically when the script starts
-    }
+    // void Start()
+    // {
+        // GenerateCubeGrid(); // Call this method automatically when the script starts
+    // }
 
     void OnValidate()
     {

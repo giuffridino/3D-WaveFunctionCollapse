@@ -38,22 +38,26 @@ public class WFC : MonoBehaviour
                 }
             }
         }
+        StartCoroutine(CheckEntropy());
+        // Debug.Log("Grid created");
     }
 
     IEnumerator CheckEntropy()
     {
+        // Debug.Log("Checking entropy");
         List<Cell> tempGrid = new List<Cell>(gridComponents);
         tempGrid.RemoveAll(c => c.collapsed);
         tempGrid.Sort((a,b) => a.tileOptions.Length - b.tileOptions.Length);
         tempGrid.RemoveAll(a => a.tileOptions.Length != tempGrid[0].tileOptions.Length);
-        
-        yield return new WaitForSeconds(0.025f);
+        yield return new WaitForSeconds(0.5f);
 
         CollapseCell(tempGrid);
     }
 
     void CollapseCell(List<Cell> tempGrid)
     {
+        Debug.Log("Collapsing cell:" + tempGrid);
+        Debug.Log("tempGrid.Count:" + tempGrid.Count);
         int randIndex = UnityEngine.Random.Range(0, tempGrid.Count);
         Cell cellToCollapse = tempGrid[randIndex];
 
