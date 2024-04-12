@@ -10,36 +10,25 @@ public class Tile : MonoBehaviour
     public Tile[] upNeighbors;
     public Tile[] downNeighbors;
 
-    // public int rotationAngle;
+    public int rotationAngle;
     public void RotateTile()
     {
-        string newPrefabName = null;
+        GameObject rotatedTile = Instantiate(gameObject);
+
+        rotatedTile.transform.Rotate(0, rotationAngle, 0);
+
         string path = AssetDatabase.GetAssetPath(gameObject);
+		Debug.Log(path);
         string directory = System.IO.Path.GetDirectoryName(path);
-        int angle = 90;
-        for (int i = 0; i < 3; i++)
-        {
-            GameObject rotatedTile = Instantiate(gameObject);
-            rotatedTile.transform.Rotate(0, angle, 0);
-            if (newPrefabName == null)
-            {
-                newPrefabName = GenerateNewPrefabName(System.IO.Path.GetFileNameWithoutExtension(path)) + ".prefab";
-            }
-            else
-            {
-                newPrefabName = newPrefabName.Replace(".prefab", "");
-                newPrefabName = GenerateNewPrefabName(newPrefabName) + ".prefab";
-            }
-            // newPrefabName = System.IO.Path.GetFileNameWithoutExtension(path) + $"{rotationAngle}.prefab";
-            string newPrefabPath = System.IO.Path.Combine(directory, newPrefabName);
-            Debug.Log("newPrefabName: " + newPrefabName);
-            Tile newTile = rotatedTile.GetComponent<Tile>();
-            RotateNeighborLists(newTile);
-            PrefabUtility.SaveAsPrefabAsset(rotatedTile, newPrefabPath);
-    
-            DestroyImmediate(rotatedTile);
-            angle += 90;
-        }
+        string newPrefabName = GenerateNewPrefabName(System.IO.Path.GetFileNameWithoutExtension(path)) + ".prefab";
+        // newPrefabName = System.IO.Path.GetFileNameWithoutExtension(path) + $"{rotationAngle}.prefab";
+        string newPrefabPath = System.IO.Path.Combine(directory, newPrefabName);
+        Debug.Log("newPrefabName: " + newPrefabName);
+        Tile newTile = rotatedTile.GetComponent<Tile>();
+        RotateNeighborLists(newTile);
+        PrefabUtility.SaveAsPrefabAsset(rotatedTile, newPrefabPath);
+
+        DestroyImmediate(rotatedTile);
     }
 
     private void RotateNeighborLists(Tile newTile)

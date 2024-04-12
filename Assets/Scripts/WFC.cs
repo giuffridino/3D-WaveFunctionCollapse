@@ -20,8 +20,24 @@ public class WFC : MonoBehaviour
 
     private void Awake()
     {
+        RunWfc();
+    }
+
+    private void RunWfc()
+    {
         gridComponents = new List<Cell>();
         InitializeGrid();
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Pressed space bar");
+            CoroutineController.StopAllCoroutines();
+            // StopAllCoroutines();
+            RunWfc();
+        }
     }
 
     private void InitializeGrid()
@@ -49,7 +65,7 @@ public class WFC : MonoBehaviour
         tempGrid.RemoveAll(c => c.collapsed);
         tempGrid.Sort((a,b) => a.tileOptions.Length - b.tileOptions.Length);
         tempGrid.RemoveAll(a => a.tileOptions.Length != tempGrid[0].tileOptions.Length);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.025f);
 
         CollapseCell(tempGrid);
     }
@@ -191,6 +207,12 @@ public class WFC : MonoBehaviour
 
                             CheckValidity(options, validOptions);
                         }
+                        
+                        Tile[] newTileList = new Tile[options.Count];
+                        for(int i = 0; i < options.Count; i++) {
+                            newTileList[i] = options[i];
+                        }
+                        newPropagatedCells[index].RecreateCell(newTileList);
                     }
                 }
             }
