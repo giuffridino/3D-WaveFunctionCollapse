@@ -72,10 +72,10 @@ public class WFC : MonoBehaviour
         Tile foundTile = cellToCollapse.tileOptions[0];
         Instantiate(foundTile, cellToCollapse.transform.position, foundTile.transform.rotation);
 
-        Propagate();
+        Observe();
     }
 
-    private void Propagate()
+    private void Observe()
     {
         List<Cell> newPropagatedCells = new List<Cell>(gridComponents);
         for (int x = 0; x < dimX; x++)
