@@ -56,8 +56,25 @@ MonoBehaviour:
   - {fileID: 1672956761020861382, guid: 27ad88e3a62c94d45bf9656f3d2344d7, type: 3}
   - {fileID: -3263180776918953991, guid: 27349830f47704addbaac4c90b2b22c0, type: 3}
   - {fileID: 2214365866344712256, guid: 68058d6eab64d450aad619ae2a6bb775, type: 3}
-  backNeighbors: []
-  rightNeighbors: []
+  backNeighbors:
+  - {fileID: -491750560819396570, guid: cc0a89fed73ba4f198d0e1e0db84245b, type: 3}
+  - {fileID: -6359894300601761875, guid: 0ba7d3b5fd0c943efa1839e89ad56d83, type: 3}
+  - {fileID: -602889354612544847, guid: 162fc8560888b4e70a81873f8f04ecb8, type: 3}
+  - {fileID: -112944402232044016, guid: 22dd61a2dbde04fef852d5401a1fd125, type: 3}
+  - {fileID: 4088576310664004520, guid: d4c457d73aff3744aaf4b33d4a6e631d, type: 3}
+  - {fileID: -5074105572459486838, guid: 9ea237d062d2c46e0823c16acf54889d, type: 3}
+  - {fileID: 6823566257353071044, guid: eef7cab2c7bcd4c09a838a21e524edfc, type: 3}
+  - {fileID: 1672956761020861382, guid: 27ad88e3a62c94d45bf9656f3d2344d7, type: 3}
+  - {fileID: -5037310584988397500, guid: 43b87128f2aa9409ab7065ee8e087f2c, type: 3}
+  - {fileID: -3263180776918953991, guid: 27349830f47704addbaac4c90b2b22c0, type: 3}
+  rightNeighbors:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
