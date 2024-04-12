@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4952501516759439716}
-  - component: {fileID: 8425963000673321734}
   m_Layer: 0
-  m_Name: Corner_p
+  m_Name: Corner_p180
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,42 +24,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8584447359920325346}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1153423391152950333}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8425963000673321734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8584447359920325346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eb551508b0a7e84c953a4890ae01e92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frontNeighbors:
-  - {fileID: -491750560819396570, guid: cc0a89fed73ba4f198d0e1e0db84245b, type: 3}
-  - {fileID: -6359894300601761875, guid: 0ba7d3b5fd0c943efa1839e89ad56d83, type: 3}
-  - {fileID: 4143039064863009189, guid: 487ff8ebbb759054587f87d7336bfb6a, type: 3}
-  - {fileID: 2179614594475156163, guid: c0c889ad9232d0145bdf63a7fbc4fd29, type: 3}
-  - {fileID: 4088576310664004520, guid: d4c457d73aff3744aaf4b33d4a6e631d, type: 3}
-  - {fileID: -5074105572459486838, guid: 9ea237d062d2c46e0823c16acf54889d, type: 3}
-  - {fileID: 6823566257353071044, guid: eef7cab2c7bcd4c09a838a21e524edfc, type: 3}
-  - {fileID: 1672956761020861382, guid: 27ad88e3a62c94d45bf9656f3d2344d7, type: 3}
-  - {fileID: -3263180776918953991, guid: 27349830f47704addbaac4c90b2b22c0, type: 3}
-  - {fileID: 2214365866344712256, guid: 68058d6eab64d450aad619ae2a6bb775, type: 3}
-  backNeighbors: []
-  rightNeighbors: []
-  leftNeighbors: []
-  upNeighbors: []
-  downNeighbors: []
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &1696573980719262678
 PrefabInstance:
   m_ObjectHideFlags: 0
