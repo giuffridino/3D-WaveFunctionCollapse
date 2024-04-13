@@ -15749,9 +15749,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60ba0227f2338d40bbf1328386d85bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dimX: 6
+  dimX: 10
   dimY: 5
-  dimZ: 5
+  dimZ: 7
   tileObjects:
   - {fileID: 8425963000673321734, guid: 8d0d247c7ca8b44e18152705c3548d46, type: 3}
   - {fileID: 5648277890218755793, guid: d9640cd71b5c44a3d9ccb3969053f424, type: 3}

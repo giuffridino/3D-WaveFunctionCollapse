@@ -16,7 +16,7 @@ public class WFC : MonoBehaviour
     
     [SerializeField] private Tile backupTile;
 
-    private int _iteration = 0;
+    private int _iteration;
 
     private void Awake()
     {
@@ -64,30 +64,34 @@ public class WFC : MonoBehaviour
         List<Cell> tempGrid = new List<Cell>(gridComponents);
         tempGrid.RemoveAll(c => c.collapsed);
         tempGrid.Sort((a,b) => a.tileOptions.Length - b.tileOptions.Length);
+        if (tempGrid.Count > 0)
+        {
+            Debug.Log("First cell: " + tempGrid[0].tileOptions.Length + "Last cell: " + tempGrid[^1].tileOptions.Length);
+        }
         tempGrid.RemoveAll(a => a.tileOptions.Length != tempGrid[0].tileOptions.Length);
-        yield return new WaitForSeconds(0.025f);
+        yield return new WaitForSeconds(0.5f);
 
         CollapseCell(tempGrid);
     }
 
     void CollapseCell(List<Cell> tempGrid)
     {
-        Debug.Log("Collapsing cell:" + tempGrid);
-        Debug.Log("tempGrid.Count:" + tempGrid.Count);
+        // Debug.Log("Collapsing cell:" + tempGrid);
+        // Debug.Log("tempGrid.Count:" + tempGrid.Count);
         int randIndex = UnityEngine.Random.Range(0, tempGrid.Count);
         Cell cellToCollapse = tempGrid[randIndex];
 
         cellToCollapse.collapsed = true;
+        Tile selectedTile;
         try
         {
-            Tile selectedTile = cellToCollapse.tileOptions[UnityEngine.Random.Range(0, cellToCollapse.tileOptions.Length)];
-            cellToCollapse.tileOptions = new Tile[] { selectedTile };
+            selectedTile = cellToCollapse.tileOptions[UnityEngine.Random.Range(0, cellToCollapse.tileOptions.Length)];
         }
         catch
         {
-            Tile selectedTile = backupTile;
-            cellToCollapse.tileOptions = new Tile[] { selectedTile };
+            selectedTile = backupTile;
         }
+        cellToCollapse.tileOptions = new Tile[] { selectedTile };
 
         Tile foundTile = cellToCollapse.tileOptions[0];
         Instantiate(foundTile, cellToCollapse.transform.position, foundTile.transform.rotation);
