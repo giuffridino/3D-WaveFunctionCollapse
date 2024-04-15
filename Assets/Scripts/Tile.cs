@@ -10,36 +10,45 @@ public class Tile : MonoBehaviour
     public Tile[] upNeighbors;
     public Tile[] downNeighbors;
 
-    [SerializeField] public Tile[] motherTile;
-
-    // public void RotateTile()
-    // {
-    //     GameObject rotatedTile = Instantiate(gameObject);
-
-    //     rotatedTile.transform.Rotate(0, rotationAngle, 0);
-
-    //     string path = AssetDatabase.GetAssetPath(gameObject);
-	// 	Debug.Log(path);
-    //     string directory = System.IO.Path.GetDirectoryName(path);
-    //     string newPrefabName = GenerateNewPrefabName(System.IO.Path.GetFileNameWithoutExtension(path)) + ".prefab";
-    //     // newPrefabName = System.IO.Path.GetFileNameWithoutExtension(path) + $"{rotationAngle}.prefab";
-    //     string newPrefabPath = System.IO.Path.Combine(directory, newPrefabName);
-    //     Debug.Log("newPrefabName: " + newPrefabName);
-    //     Tile newTile = rotatedTile.GetComponent<Tile>();
-    //     RotateNeighborLists(newTile);
-    //     PrefabUtility.SaveAsPrefabAsset(rotatedTile, newPrefabPath);
-
-    //     DestroyImmediate(rotatedTile);
-    // }
-
-    public void UploadNeighborhood(Tile motherTile)
+    [SerializeField] private Tile motherTile;
+    
+    public void UploadNeighborhood()
     {
-        frontNeighbors = motherTile.frontNeighbors;
-        backNeighbors = motherTile.backNeighbors;
-        rightNeighbors = motherTile.rightNeighbors;
-        leftNeighbors = motherTile.leftNeighbors;
-        upNeighbors = motherTile.upNeighbors;
-        downNeighbors = motherTile.downNeighbors;
+        frontNeighbors = new Tile[motherTile.frontNeighbors.Length];
+        for (int i = 0; i < motherTile.frontNeighbors.Length; i++)
+        {
+            frontNeighbors[i] = motherTile.frontNeighbors[i];
+        }
+    
+        backNeighbors = new Tile[motherTile.backNeighbors.Length];
+        for (int i = 0; i < motherTile.backNeighbors.Length; i++)
+        {
+            backNeighbors[i] = motherTile.backNeighbors[i];
+        }
+    
+        rightNeighbors = new Tile[motherTile.rightNeighbors.Length];
+        for (int i = 0; i < motherTile.rightNeighbors.Length; i++)
+        {
+            rightNeighbors[i] = motherTile.rightNeighbors[i];
+        }
+    
+        leftNeighbors = new Tile[motherTile.leftNeighbors.Length];
+        for (int i = 0; i < motherTile.leftNeighbors.Length; i++)
+        {
+            leftNeighbors[i] = motherTile.leftNeighbors[i];
+        }
+    
+        upNeighbors = new Tile[motherTile.upNeighbors.Length];
+        for (int i = 0; i < motherTile.upNeighbors.Length; i++)
+        {
+            upNeighbors[i] = motherTile.upNeighbors[i];
+        }
+    
+        downNeighbors = new Tile[motherTile.downNeighbors.Length];
+        for (int i = 0; i < motherTile.downNeighbors.Length; i++)
+        {
+            downNeighbors[i] = motherTile.downNeighbors[i];
+        }
     }
 
     public void RotateNeighborLists(Tile newTile)
@@ -49,31 +58,59 @@ public class Tile : MonoBehaviour
         newTile.leftNeighbors = newTile.backNeighbors;
         newTile.backNeighbors = newTile.rightNeighbors;
         newTile.rightNeighbors = tempFrontNeighbors;
+
+        RotateNeighbors(newTile.frontNeighbors);
+        RotateNeighbors(newTile.backNeighbors);
+        RotateNeighbors(newTile.rightNeighbors);
+        RotateNeighbors(newTile.leftNeighbors);
     }
-    
-    private string GenerateNewPrefabName(string originalName)
+
+    void RotateNeighbors(Tile[] neighbors)
     {
-        // Check if the last two or three characters are digits
-        string numericPart = "";
-        if (int.TryParse(originalName.Substring(originalName.Length - 3), out _))
+        for (int i = 0; i < neighbors.Length; i++)
         {
-            numericPart = originalName.Substring(originalName.Length - 3);
-        }
-        else if (int.TryParse(originalName.Substring(originalName.Length - 2), out _))
-        {
-            numericPart = originalName.Substring(originalName.Length - 2);
-        }
-        if (!string.IsNullOrEmpty(numericPart))
-        {
-            int numericValue = int.Parse(numericPart);
-            numericValue += 90;
-            originalName = originalName.Substring(0, originalName.Length - numericPart.Length) + numericValue.ToString();
-        }
-        else
-        {
-            // If no numeric part, simply append "_90" to the original name
-            originalName += "_90";
-        }
-        return originalName;
-    }
+            string tileName = neighbors[i].name;
+            string floorCheck = "Floor";
+            string emptyCheck = "Empty";
+            string corridorCheck = "Corridor";
+            if (!tileName.Contains(floorCheck) && !tileName.Contains(emptyCheck))
+            {
+                string lastChars = tileName.Substring(tileName.Length - 3);
+                if (lastChars == "p90")
+                {
+                    lastChars = tileName.Contains(corridorCheck) ? "" : "180";
+                    tileName = tileName.Substring(0, tileName.Length - 2);
+                }
+                else if (lastChars == "180")
+                {
+                    lastChars = "270";
+                    tileName = tileName.Substring(0, tileName.Length - 3);
+                }
+                else if (lastChars == "270")
+                {
+                    lastChars = "";
+                    tileName = tileName.Substring(0, tileName.Length - 3);
+                }
+                else
+                {
+                    lastChars = "90";
+                }
+                string path = AssetDatabase.GetAssetPath(gameObject);
+                string directory = System.IO.Path.GetDirectoryName(path);
+                Debug.Log(path + " " + directory);
+                tileName = tileName + lastChars + ".prefab";
+                string newPrefabPath = System.IO.Path.Combine(directory, tileName);
+                Debug.Log(newPrefabPath);
+                GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(newPrefabPath);
+                if (prefab != null)
+                {
+                    neighbors[i] = prefab.GetComponent<Tile>();
+                }
+                else
+                {
+                    Debug.LogError("Prefab not found: " + tileName);
+                }
+            }
+        }
+    }
 }

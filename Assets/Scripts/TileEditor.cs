@@ -14,7 +14,7 @@ public class TileEditor : Editor
 
         if (GUILayout.Button("Upload connections from existing tile"))
         {
-            tile.UploadNeighborhood(tile.motherTile[0]);
+            tile.UploadNeighborhood();
         }
 
         if (GUILayout.Button("90° Neighborhood Rotation"))
