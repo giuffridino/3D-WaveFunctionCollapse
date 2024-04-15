@@ -10,28 +10,39 @@ public class Tile : MonoBehaviour
     public Tile[] upNeighbors;
     public Tile[] downNeighbors;
 
-    public int rotationAngle;
-    public void RotateTile()
+    [SerializeField] public Tile[] motherTile;
+
+    // public void RotateTile()
+    // {
+    //     GameObject rotatedTile = Instantiate(gameObject);
+
+    //     rotatedTile.transform.Rotate(0, rotationAngle, 0);
+
+    //     string path = AssetDatabase.GetAssetPath(gameObject);
+	// 	Debug.Log(path);
+    //     string directory = System.IO.Path.GetDirectoryName(path);
+    //     string newPrefabName = GenerateNewPrefabName(System.IO.Path.GetFileNameWithoutExtension(path)) + ".prefab";
+    //     // newPrefabName = System.IO.Path.GetFileNameWithoutExtension(path) + $"{rotationAngle}.prefab";
+    //     string newPrefabPath = System.IO.Path.Combine(directory, newPrefabName);
+    //     Debug.Log("newPrefabName: " + newPrefabName);
+    //     Tile newTile = rotatedTile.GetComponent<Tile>();
+    //     RotateNeighborLists(newTile);
+    //     PrefabUtility.SaveAsPrefabAsset(rotatedTile, newPrefabPath);
+
+    //     DestroyImmediate(rotatedTile);
+    // }
+
+    public void UploadNeighborhood(Tile motherTile)
     {
-        GameObject rotatedTile = Instantiate(gameObject);
-
-        rotatedTile.transform.Rotate(0, rotationAngle, 0);
-
-        string path = AssetDatabase.GetAssetPath(gameObject);
-		Debug.Log(path);
-        string directory = System.IO.Path.GetDirectoryName(path);
-        string newPrefabName = GenerateNewPrefabName(System.IO.Path.GetFileNameWithoutExtension(path)) + ".prefab";
-        // newPrefabName = System.IO.Path.GetFileNameWithoutExtension(path) + $"{rotationAngle}.prefab";
-        string newPrefabPath = System.IO.Path.Combine(directory, newPrefabName);
-        Debug.Log("newPrefabName: " + newPrefabName);
-        Tile newTile = rotatedTile.GetComponent<Tile>();
-        RotateNeighborLists(newTile);
-        PrefabUtility.SaveAsPrefabAsset(rotatedTile, newPrefabPath);
-
-        DestroyImmediate(rotatedTile);
+        frontNeighbors = motherTile.frontNeighbors;
+        backNeighbors = motherTile.backNeighbors;
+        rightNeighbors = motherTile.rightNeighbors;
+        leftNeighbors = motherTile.leftNeighbors;
+        upNeighbors = motherTile.upNeighbors;
+        downNeighbors = motherTile.downNeighbors;
     }
 
-    private void RotateNeighborLists(Tile newTile)
+    public void RotateNeighborLists(Tile newTile)
     {
         Tile[] tempFrontNeighbors = newTile.frontNeighbors;
         newTile.frontNeighbors = newTile.leftNeighbors;

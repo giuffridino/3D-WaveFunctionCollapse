@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4952501516759439716}
   - component: {fileID: 8425963000673321734}
   m_Layer: 0
-  m_Name: Corner_p
+  m_Name: Corner_p180
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,14 +25,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8584447359920325346}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1153423391152950333}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &8425963000673321734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +113,8 @@ MonoBehaviour:
   - {fileID: 1439444298453499698, guid: a43be641437224c38bad74545a33f22c, type: 3}
   - {fileID: -1435582351038818164, guid: 3760bd24d8c7e4afea90cfe092efc27c, type: 3}
   - {fileID: 5648277890218755793, guid: d9640cd71b5c44a3d9ccb3969053f424, type: 3}
-  rotationAngle: 0
+  motherTile:
+  - {fileID: 8425963000673321734, guid: 4fe28e2a3d3b84512a9f59f94cc15a9d, type: 3}
 --- !u!1001 &1696573980719262678
 PrefabInstance:
   m_ObjectHideFlags: 0
