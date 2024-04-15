@@ -41,7 +41,7 @@ public class WFC : MonoBehaviour
                     newCell.name = "Cell_" + _count;
                     newCell.CreateCell(false, tileObjects);
                     gridComponents.Add(newCell);
-					_count++;
+             		_count++;
                 }
             }
         }
@@ -72,7 +72,7 @@ public class WFC : MonoBehaviour
             }
         }
 
-
+        Debug.LogWarning("collapsingCell:" + cellToCollaps + "with entropy:" + minEntropy);
 
         if(!allCollapsed)
         {
@@ -129,6 +129,7 @@ public class WFC : MonoBehaviour
                         {
                             Cell back = gridComponents[z + y * dimZ + (x - 1) * dimY * dimZ];
                             if(!back.collapsed){
+                                Debug.Log("back");
                                 List<Tile> validOptions = new List<Tile>();
                                 List<Tile> options = back.tileOptions.ToList();
 
@@ -152,6 +153,7 @@ public class WFC : MonoBehaviour
                             Cell front = gridComponents[z + y * dimZ + (x + 1) * dimY * dimZ];
                             if (!front.collapsed)
                             {
+                                Debug.Log("front");
                                 List<Tile> validOptions = new List<Tile>();
                                 List<Tile> options = front.tileOptions.ToList();
 
@@ -177,6 +179,7 @@ public class WFC : MonoBehaviour
                             Cell down = gridComponents[z + (y - 1) * dimZ + x * dimY * dimZ];
                             if (!down.collapsed)
                             {
+                                Debug.Log("down");
                                 List<Tile> validOptions = new List<Tile>();
                                 List<Tile> options = down.tileOptions.ToList();
 
@@ -201,6 +204,7 @@ public class WFC : MonoBehaviour
                             Cell up = gridComponents[z + (y + 1) * dimZ + x * dimY * dimZ];
                             if (!up.collapsed)
                             {
+                                Debug.Log("up");
                                 List<Tile> validOptions = new List<Tile>();
                                 List<Tile> options = up.tileOptions.ToList();
 
@@ -226,6 +230,7 @@ public class WFC : MonoBehaviour
                             Cell right = gridComponents[(z - 1) + y * dimZ + x * dimY * dimZ];
                             if (!right.collapsed)
                             {
+                                Debug.Log("right");
                                 List<Tile> validOptions = new List<Tile>();
                                 List<Tile> options = right.tileOptions.ToList();
 
@@ -250,6 +255,7 @@ public class WFC : MonoBehaviour
                             Cell left = gridComponents[(z + 1) + y * dimZ + x * dimY * dimZ];
                             if (!left.collapsed)
                             {
+                                Debug.Log("left");
                                 List<Tile> validOptions = new List<Tile>();
                                 List<Tile> options = left.tileOptions.ToList();
 
@@ -260,7 +266,14 @@ public class WFC : MonoBehaviour
                                 validOptions = validOptions.Concat(valid).ToList();
 
                                 options = CheckValidity(options, validOptions);
-                                
+                                Debug.Log("OPTIONS AGGIORNATE: ");
+                                string str = "";
+                                foreach (var opt in options)
+                                {
+                                    str += opt.ToString() + " ";
+                                }
+
+                                Debug.Log(str);
                                 
                                 Tile[] newTileList = new Tile[options.Count];
                                 for (int i = 0; i < options.Count; i++)
@@ -268,6 +281,14 @@ public class WFC : MonoBehaviour
                                     newTileList[i] = options[i];
                                 }
                                 
+                                Debug.Log("NUOVA TILE LIST: "); 
+                                str = "";
+                                foreach (var opt in newTileList)
+                                {
+                                    str += opt.ToString() + " ";
+                                }
+
+                                Debug.Log(str);
 
                                 left.RecreateCell(newTileList);
                             }
@@ -283,22 +304,56 @@ public class WFC : MonoBehaviour
     
     List<Tile> CheckValidity(List<Tile> optionList, List<Tile> validOption)
     {
+        Debug.Log("__________check validity___________");
+        Debug.Log("options before:" + optionList.Count);
+        string opts = "";
+        foreach (Tile op in optionList)
+        {
+            opts += op.ToString() + " ";
+        }
+
+        Debug.Log(opts);
+        opts = "";
         
+        Debug.Log("valid options:" + validOption.Count);
+        foreach (Tile op in validOption)
+        {
+            opts += op.ToString() + " ";
+        }
+        Debug.Log(opts);
+        opts = "";
+
         List<Tile> newOptions = new List<Tile>();
         for(int x = optionList.Count - 1; x >=0; x--)
         {
             
             Tile element = optionList[x];
+            Debug.Log("comparing: "+ element);
             foreach (var opt in validOption)
             {
                 if (element.name == opt.name)
                 {
-
+                    Debug.Log("inserito");
                     newOptions.Add(element);
                 }
             }
             
         }
+        
+        //optionList.RemoveAll(tile => !validOption.Contains(tile));
+
+        
+        
+     
+        //optionList = optionList.Intersect(validOption).ToList();
+        
+        Debug.Log("options after" + optionList.Count);
+        foreach (Tile op in optionList)
+        {
+            opts += op.ToString() + " ";
+        }
+        Debug.Log(opts);
+
         return newOptions;
     }
     
