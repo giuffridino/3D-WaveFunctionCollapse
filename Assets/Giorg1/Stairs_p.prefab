@@ -54,6 +54,7 @@ MonoBehaviour:
   - {fileID: 2603082898419933381, guid: 27ad88e3a62c94d45bf9656f3d2344d7, type: 3}
   - {fileID: 4356923061893202960, guid: 43b87128f2aa9409ab7065ee8e087f2c, type: 3}
   - {fileID: -1435582351038818164, guid: 68058d6eab64d450aad619ae2a6bb775, type: 3}
+  - {fileID: 8273871837000708588, guid: a8a66ac0cbb054383a70ad9574858b60, type: 3}
   backNeighbors:
   - {fileID: 8425963000673321734, guid: d33bc3c3de76c98428ddbbbee8f18ca0, type: 3}
   - {fileID: -6295073491976351216, guid: cc0a89fed73ba4f198d0e1e0db84245b, type: 3}
@@ -63,6 +64,7 @@ MonoBehaviour:
   - {fileID: 2603082898419933381, guid: 27ad88e3a62c94d45bf9656f3d2344d7, type: 3}
   - {fileID: 4356923061893202960, guid: 43b87128f2aa9409ab7065ee8e087f2c, type: 3}
   - {fileID: -1435582351038818164, guid: 68058d6eab64d450aad619ae2a6bb775, type: 3}
+  - {fileID: 8273871837000708588, guid: a8a66ac0cbb054383a70ad9574858b60, type: 3}
   rightNeighbors:
   - {fileID: -1495922981585634501, guid: e68677007df2e4030b6b4af245ee0798, type: 3}
   - {fileID: -6295073491976351216, guid: cc0a89fed73ba4f198d0e1e0db84245b, type: 3}
@@ -88,7 +90,7 @@ MonoBehaviour:
   - {fileID: 4356923061893202960, guid: 43b87128f2aa9409ab7065ee8e087f2c, type: 3}
   - {fileID: 1439444298453499698, guid: 27349830f47704addbaac4c90b2b22c0, type: 3}
   - {fileID: -1435582351038818164, guid: 68058d6eab64d450aad619ae2a6bb775, type: 3}
-  rotationAngle: 0
+  motherTile: []
 --- !u!1001 &7114519633921389264
 PrefabInstance:
   m_ObjectHideFlags: 0
