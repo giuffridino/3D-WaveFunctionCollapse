@@ -51,7 +51,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 2603082898419933381, guid: db68fa46f19f34b4cbb92a34fe487140, type: 3}
+  motherTile: {fileID: 2603082898419933381, guid: 876cc98d97693b74fb27e54aaa4c18fb, type: 3}
 --- !u!1001 &9200729999477327808
 PrefabInstance:
   m_ObjectHideFlags: 0
