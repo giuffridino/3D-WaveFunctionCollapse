@@ -16,6 +16,7 @@ public class WFC : MonoBehaviour
     [SerializeField] private Tile backupTile;
 
     private int _iteration;
+	private int _count;
 
     private void Awake()
     {
@@ -37,8 +38,10 @@ public class WFC : MonoBehaviour
                 for (int z = 0; z < dimZ; z++)
                 {
                     Cell newCell = Instantiate(cellObj, new Vector3(x, y, z), Quaternion.identity);
+                    newCell.name = "Cell_" + _count;
                     newCell.CreateCell(false, tileObjects);
                     gridComponents.Add(newCell);
+					_count++;
                 }
             }
         }
@@ -103,7 +106,8 @@ public class WFC : MonoBehaviour
         
         cellToCollapse.tileOptions = new Tile[] { selectedTile };
         Tile foundTile = cellToCollapse.tileOptions[0];
-        Instantiate(foundTile, cellToCollapse.transform.position, foundTile.transform.rotation);
+        Tile newTile = Instantiate(foundTile, cellToCollapse.transform.position, foundTile.transform.rotation);
+        newTile.transform.parent = cellToCollapse.transform;
         Propagate(index);
     }
 
