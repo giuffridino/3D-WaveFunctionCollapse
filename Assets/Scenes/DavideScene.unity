@@ -346,7 +346,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &52052398
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +484,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &64897136
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +536,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &65166466
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +588,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &89104139
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,7 +640,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &95563144
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,7 +864,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &115211748
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,7 +1002,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &141263578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,7 +1140,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &146346137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,7 +1192,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &146780285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,7 +1244,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &152991186
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,7 +1640,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &183881529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,7 +1692,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &199070736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,7 +1744,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &212913325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1882,7 +1882,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &216845970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2411,7 +2411,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &276655077
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,7 +2721,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &299247964
 GameObject:
   m_ObjectHideFlags: 0
@@ -2773,7 +2773,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &299853641
 GameObject:
   m_ObjectHideFlags: 0
@@ -2911,7 +2911,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &336442645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2963,7 +2963,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &341220402
 GameObject:
   m_ObjectHideFlags: 0
@@ -3015,7 +3015,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &344055747
 GameObject:
   m_ObjectHideFlags: 0
@@ -3153,7 +3153,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &355028725
 GameObject:
   m_ObjectHideFlags: 0
@@ -3549,7 +3549,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &373299862
 GameObject:
   m_ObjectHideFlags: 0
@@ -3687,7 +3687,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &403696955
 GameObject:
   m_ObjectHideFlags: 0
@@ -3739,7 +3739,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &404423364
 GameObject:
   m_ObjectHideFlags: 0
@@ -3877,7 +3877,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &418687614
 GameObject:
   m_ObjectHideFlags: 0
@@ -3929,7 +3929,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &421830827
 GameObject:
   m_ObjectHideFlags: 0
@@ -4247,7 +4247,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &458903322
 GameObject:
   m_ObjectHideFlags: 0
@@ -4385,7 +4385,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &466607051
 GameObject:
   m_ObjectHideFlags: 0
@@ -4523,7 +4523,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &478992341
 GameObject:
   m_ObjectHideFlags: 0
@@ -4747,7 +4747,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &485245049
 GameObject:
   m_ObjectHideFlags: 0
@@ -4885,7 +4885,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &490835420
 GameObject:
   m_ObjectHideFlags: 0
@@ -4937,7 +4937,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &492022683
 GameObject:
   m_ObjectHideFlags: 0
@@ -5333,7 +5333,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &547435848
 GameObject:
   m_ObjectHideFlags: 0
@@ -5385,7 +5385,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &547773668
 GameObject:
   m_ObjectHideFlags: 0
@@ -5523,7 +5523,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &568166553
 GameObject:
   m_ObjectHideFlags: 0
@@ -5661,7 +5661,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &600825341
 GameObject:
   m_ObjectHideFlags: 0
@@ -5713,7 +5713,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &608591311
 GameObject:
   m_ObjectHideFlags: 0
@@ -5851,7 +5851,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &617354496
 GameObject:
   m_ObjectHideFlags: 0
@@ -5903,7 +5903,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &617852179
 GameObject:
   m_ObjectHideFlags: 0
@@ -5955,7 +5955,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &640550976
 GameObject:
   m_ObjectHideFlags: 0
@@ -6007,7 +6007,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &646164715
 GameObject:
   m_ObjectHideFlags: 0
@@ -6317,7 +6317,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &686569079
 GameObject:
   m_ObjectHideFlags: 0
@@ -6455,7 +6455,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &694017539
 GameObject:
   m_ObjectHideFlags: 0
@@ -6507,7 +6507,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &711255688
 GameObject:
   m_ObjectHideFlags: 0
@@ -6559,7 +6559,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &712092353
 GameObject:
   m_ObjectHideFlags: 0
@@ -6611,7 +6611,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &720376263
 GameObject:
   m_ObjectHideFlags: 0
@@ -6921,7 +6921,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &733803332
 GameObject:
   m_ObjectHideFlags: 0
@@ -6973,7 +6973,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &743593516
 GameObject:
   m_ObjectHideFlags: 0
@@ -7025,7 +7025,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &743959300
 GameObject:
   m_ObjectHideFlags: 0
@@ -7335,7 +7335,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &754922406
 GameObject:
   m_ObjectHideFlags: 0
@@ -7949,7 +7949,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &822137923
 GameObject:
   m_ObjectHideFlags: 0
@@ -8087,7 +8087,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &831499930
 GameObject:
   m_ObjectHideFlags: 0
@@ -8139,7 +8139,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &832562157
 GameObject:
   m_ObjectHideFlags: 0
@@ -8277,7 +8277,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &848877907
 GameObject:
   m_ObjectHideFlags: 0
@@ -8501,7 +8501,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &887803706
 GameObject:
   m_ObjectHideFlags: 0
@@ -8639,7 +8639,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &894305098
 GameObject:
   m_ObjectHideFlags: 0
@@ -8691,7 +8691,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &912008549
 GameObject:
   m_ObjectHideFlags: 0
@@ -9003,7 +9003,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &952628220
 GameObject:
   m_ObjectHideFlags: 0
@@ -9141,7 +9141,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &961969023
 GameObject:
   m_ObjectHideFlags: 0
@@ -9193,7 +9193,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &962931948
 GameObject:
   m_ObjectHideFlags: 0
@@ -9331,7 +9331,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &990251260
 GameObject:
   m_ObjectHideFlags: 0
@@ -9383,7 +9383,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &997888564
 GameObject:
   m_ObjectHideFlags: 0
@@ -9435,7 +9435,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1002731791
 GameObject:
   m_ObjectHideFlags: 0
@@ -9487,7 +9487,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1015031887
 GameObject:
   m_ObjectHideFlags: 0
@@ -9625,7 +9625,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1051343747
 GameObject:
   m_ObjectHideFlags: 0
@@ -10107,7 +10107,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1069655262
 GameObject:
   m_ObjectHideFlags: 0
@@ -10245,7 +10245,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1080146418
 GameObject:
   m_ObjectHideFlags: 0
@@ -10383,7 +10383,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1095929484
 GameObject:
   m_ObjectHideFlags: 0
@@ -10435,7 +10435,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1105230567
 GameObject:
   m_ObjectHideFlags: 0
@@ -10745,7 +10745,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1143996103
 GameObject:
   m_ObjectHideFlags: 0
@@ -10969,7 +10969,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1150494858
 GameObject:
   m_ObjectHideFlags: 0
@@ -11021,7 +11021,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1155246495
 GameObject:
   m_ObjectHideFlags: 0
@@ -11159,7 +11159,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1175178772
 GameObject:
   m_ObjectHideFlags: 0
@@ -11297,7 +11297,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1195696191
 GameObject:
   m_ObjectHideFlags: 0
@@ -11349,7 +11349,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1215787996
 GameObject:
   m_ObjectHideFlags: 0
@@ -11401,7 +11401,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1219414492
 GameObject:
   m_ObjectHideFlags: 0
@@ -11453,7 +11453,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1229295588
 GameObject:
   m_ObjectHideFlags: 0
@@ -11505,7 +11505,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1262026364
 GameObject:
   m_ObjectHideFlags: 0
@@ -11643,7 +11643,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1272428349
 GameObject:
   m_ObjectHideFlags: 0
@@ -11695,7 +11695,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1278735955
 GameObject:
   m_ObjectHideFlags: 0
@@ -11833,7 +11833,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1303402009
 GameObject:
   m_ObjectHideFlags: 0
@@ -11885,7 +11885,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1354060439
 GameObject:
   m_ObjectHideFlags: 0
@@ -11937,7 +11937,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1366900198
 GameObject:
   m_ObjectHideFlags: 0
@@ -12075,7 +12075,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1371714475
 GameObject:
   m_ObjectHideFlags: 0
@@ -12643,7 +12643,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1465680279
 GameObject:
   m_ObjectHideFlags: 0
@@ -12695,7 +12695,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1466801296
 GameObject:
   m_ObjectHideFlags: 0
@@ -12919,7 +12919,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1472050082
 GameObject:
   m_ObjectHideFlags: 0
@@ -13057,7 +13057,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1494869547
 GameObject:
   m_ObjectHideFlags: 0
@@ -13453,7 +13453,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1526717555
 GameObject:
   m_ObjectHideFlags: 0
@@ -13591,7 +13591,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1544390082
 GameObject:
   m_ObjectHideFlags: 0
@@ -13643,7 +13643,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1548548281
 GameObject:
   m_ObjectHideFlags: 0
@@ -13695,7 +13695,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1561693832
 GameObject:
   m_ObjectHideFlags: 0
@@ -14349,7 +14349,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1599643186
 GameObject:
   m_ObjectHideFlags: 0
@@ -14659,7 +14659,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1658486024
 GameObject:
   m_ObjectHideFlags: 0
@@ -14711,7 +14711,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1660224484
 GameObject:
   m_ObjectHideFlags: 0
@@ -14941,7 +14941,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1690697310
 GameObject:
   m_ObjectHideFlags: 0
@@ -14993,7 +14993,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1693892820
 GameObject:
   m_ObjectHideFlags: 0
@@ -15045,7 +15045,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1696524958
 GameObject:
   m_ObjectHideFlags: 0
@@ -15097,7 +15097,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1700344796
 GameObject:
   m_ObjectHideFlags: 0
@@ -15149,7 +15149,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1700702469
 GameObject:
   m_ObjectHideFlags: 0
@@ -15201,7 +15201,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1709891217
 GameObject:
   m_ObjectHideFlags: 0
@@ -15339,7 +15339,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1722153819
 GameObject:
   m_ObjectHideFlags: 0
@@ -15391,7 +15391,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1732501278
 GameObject:
   m_ObjectHideFlags: 0
@@ -15443,7 +15443,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1747757346
 GameObject:
   m_ObjectHideFlags: 0
@@ -15495,7 +15495,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1774814102
 GameObject:
   m_ObjectHideFlags: 0
@@ -15719,7 +15719,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1815676202
 GameObject:
   m_ObjectHideFlags: 0
@@ -15749,29 +15749,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60ba0227f2338d40bbf1328386d85bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dimX: 6
-  dimY: 6
-  dimZ: 6
+  dimX: 10
+  dimY: 5
+  dimZ: 7
   tileObjects:
-  - {fileID: 8425963000673321734, guid: 7439e3d22a53f4c4991b54f6d67d316e, type: 3}
-  - {fileID: 8425963000673321734, guid: 7c5cb17b3ff82c54b9f32f377388c31d, type: 3}
-  - {fileID: 8425963000673321734, guid: 6ad365c4aecfd6543a46011ff5cd2d22, type: 3}
-  - {fileID: 8425963000673321734, guid: b62a077aa5869aa4c9931c35f76ad63e, type: 3}
-  - {fileID: -1193992147471639812, guid: a2907b695df5a014dbe139c7fd83f1b4, type: 3}
-  - {fileID: -5988711052356213212, guid: 2120aae1d714c234b8990db2103a3829, type: 3}
-  - {fileID: 8273871837000708588, guid: 98f260ed462e6d44ba18d8823bfb4050, type: 3}
-  - {fileID: 5648277890218755793, guid: 4c54267eb3ac71848bef230d611fadd4, type: 3}
-  - {fileID: -2216659112039465738, guid: 42d9040634d5a4a459fa1fcedfeedfa7, type: 3}
-  - {fileID: -5934314763509902824, guid: 68d10e844f4ad54489b0e6210defc828, type: 3}
-  - {fileID: -5074105572459486838, guid: 621e91438b8a38f4ba7747613a8edbc9, type: 3}
-  - {fileID: 6823566257353071044, guid: 947bb0326df6b83488657b4289f4d82e, type: 3}
-  - {fileID: 2603082898419933381, guid: 876cc98d97693b74fb27e54aaa4c18fb, type: 3}
-  - {fileID: 4356923061893202960, guid: f43abfc1f12d5eb47afcfabe36a18ab8, type: 3}
-  - {fileID: 1439444298453499698, guid: 5b7cd8ebad753674599580d962172a9a, type: 3}
-  - {fileID: -1435582351038818164, guid: 0b2b1dab2ab37104bb60ec3b5b506135, type: 3}
+  - {fileID: 8425963000673321734, guid: 8d0d247c7ca8b44e18152705c3548d46, type: 3}
+  - {fileID: 5648277890218755793, guid: d9640cd71b5c44a3d9ccb3969053f424, type: 3}
+  - {fileID: 2603082898419933381, guid: db68fa46f19f34b4cbb92a34fe487140, type: 3}
+  - {fileID: -1193992147471639812, guid: afd749a980a994fcd9d86ca56c8a8974, type: 3}
   gridComponents: []
   cellObj: {fileID: 257796435}
-  backupTile: {fileID: 8957248759545574633, guid: 3f2a7c73628e21343a94405fd49cc493, type: 3}
+  backupTile: {fileID: 8957248759545574633, guid: 63f0e3cdb990af949bf6e8fc7c6d075f, type: 3}
 --- !u!4 &1815676204
 Transform:
   m_ObjectHideFlags: 0
@@ -15838,7 +15826,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1843471222
 GameObject:
   m_ObjectHideFlags: 0
@@ -15976,7 +15964,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1865982346
 GameObject:
   m_ObjectHideFlags: 0
@@ -16028,7 +16016,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1874875844
 GameObject:
   m_ObjectHideFlags: 0
@@ -16166,7 +16154,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1884339744
 GameObject:
   m_ObjectHideFlags: 0
@@ -16218,7 +16206,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1885730567
 GameObject:
   m_ObjectHideFlags: 0
@@ -16356,7 +16344,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1912960779
 GameObject:
   m_ObjectHideFlags: 0
@@ -16408,7 +16396,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1919894634
 GameObject:
   m_ObjectHideFlags: 0
@@ -16718,7 +16706,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1930229101
 GameObject:
   m_ObjectHideFlags: 0
@@ -16942,7 +16930,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &1993189664
 GameObject:
   m_ObjectHideFlags: 0
@@ -17080,7 +17068,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &2007692288
 GameObject:
   m_ObjectHideFlags: 0
@@ -17132,7 +17120,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &2017216649
 GameObject:
   m_ObjectHideFlags: 0
@@ -17184,7 +17172,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &2027222762
 GameObject:
   m_ObjectHideFlags: 0
@@ -17236,7 +17224,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &2038199392
 GameObject:
   m_ObjectHideFlags: 0
@@ -17288,7 +17276,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &2040310129
 GameObject:
   m_ObjectHideFlags: 0
@@ -17340,7 +17328,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &2065040689
 GameObject:
   m_ObjectHideFlags: 0
@@ -17392,7 +17380,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &2067675125
 GameObject:
   m_ObjectHideFlags: 0
@@ -17530,7 +17518,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &2092971381
 GameObject:
   m_ObjectHideFlags: 0
@@ -17582,7 +17570,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1 &2119831591
 GameObject:
   m_ObjectHideFlags: 0
@@ -17892,7 +17880,7 @@ MonoBehaviour:
   leftNeighbors: []
   upNeighbors: []
   downNeighbors: []
-  motherTile: {fileID: 0}
+  rotationAngle: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
