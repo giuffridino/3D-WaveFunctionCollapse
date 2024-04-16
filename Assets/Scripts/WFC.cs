@@ -97,7 +97,28 @@ public class WFC : MonoBehaviour
         
         if(cellToCollapse.tileOptions.Length != 0)
         {
-            selectedTile = cellToCollapse.tileOptions[_rand.Next(0, cellToCollapse.tileOptions.Length)];
+            List<Tile> weightedOptions = new List<Tile>();
+            foreach(Tile tile in cellToCollapse.tileOptions)
+            {
+                if(tile.name == "Floor_p")
+                {
+                    weightedOptions.Add(tile);
+                    weightedOptions.Add(tile);
+                    weightedOptions.Add(tile);
+                    weightedOptions.Add(tile);
+                    weightedOptions.Add(tile);
+                    weightedOptions.Add(tile);
+                    weightedOptions.Add(tile);
+                    weightedOptions.Add(tile);
+                    weightedOptions.Add(tile);
+                    weightedOptions.Add(tile);
+                }
+                else
+                {
+                    weightedOptions.Add(tile);
+                }
+            }
+            selectedTile = weightedOptions[_rand.Next(0, weightedOptions.Count)];
         }
         else
         {
