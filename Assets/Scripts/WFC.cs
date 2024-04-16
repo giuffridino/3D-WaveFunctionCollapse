@@ -106,12 +106,6 @@ public class WFC : MonoBehaviour
                     weightedOptions.Add(tile);
                     weightedOptions.Add(tile);
                     weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
                 }
                 else
                 {

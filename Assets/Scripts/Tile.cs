@@ -9,11 +9,6 @@ public class Tile : MonoBehaviour
     public Tile[] leftNeighbors;
     public Tile[] upNeighbors;
     public Tile[] downNeighbors;
-
-
-		////////////////////////////////////////////////////////////////////
-
-
  	public Tile[] front_upNeighbors;
     public Tile[] back_upNeighbors;
     public Tile[] right_upNeighbors;
@@ -70,10 +65,6 @@ public class Tile : MonoBehaviour
         {
             downNeighbors[i] = motherTile.downNeighbors[i];
         }
-
-
-		////////////////////////////////////////////////////////////////////
-
 
 		front_upNeighbors = new Tile[motherTile.front_upNeighbors.Length];
         for (int i = 0; i < motherTile.front_upNeighbors.Length; i++)
@@ -137,10 +128,6 @@ public class Tile : MonoBehaviour
         RotateNeighbors(backNeighbors);
         RotateNeighbors(rightNeighbors);
         RotateNeighbors(leftNeighbors);
-
-
-		////////////////////////////////////////////////////////////////////
-
 
 		Tile[] tempFront_upNeighbors = front_upNeighbors;
 		front_upNeighbors = left_upNeighbors;
