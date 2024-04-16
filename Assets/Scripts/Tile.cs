@@ -12,13 +12,13 @@ public class Tile : MonoBehaviour
 
     [SerializeField] private Tile motherTile;
 
-    public void UploadAndRotateNeighborhood(Tile newTile)
+    public void UploadAndRotateNeighborhood()
     {
         UploadNeighborhood();
-        RotateNeighborLists(newTile);
+        RotateNeighborLists();
     }
     
-    private void UploadNeighborhood()
+    public void UploadNeighborhood()
     {
         frontNeighbors = new Tile[motherTile.frontNeighbors.Length];
         for (int i = 0; i < motherTile.frontNeighbors.Length; i++)
@@ -57,18 +57,18 @@ public class Tile : MonoBehaviour
         }
     }
 
-    private void RotateNeighborLists(Tile newTile)
+    public void RotateNeighborLists()
     {
-        Tile[] tempFrontNeighbors = newTile.frontNeighbors;
-        newTile.frontNeighbors = newTile.leftNeighbors;
-        newTile.leftNeighbors = newTile.backNeighbors;
-        newTile.backNeighbors = newTile.rightNeighbors;
-        newTile.rightNeighbors = tempFrontNeighbors;
+        Tile[] tempFrontNeighbors = frontNeighbors;
+        frontNeighbors = leftNeighbors;
+        leftNeighbors = backNeighbors;
+        backNeighbors = rightNeighbors;
+        rightNeighbors = tempFrontNeighbors;
 
-        RotateNeighbors(newTile.frontNeighbors);
-        RotateNeighbors(newTile.backNeighbors);
-        RotateNeighbors(newTile.rightNeighbors);
-        RotateNeighbors(newTile.leftNeighbors);
+        RotateNeighbors(frontNeighbors);
+        RotateNeighbors(backNeighbors);
+        RotateNeighbors(rightNeighbors);
+        RotateNeighbors(leftNeighbors);
     }
 
     void RotateNeighbors(Tile[] neighbors)

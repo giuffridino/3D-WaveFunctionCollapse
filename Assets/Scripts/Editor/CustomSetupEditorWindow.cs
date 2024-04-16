@@ -16,8 +16,12 @@ public class CustomSetupEditorWindow : EditorWindow
             
             GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(assetPath);
             Tile prefabTile = prefab.GetComponent<Tile>();
+            Debug.Log("Prefab name is: " + prefab.name);
+            if (prefab.name.Contains("90") | prefab.name.Contains("180") | prefab.name.Contains("270"))
+            {
+                prefabTile.UploadAndRotateNeighborhood();
+            }
             
-            prefabTile.UploadAndRotateNeighborhood(prefabTile);
         }
     }
 }

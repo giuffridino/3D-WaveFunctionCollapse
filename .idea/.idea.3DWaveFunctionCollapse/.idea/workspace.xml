@@ -6,13 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c18e5bff-df88-4bc0-803e-17107042e9bc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.3DWaveFunctionCollapse/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.3DWaveFunctionCollapse/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GridCreatorEditor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GridCreatorEditor.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GridManipulatorEditor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GridManipulatorEditor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/CustomSetupEditorWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/CustomSetupEditorWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Editor/TileEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Editor/TileEditor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TileEditor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TileEditor.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +33,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "checking-corner-values",
+    "git-widget-placeholder": "creating-editor-window-button",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -100,7 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1712836921036</updated>
       <workItem from="1712836923502" duration="20332000" />
-      <workItem from="1713265986382" duration="969000" />
+      <workItem from="1713265986382" duration="2650000" />
     </task>
     <servers />
   </component>
