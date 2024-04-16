@@ -72,11 +72,11 @@ public class WFC : MonoBehaviour
             }
         }
 
-        Debug.LogWarning("collapsingCell:" + cellToCollaps + "with entropy:" + minEntropy);
+        //Debug.LogWarning("collapsingCell:" + cellToCollaps + "with entropy:" + minEntropy);
 
         if(!allCollapsed)
         {
-            float time = 0.01f;
+            float time = 0.001f;
             yield return new WaitForSeconds(time);
             CollapseCell(cellToCollaps);
         }
@@ -100,7 +100,7 @@ public class WFC : MonoBehaviour
         }
         else
         {
-            Debug.Log("error");
+            //Debug.Log("error");
             selectedTile = backupTile;
         }
         
@@ -129,7 +129,7 @@ public class WFC : MonoBehaviour
                         {
                             Cell back = gridComponents[z + y * dimZ + (x - 1) * dimY * dimZ];
                             if(!back.collapsed){
-                                Debug.Log("back");
+                                //Debug.Log("back");
                                 List<Tile> validOptions = new List<Tile>();
                                 List<Tile> options = back.tileOptions.ToList();
 
@@ -153,7 +153,7 @@ public class WFC : MonoBehaviour
                             Cell front = gridComponents[z + y * dimZ + (x + 1) * dimY * dimZ];
                             if (!front.collapsed)
                             {
-                                Debug.Log("front");
+                                //Debug.Log("front");
                                 List<Tile> validOptions = new List<Tile>();
                                 List<Tile> options = front.tileOptions.ToList();
 
@@ -179,7 +179,7 @@ public class WFC : MonoBehaviour
                             Cell down = gridComponents[z + (y - 1) * dimZ + x * dimY * dimZ];
                             if (!down.collapsed)
                             {
-                                Debug.Log("down");
+                                //Debug.Log("down");
                                 List<Tile> validOptions = new List<Tile>();
                                 List<Tile> options = down.tileOptions.ToList();
 
@@ -204,7 +204,7 @@ public class WFC : MonoBehaviour
                             Cell up = gridComponents[z + (y + 1) * dimZ + x * dimY * dimZ];
                             if (!up.collapsed)
                             {
-                                Debug.Log("up");
+                                //Debug.Log("up");
                                 List<Tile> validOptions = new List<Tile>();
                                 List<Tile> options = up.tileOptions.ToList();
 
@@ -230,7 +230,7 @@ public class WFC : MonoBehaviour
                             Cell right = gridComponents[(z - 1) + y * dimZ + x * dimY * dimZ];
                             if (!right.collapsed)
                             {
-                                Debug.Log("right");
+                                //Debug.Log("right");
                                 List<Tile> validOptions = new List<Tile>();
                                 List<Tile> options = right.tileOptions.ToList();
 
@@ -255,7 +255,7 @@ public class WFC : MonoBehaviour
                             Cell left = gridComponents[(z + 1) + y * dimZ + x * dimY * dimZ];
                             if (!left.collapsed)
                             {
-                                Debug.Log("left");
+                                //Debug.Log("left");
                                 List<Tile> validOptions = new List<Tile>();
                                 List<Tile> options = left.tileOptions.ToList();
 
@@ -266,14 +266,14 @@ public class WFC : MonoBehaviour
                                 validOptions = validOptions.Concat(valid).ToList();
 
                                 options = CheckValidity(options, validOptions);
-                                Debug.Log("OPTIONS AGGIORNATE: ");
+                                //Debug.Log("OPTIONS AGGIORNATE: ");
                                 string str = "";
                                 foreach (var opt in options)
                                 {
                                     str += opt.ToString() + " ";
                                 }
 
-                                Debug.Log(str);
+                                //Debug.Log(str);
                                 
                                 Tile[] newTileList = new Tile[options.Count];
                                 for (int i = 0; i < options.Count; i++)
@@ -281,16 +281,222 @@ public class WFC : MonoBehaviour
                                     newTileList[i] = options[i];
                                 }
                                 
-                                Debug.Log("NUOVA TILE LIST: "); 
+                                //Debug.Log("NUOVA TILE LIST: "); 
                                 str = "";
                                 foreach (var opt in newTileList)
                                 {
                                     str += opt.ToString() + " ";
                                 }
 
-                                Debug.Log(str);
+                                //Debug.Log(str);
 
                                 left.RecreateCell(newTileList);
+                            }
+                        }
+                        
+                        
+                        
+                        //////////////////////////////////////////////////////////
+                       
+                        
+                       
+                        if (x > 0 && y > 0)
+                        {
+                            Cell back_down = gridComponents[z + (y - 1) * dimZ + (x - 1) * dimY * dimZ];
+                            if(!back_down.collapsed){
+                                //Debug.Log("back_down");
+                                List<Tile> validOptions = new List<Tile>();
+                                List<Tile> options = back_down.tileOptions.ToList();
+
+                                int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
+                                Tile[] valid = tileObjects[validOption].back_downNeighbors;
+
+                                validOptions = validOptions.Concat(valid).ToList();
+                                
+                                options = CheckValidity(options, validOptions);
+                                
+                                Tile[] newTileList = new Tile[options.Count];
+                                for(int i = 0; i < options.Count; i++) {
+                                    newTileList[i] = options[i];
+                                }
+                                back_down.RecreateCell(newTileList);
+                            }
+                            
+                        } 
+                            
+                        if (x > 0 && y < dimY - 1)
+                        {
+                            Cell back_up = gridComponents[z + (y + 1) * dimZ + (x - 1) * dimY * dimZ];
+                            if(!back_up.collapsed){
+                                //Debug.Log("back_up");
+                                List<Tile> validOptions = new List<Tile>();
+                                List<Tile> options = back_up.tileOptions.ToList();
+
+                                int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
+                                Tile[] valid = tileObjects[validOption].back_upNeighbors;
+
+                                validOptions = validOptions.Concat(valid).ToList();
+                                
+                                options = CheckValidity(options, validOptions);
+                                
+                                Tile[] newTileList = new Tile[options.Count];
+                                for(int i = 0; i < options.Count; i++) {
+                                    newTileList[i] = options[i];
+                                }
+                                back_up.RecreateCell(newTileList);
+                            }
+                            
+                        }
+                        
+                        if (x < dimX - 1 && y > 0)
+                        {
+                            Cell front_down = gridComponents[z + (y - 1) * dimZ + (x + 1) * dimY * dimZ];
+                            if(!front_down.collapsed){
+                                //Debug.Log("front_down");
+                                List<Tile> validOptions = new List<Tile>();
+                                List<Tile> options = front_down.tileOptions.ToList();
+
+                                int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
+                                Tile[] valid = tileObjects[validOption].front_downNeighbors;
+
+                                validOptions = validOptions.Concat(valid).ToList();
+                                
+                                options = CheckValidity(options, validOptions);
+                                
+                                Tile[] newTileList = new Tile[options.Count];
+                                for(int i = 0; i < options.Count; i++) {
+                                    newTileList[i] = options[i];
+                                }
+                                front_down.RecreateCell(newTileList);
+                            }
+                            
+                        }
+                        
+                        if (x < dimX - 1 && y < dimY - 1)
+                        {
+                            Cell front_up = gridComponents[z + (y + 1) * dimZ + (x + 1) * dimY * dimZ];
+                            if(!front_up.collapsed){
+                                //Debug.Log("front_up");
+                                List<Tile> validOptions = new List<Tile>();
+                                List<Tile> options = front_up.tileOptions.ToList();
+
+                                int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
+                                Tile[] valid = tileObjects[validOption].front_upNeighbors;
+
+                                validOptions = validOptions.Concat(valid).ToList();
+                                
+                                options = CheckValidity(options, validOptions);
+                                
+                                Tile[] newTileList = new Tile[options.Count];
+                                for(int i = 0; i < options.Count; i++) {
+                                    newTileList[i] = options[i];
+                                }
+                                front_up.RecreateCell(newTileList);
+                            }
+                            
+                        }
+
+                        if (z > 0 && y > 0)
+                        {
+                            Cell right_down = gridComponents[(z - 1) + (y - 1) * dimZ + x * dimY * dimZ];
+                            if (!right_down.collapsed)
+                            {
+                                //Debug.Log("right_down");
+                                List<Tile> validOptions = new List<Tile>();
+                                List<Tile> options = right_down.tileOptions.ToList();
+
+                                int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
+                                Tile[] valid = tileObjects[validOption].right_downNeighbors;
+
+                                validOptions = validOptions.Concat(valid).ToList();
+
+                                options = CheckValidity(options, validOptions);
+
+                                Tile[] newTileList = new Tile[options.Count];
+                                for (int i = 0; i < options.Count; i++)
+                                {
+                                    newTileList[i] = options[i];
+                                }
+
+                                right_down.RecreateCell(newTileList);
+                            }
+                        }
+
+                        if (z > 0 && y < dimY - 1)
+                            {
+                                Cell right_up = gridComponents[(z - 1) + (y + 1) * dimZ + x * dimY * dimZ];
+                                if (!right_up.collapsed)
+                                {
+                                    //Debug.Log("right_up");
+                                    List<Tile> validOptions = new List<Tile>();
+                                    List<Tile> options = right_up.tileOptions.ToList();
+
+                                    int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
+                                    Tile[] valid = tileObjects[validOption].right_upNeighbors;
+
+                                    validOptions = validOptions.Concat(valid).ToList();
+
+                                    options = CheckValidity(options, validOptions);
+
+                                    Tile[] newTileList = new Tile[options.Count];
+                                    for (int i = 0; i < options.Count; i++)
+                                    {
+                                        newTileList[i] = options[i];
+                                    }
+
+                                    right_up.RecreateCell(newTileList);
+                                }
+                            }
+                        
+                        if (z < dimZ - 1 && y > 0)
+                        {
+                            Cell left_down = gridComponents[(z + 1) + (y - 1) * dimZ + x * dimY * dimZ];
+                            if (!left_down.collapsed)
+                            {
+                                //Debug.Log("left_down");
+                                List<Tile> validOptions = new List<Tile>();
+                                List<Tile> options = left_down.tileOptions.ToList();
+
+                                int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
+                                Tile[] valid = tileObjects[validOption].left_downNeighbors;
+
+                                validOptions = validOptions.Concat(valid).ToList();
+
+                                options = CheckValidity(options, validOptions);
+
+                                Tile[] newTileList = new Tile[options.Count];
+                                for (int i = 0; i < options.Count; i++)
+                                {
+                                    newTileList[i] = options[i];
+                                }
+
+                                left_down.RecreateCell(newTileList);
+                            }
+                        }
+
+                        if (z < dimZ - 1 && y < dimY - 1)
+                        {
+                            Cell left_up = gridComponents[(z + 1) + (y + 1) * dimZ + x * dimY * dimZ];
+                            if (!left_up.collapsed)
+                            {
+                                //Debug.Log("left_up");
+                                List<Tile> validOptions = new List<Tile>();
+                                List<Tile> options = left_up.tileOptions.ToList();
+
+                                int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
+                                Tile[] valid = tileObjects[validOption].left_upNeighbors;
+
+                                validOptions = validOptions.Concat(valid).ToList();
+
+                                options = CheckValidity(options, validOptions);
+
+                                Tile[] newTileList = new Tile[options.Count];
+                                for (int i = 0; i < options.Count; i++)
+                                {
+                                    newTileList[i] = options[i];
+                                }
+
+                                left_up.RecreateCell(newTileList);
                             }
                         }
                         
@@ -304,23 +510,23 @@ public class WFC : MonoBehaviour
     
     List<Tile> CheckValidity(List<Tile> optionList, List<Tile> validOption)
     {
-        Debug.Log("__________check validity___________");
-        Debug.Log("options before:" + optionList.Count);
+        //Debug.Log("__________check validity___________");
+        //Debug.Log("options before:" + optionList.Count);
         string opts = "";
         foreach (Tile op in optionList)
         {
             opts += op.ToString() + " ";
         }
 
-        Debug.Log(opts);
+        //Debug.Log(opts);
         opts = "";
         
-        Debug.Log("valid options:" + validOption.Count);
+        //Debug.Log("valid options:" + validOption.Count);
         foreach (Tile op in validOption)
         {
             opts += op.ToString() + " ";
         }
-        Debug.Log(opts);
+        //Debug.Log(opts);
         opts = "";
 
         List<Tile> newOptions = new List<Tile>();
@@ -328,31 +534,24 @@ public class WFC : MonoBehaviour
         {
             
             Tile element = optionList[x];
-            Debug.Log("comparing: "+ element);
+            //Debug.Log("comparing: "+ element);
             foreach (var opt in validOption)
             {
                 if (element.name == opt.name)
                 {
-                    Debug.Log("inserito");
+                    //Debug.Log("inserito");
                     newOptions.Add(element);
                 }
             }
             
         }
         
-        //optionList.RemoveAll(tile => !validOption.Contains(tile));
-
-        
-        
-     
-        //optionList = optionList.Intersect(validOption).ToList();
-        
-        Debug.Log("options after" + optionList.Count);
+        //Debug.Log("options after" + optionList.Count);
         foreach (Tile op in optionList)
         {
             opts += op.ToString() + " ";
         }
-        Debug.Log(opts);
+        //Debug.Log(opts);
 
         return newOptions;
     }

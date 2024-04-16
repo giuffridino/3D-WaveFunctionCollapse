@@ -10,6 +10,19 @@ public class Tile : MonoBehaviour
     public Tile[] upNeighbors;
     public Tile[] downNeighbors;
 
+
+		////////////////////////////////////////////////////////////////////
+
+
+ 	public Tile[] front_upNeighbors;
+    public Tile[] back_upNeighbors;
+    public Tile[] right_upNeighbors;
+    public Tile[] left_upNeighbors;
+	public Tile[] front_downNeighbors;
+    public Tile[] back_downNeighbors;
+    public Tile[] right_downNeighbors;
+    public Tile[] left_downNeighbors;
+
     [SerializeField] private Tile motherTile;
     
     public void UploadNeighborhood()
@@ -49,6 +62,59 @@ public class Tile : MonoBehaviour
         {
             downNeighbors[i] = motherTile.downNeighbors[i];
         }
+
+
+		////////////////////////////////////////////////////////////////////
+
+
+		front_upNeighbors = new Tile[motherTile.front_upNeighbors.Length];
+        for (int i = 0; i < motherTile.front_upNeighbors.Length; i++)
+        {
+            front_upNeighbors[i] = motherTile.front_upNeighbors[i];
+        }
+    
+        back_upNeighbors = new Tile[motherTile.back_upNeighbors.Length];
+        for (int i = 0; i < motherTile.back_upNeighbors.Length; i++)
+        {
+            back_upNeighbors[i] = motherTile.back_upNeighbors[i];
+        }
+    
+        right_upNeighbors = new Tile[motherTile.right_upNeighbors.Length];
+        for (int i = 0; i < motherTile.right_upNeighbors.Length; i++)
+        {
+            right_upNeighbors[i] = motherTile.right_upNeighbors[i];
+        }
+    
+        left_upNeighbors = new Tile[motherTile.left_upNeighbors.Length];
+        for (int i = 0; i < motherTile.left_upNeighbors.Length; i++)
+        {
+            left_upNeighbors[i] = motherTile.left_upNeighbors[i];
+        }
+
+		front_downNeighbors = new Tile[motherTile.front_downNeighbors.Length];
+        for (int i = 0; i < motherTile.front_downNeighbors.Length; i++)
+        {
+            front_downNeighbors[i] = motherTile.front_downNeighbors[i];
+        }
+    
+        back_downNeighbors = new Tile[motherTile.back_downNeighbors.Length];
+        for (int i = 0; i < motherTile.back_downNeighbors.Length; i++)
+        {
+            back_downNeighbors[i] = motherTile.back_downNeighbors[i];
+        }
+    
+        right_downNeighbors = new Tile[motherTile.right_downNeighbors.Length];
+        for (int i = 0; i < motherTile.right_downNeighbors.Length; i++)
+        {
+            right_downNeighbors[i] = motherTile.right_downNeighbors[i];
+        }
+    
+        left_downNeighbors = new Tile[motherTile.left_downNeighbors.Length];
+        for (int i = 0; i < motherTile.left_downNeighbors.Length; i++)
+        {
+            left_downNeighbors[i] = motherTile.left_downNeighbors[i];
+        }
+
     }
 
     public void RotateNeighborLists(Tile newTile)
@@ -63,6 +129,32 @@ public class Tile : MonoBehaviour
         RotateNeighbors(newTile.backNeighbors);
         RotateNeighbors(newTile.rightNeighbors);
         RotateNeighbors(newTile.leftNeighbors);
+
+
+		////////////////////////////////////////////////////////////////////
+
+
+		Tile[] tempFront_upNeighbors = newTile.front_upNeighbors;
+		newTile.front_upNeighbors = newTile.left_upNeighbors;
+        newTile.left_upNeighbors = newTile.back_upNeighbors;
+        newTile.back_upNeighbors = newTile.right_upNeighbors;
+        newTile.right_upNeighbors = tempFront_upNeighbors;
+
+        RotateNeighbors(newTile.front_upNeighbors);
+        RotateNeighbors(newTile.back_upNeighbors);
+        RotateNeighbors(newTile.right_upNeighbors);
+        RotateNeighbors(newTile.left_upNeighbors);
+
+		Tile[] tempFront_downNeighbors = newTile.front_downNeighbors;
+		newTile.front_downNeighbors = newTile.left_downNeighbors;
+        newTile.left_downNeighbors = newTile.back_downNeighbors;
+        newTile.back_downNeighbors = newTile.right_downNeighbors;
+        newTile.right_downNeighbors = tempFront_downNeighbors;
+
+        RotateNeighbors(newTile.front_downNeighbors);
+        RotateNeighbors(newTile.back_downNeighbors);
+        RotateNeighbors(newTile.right_downNeighbors);
+        RotateNeighbors(newTile.left_downNeighbors);
     }
 
     void RotateNeighbors(Tile[] neighbors)
@@ -111,6 +203,6 @@ public class Tile : MonoBehaviour
                     Debug.LogError("Prefab not found: " + tileName);
                 }
             }
-        }
-    }
+		}
+	}
 }
