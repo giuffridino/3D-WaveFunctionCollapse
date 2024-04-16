@@ -3,8 +3,8 @@ using UnityEditor;
 
 public class CustomSetupEditorWindow : EditorWindow
 {
-    [MenuItem("Custom Tools/Iterate Final Models")]
-    static void IterateFinalModels()
+    [MenuItem("Custom Tools/Rotate Constraints")]
+    static void RotateConstraints()
     {
         string folderPath = "Assets/FinalModels";
         string[] assetGUIDs = AssetDatabase.FindAssets("", new[] { folderPath });
