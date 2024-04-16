@@ -11,8 +11,14 @@ public class Tile : MonoBehaviour
     public Tile[] downNeighbors;
 
     [SerializeField] private Tile motherTile;
+
+    public void UploadAndRotateNeighborhood(Tile newTile)
+    {
+        UploadNeighborhood();
+        RotateNeighborLists(newTile);
+    }
     
-    public void UploadNeighborhood()
+    private void UploadNeighborhood()
     {
         frontNeighbors = new Tile[motherTile.frontNeighbors.Length];
         for (int i = 0; i < motherTile.frontNeighbors.Length; i++)
@@ -51,7 +57,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void RotateNeighborLists(Tile newTile)
+    private void RotateNeighborLists(Tile newTile)
     {
         Tile[] tempFrontNeighbors = newTile.frontNeighbors;
         newTile.frontNeighbors = newTile.leftNeighbors;
@@ -111,6 +117,6 @@ public class Tile : MonoBehaviour
                     Debug.LogError("Prefab not found: " + tileName);
                 }
             }
-        }
-    }
+        }
+    }
 }
