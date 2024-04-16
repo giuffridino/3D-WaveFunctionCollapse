@@ -6,21 +6,30 @@ using UnityEditor;
 [CustomEditor(typeof(Tile))]
 public class TileEditor : Editor
 {
+    private bool _showManualSetup = false; 
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
         Tile tile = (Tile)target;
-
-        if (GUILayout.Button("Upload connections from existing tile"))
+        
+        if (GUILayout.Button("Upload and rotate neighbors"))
         {
-            tile.UploadNeighborhood();
+            tile.UploadAndRotateNeighborhood();
         }
 
-        if (GUILayout.Button("90° Neighborhood Rotation"))
+        _showManualSetup = EditorGUILayout.Foldout(_showManualSetup, "Manual setup");
+        if (_showManualSetup)
         {
-            tile.RotateNeighborLists(tile);
-        }
-
-    }
+            if (GUILayout.Button("Upload connections from existing tile"))
+            {
+                tile.UploadNeighborhood();
+            }
+            
+            if (GUILayout.Button("90° Neighborhood Rotation"))
+            {
+                tile.RotateNeighborLists();
+            }
+		}
+	}
 }

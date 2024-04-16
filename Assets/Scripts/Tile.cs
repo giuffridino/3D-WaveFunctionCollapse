@@ -24,7 +24,15 @@ public class Tile : MonoBehaviour
     public Tile[] left_downNeighbors;
 
     [SerializeField] private Tile motherTile;
-    
+
+
+    public void UploadAndRotateNeighborhood()
+    {
+        UploadNeighborhood();
+        RotateNeighborLists();
+    }
+
+   
     public void UploadNeighborhood()
     {
         frontNeighbors = new Tile[motherTile.frontNeighbors.Length];
@@ -117,44 +125,44 @@ public class Tile : MonoBehaviour
 
     }
 
-    public void RotateNeighborLists(Tile newTile)
+    public void RotateNeighborLists()
     {
-        Tile[] tempFrontNeighbors = newTile.frontNeighbors;
-        newTile.frontNeighbors = newTile.leftNeighbors;
-        newTile.leftNeighbors = newTile.backNeighbors;
-        newTile.backNeighbors = newTile.rightNeighbors;
-        newTile.rightNeighbors = tempFrontNeighbors;
+        Tile[] tempFrontNeighbors = frontNeighbors;
+        frontNeighbors = leftNeighbors;
+        leftNeighbors = backNeighbors;
+        backNeighbors = rightNeighbors;
+        rightNeighbors = tempFrontNeighbors;
 
-        RotateNeighbors(newTile.frontNeighbors);
-        RotateNeighbors(newTile.backNeighbors);
-        RotateNeighbors(newTile.rightNeighbors);
-        RotateNeighbors(newTile.leftNeighbors);
+        RotateNeighbors(frontNeighbors);
+        RotateNeighbors(backNeighbors);
+        RotateNeighbors(rightNeighbors);
+        RotateNeighbors(leftNeighbors);
 
 
 		////////////////////////////////////////////////////////////////////
 
 
-		Tile[] tempFront_upNeighbors = newTile.front_upNeighbors;
-		newTile.front_upNeighbors = newTile.left_upNeighbors;
-        newTile.left_upNeighbors = newTile.back_upNeighbors;
-        newTile.back_upNeighbors = newTile.right_upNeighbors;
-        newTile.right_upNeighbors = tempFront_upNeighbors;
+		Tile[] tempFront_upNeighbors = front_upNeighbors;
+		front_upNeighbors = left_upNeighbors;
+        left_upNeighbors = back_upNeighbors;
+        back_upNeighbors = right_upNeighbors;
+        right_upNeighbors = tempFront_upNeighbors;
 
-        RotateNeighbors(newTile.front_upNeighbors);
-        RotateNeighbors(newTile.back_upNeighbors);
-        RotateNeighbors(newTile.right_upNeighbors);
-        RotateNeighbors(newTile.left_upNeighbors);
+        RotateNeighbors(front_upNeighbors);
+        RotateNeighbors(back_upNeighbors);
+        RotateNeighbors(right_upNeighbors);
+        RotateNeighbors(left_upNeighbors);
 
-		Tile[] tempFront_downNeighbors = newTile.front_downNeighbors;
-		newTile.front_downNeighbors = newTile.left_downNeighbors;
-        newTile.left_downNeighbors = newTile.back_downNeighbors;
-        newTile.back_downNeighbors = newTile.right_downNeighbors;
-        newTile.right_downNeighbors = tempFront_downNeighbors;
+		Tile[] tempFront_downNeighbors = front_downNeighbors;
+		front_downNeighbors = left_downNeighbors;
+        left_downNeighbors = back_downNeighbors;
+        back_downNeighbors = right_downNeighbors;
+        right_downNeighbors = tempFront_downNeighbors;
 
-        RotateNeighbors(newTile.front_downNeighbors);
-        RotateNeighbors(newTile.back_downNeighbors);
-        RotateNeighbors(newTile.right_downNeighbors);
-        RotateNeighbors(newTile.left_downNeighbors);
+        RotateNeighbors(front_downNeighbors);
+        RotateNeighbors(back_downNeighbors);
+        RotateNeighbors(right_downNeighbors);
+        RotateNeighbors(left_downNeighbors);
     }
 
     void RotateNeighbors(Tile[] neighbors)
