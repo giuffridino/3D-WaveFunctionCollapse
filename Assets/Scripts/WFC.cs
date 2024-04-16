@@ -17,6 +17,9 @@ public class WFC : MonoBehaviour
 
     private int _iteration;
 	private int _count;
+    
+    private readonly Random _rand = new Random();
+
 
     private void Awake()
     {
@@ -51,8 +54,7 @@ public class WFC : MonoBehaviour
     IEnumerator Observe()
     {
         bool allCollapsed = true;
-        Random rand = new Random();
-        int cellToCollaps = -1;
+        int cellToCollapse = -1;
         int minEntropy = tileObjects.Length + 1;
         
         for (int x = 0; x < dimX; x++)
@@ -66,19 +68,19 @@ public class WFC : MonoBehaviour
                     {
                         allCollapsed = false;
                         minEntropy = entropy;
-                        cellToCollaps = z + y * dimZ + x * dimY * dimZ;
+                        cellToCollapse = z + y * dimZ + x * dimY * dimZ;
                     }
                 }
             }
         }
 
-        //Debug.LogWarning("collapsingCell:" + cellToCollaps + "with entropy:" + minEntropy);
+        //Debug.LogWarning("collapsingCell:" + cellToCollapse + "with entropy:" + minEntropy);
 
         if(!allCollapsed)
         {
             float time = 0.001f;
             yield return new WaitForSeconds(time);
-            CollapseCell(cellToCollaps);
+            CollapseCell(cellToCollapse);
         }
         else
         {
@@ -95,8 +97,7 @@ public class WFC : MonoBehaviour
         
         if(cellToCollapse.tileOptions.Length != 0)
         {
-            Random rand = new Random();
-            selectedTile = cellToCollapse.tileOptions[rand.Next(0, cellToCollapse.tileOptions.Length)];
+            selectedTile = cellToCollapse.tileOptions[_rand.Next(0, cellToCollapse.tileOptions.Length)];
         }
         else
         {
