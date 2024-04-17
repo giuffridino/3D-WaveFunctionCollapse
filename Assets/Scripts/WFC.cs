@@ -14,6 +14,7 @@ public class WFC : MonoBehaviour
     [SerializeField] private List<Cell> gridComponents;
     [SerializeField] private Cell cellObj;
     [SerializeField] private Tile backupTile;
+    [SerializeField] private GameObject railing;
 
     private int _iteration;
 	private int _count;
@@ -91,6 +92,10 @@ public class WFC : MonoBehaviour
     void CollapseCell(int index)
     {
         Cell cellToCollapse = gridComponents[index];
+        
+        int x = index / (dimY * dimZ);
+        int y = (index / dimZ) % dimY;
+        int z = index % dimZ;
 
         cellToCollapse.collapsed = true;
         Tile selectedTile;
@@ -98,6 +103,7 @@ public class WFC : MonoBehaviour
         if(cellToCollapse.tileOptions.Length != 0)
         {
             List<Tile> weightedOptions = new List<Tile>();
+            
             foreach(Tile tile in cellToCollapse.tileOptions)
             {
                 if(tile.name == "Floor_p")
@@ -106,13 +112,64 @@ public class WFC : MonoBehaviour
                     weightedOptions.Add(tile);
                     weightedOptions.Add(tile);
                     weightedOptions.Add(tile);
+                    weightedOptions.Add(tile);
+                    weightedOptions.Add(tile);
+                    weightedOptions.Add(tile);
+                    weightedOptions.Add(tile);
+                    
                 }
                 else
                 {
-                    weightedOptions.Add(tile);
+                    //non mette empty al piano terra dell'edificio
+                    if(!(y == 0 && tile == tileObjects[6]))
+                        weightedOptions.Add(tile);
                 }
             }
+
+            //rimuove scale dai lati dell'edificio
+            if (x == 0 || x == dimX - 1 || z == 0 || z == dimZ - 1)
+            {
+                weightedOptions.RemoveAll(tile => tile.name.Contains("Stairs"));
+            }
+            
             selectedTile = weightedOptions[_rand.Next(0, weightedOptions.Count)];
+            
+            //mette solo pavimenti all'ultimo piano(lascia gli empty per le scale)
+            if (y == dimY - 1 && selectedTile != tileObjects[6])
+            {
+                selectedTile = tileObjects[7];
+            }
+            
+            //angoli dell'edificio
+            if (x == 0 && z == 0)
+            {
+                //selectedTile = tileObjects[0];
+            }
+            if (x == dimX - 1 && z == dimZ - 1)
+            {
+                //selectedTile = tileObjects[2];
+            }
+
+            //istanziazione grate
+            if (z == 0)
+            {
+                Instantiate(railing, new Vector3((float)x - 0.45f, (float)y - 0.5f, - 0.45f), Quaternion.identity);
+            }
+            if (z == dimZ - 1)
+            {
+                Instantiate(railing, new Vector3((float)x - 0.45f, (float)y - 0.5f, z + 0.45f), Quaternion.identity);
+            }
+            if (x == 0)
+            {
+                Instantiate(railing, new Vector3(- 0.45f, (float)y - 0.5f, (float)z + 0.45f), Quaternion.Euler(0f, 90f, 0f));
+            }
+            if (x == dimX - 1)
+            {
+                Instantiate(railing, new Vector3(x + 0.45f, (float)y - 0.5f, (float)z + 0.45f), Quaternion.Euler(0f, 90f, 0f));
+            }
+            
+            
+            
         }
         else
         {
