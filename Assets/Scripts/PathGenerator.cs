@@ -28,6 +28,8 @@ public class PathGenerator : MonoBehaviour
     private Vector3 down;
     private Vector3 up2;
     private Vector3 down2;
+
+    private int _count;
     private void Start()
     {
         gridComponents = new List<Cell>();
@@ -44,8 +46,10 @@ public class PathGenerator : MonoBehaviour
                 for (int z = 0; z < dimZ; z++)
                 {
                     Cell newCell = Instantiate(cellObj, new Vector3(x, y, z), Quaternion.identity);
+                    newCell.name = "Cell_" + _count;
                     newCell.CreateCell(false, tileObjects);
                     gridComponents.Add(newCell);
+                    _count++;
                 }
             }
         }
@@ -154,7 +158,18 @@ public class PathGenerator : MonoBehaviour
         }
         foreach (Vector3 pathCell in path)
         {
-            Instantiate(cube, pathCell, Quaternion.identity);
+            // var newCube = Instantiate(cube, pathCell, Quaternion.identity);
+            foreach (Cell cell in gridComponents)
+            {
+                if (cell.transform.position == pathCell)
+                {
+                    // Instantiate the cube
+                    var newCube = Instantiate(cube, pathCell, Quaternion.identity);
+                    // Set the cell as the parent of the cube
+                    newCube.transform.parent = cell.transform;
+                    break; // Exit the loop once we find the corresponding cell
+                }
+            }
         }
     }
 
