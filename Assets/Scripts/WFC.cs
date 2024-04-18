@@ -15,6 +15,7 @@ public class WFC : MonoBehaviour
     [SerializeField] private Cell cellObj;
     [SerializeField] private Tile backupTile;
     [SerializeField] private GameObject railing;
+    [SerializeField] private GameObject stairs_railing;
 
     private int _iteration;
 	private int _count;
@@ -86,6 +87,7 @@ public class WFC : MonoBehaviour
         else
         {
             Debug.Log("Entropy is 1 everywhere");
+            AddDecorations();
         }
     }
 
@@ -149,27 +151,6 @@ public class WFC : MonoBehaviour
             {
                 //selectedTile = tileObjects[2];
             }
-
-            //istanziazione grate
-            if (z == 0)
-            {
-                Instantiate(railing, new Vector3((float)x - 0.45f, (float)y - 0.5f, - 0.45f), Quaternion.identity);
-            }
-            if (z == dimZ - 1)
-            {
-                Instantiate(railing, new Vector3((float)x - 0.45f, (float)y - 0.5f, z + 0.45f), Quaternion.identity);
-            }
-            if (x == 0)
-            {
-                Instantiate(railing, new Vector3(- 0.45f, (float)y - 0.5f, (float)z + 0.45f), Quaternion.Euler(0f, 90f, 0f));
-            }
-            if (x == dimX - 1)
-            {
-                Instantiate(railing, new Vector3(x + 0.45f, (float)y - 0.5f, (float)z + 0.45f), Quaternion.Euler(0f, 90f, 0f));
-            }
-            
-            
-            
         }
         else
         {
@@ -425,6 +406,88 @@ public class WFC : MonoBehaviour
         }
 
         return newTileList;
+    }
+
+    void AddDecorations()
+    {
+
+        for (int x = 0; x < dimX; x++)
+        {
+            for (int y = 0; y < dimY; y++)
+            {
+                for (int z = 0; z < dimZ; z++)
+                {
+                    //istanziazione grate
+                    if (z == 0)
+                    {
+                        Instantiate(railing, new Vector3((float)x - 0.45f, (float)y - 0.5f, -0.45f),
+                            Quaternion.identity);
+                    }
+                    if (z == dimZ - 1)
+                    {
+                        Instantiate(railing, new Vector3((float)x - 0.45f, (float)y - 0.5f, z + 0.45f),
+                            Quaternion.identity);
+                    }
+                    if (x == 0)
+                    {
+                        Instantiate(railing, new Vector3(-0.45f, (float)y - 0.5f, (float)z + 0.45f),
+                            Quaternion.Euler(0f, 90f, 0f));
+                    }
+                    if (x == dimX - 1)
+                    {
+                        Instantiate(railing, new Vector3(x + 0.45f, (float)y - 0.5f, (float)z + 0.45f),
+                            Quaternion.Euler(0f, 90f, 0f));
+                    }
+
+                    int index = z + y * dimZ + x * dimY * dimZ;
+                    Cell cell = gridComponents[index];
+                    
+                    if (cell.tileOptions[0].name.Contains("Stairs"))
+                    {
+                        Debug.Log("scala");
+                        if (cell.tileOptions[0].name.Contains("90"))
+                        {
+                            Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                                Quaternion.Euler(0f, 90f, 0f));
+                            Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                                Quaternion.Euler(0f, 180f, 0f));
+                            Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z - 0.4f),
+                                Quaternion.Euler(0f, 180f, 0f));
+                            
+                        }
+                        else if(cell.tileOptions[0].name.Contains("270"))
+                        {
+                            Instantiate(stairs_railing, new Vector3(x - 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                                Quaternion.Euler(0f, 90f, 0f));
+                            Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                                Quaternion.Euler(0f, 180f, 0f));
+                            Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z - 0.4f),
+                                Quaternion.Euler(0f, 180f, 0f));
+                        }
+                        else if(cell.tileOptions[0].name.Contains("180"))
+                        {
+                            Instantiate(stairs_railing, new Vector3(x - 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                                Quaternion.Euler(0f, 90f, 0f));
+                            Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                                Quaternion.Euler(0f, 90f, 0f));
+                            Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z - 0.4f),
+                                Quaternion.Euler(0f, 180f, 0f));
+                        }
+                        else
+                        {
+                            Debug.Log("instanziato p00 " + x +" "+ y+" " + z);
+                            Instantiate(stairs_railing, new Vector3(x - 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                                Quaternion.Euler(0f, 90f, 0f));
+                            Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                                Quaternion.Euler(0f, 90f, 0f));
+                            Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                                Quaternion.Euler(0f, 180f, 0f));
+                        }
+                    }
+
+                }
+            }
+        }
     }
     
 }

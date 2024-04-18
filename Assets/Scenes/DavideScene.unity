@@ -705,6 +705,7 @@ MonoBehaviour:
   cellObj: {fileID: 257796435}
   backupTile: {fileID: 8957248759545574633, guid: 3f2a7c73628e21343a94405fd49cc493, type: 3}
   railing: {fileID: 7595772471860429095, guid: 0e22a380fd100b44db7799f7a0460c52, type: 3}
+  stairs_railing: {fileID: 2265427450687807189, guid: f82e3cf8a1bc7a84fbd27b5e61b97c77, type: 3}
 --- !u!4 &1815676204
 Transform:
   m_ObjectHideFlags: 0
