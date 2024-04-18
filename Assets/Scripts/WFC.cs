@@ -484,7 +484,11 @@ public class WFC : MonoBehaviour
                                 Quaternion.Euler(0f, 180f, 0f));
                         }
                     }
-
+                    else if (cell.tileOptions[0].name.Contains("Wall"))
+                    {
+                        Debug.Log("wall " + cell.tileOptions[0].name);
+                        cell.tileOptions[0].transform.Find("torch").gameObject.SetActive(false);
+                    }
                 }
             }
         }
