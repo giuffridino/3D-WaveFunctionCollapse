@@ -485,13 +485,14 @@ public class WFC : MonoBehaviour
                     else if (cell.tileOptions[0].name.Contains("Wall"))
                     {
 						if(_rand.Next(0,2) == 1)
-                        	cell.transform.GetChild(0).transform.Find("torch").gameObject.SetActive(true);
+                        	cell.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
                     }
 					else if (cell.tileOptions[0].name.Contains("Corner"))
 					{
 						int spawnObject = _rand.Next(0,7);
 						if(spawnObject != 0)
 						{
+							Debug.Log(spawnObject);
 							cell.transform.GetChild(0).transform.GetChild(spawnObject).gameObject.SetActive(true);
 						}
 					}
