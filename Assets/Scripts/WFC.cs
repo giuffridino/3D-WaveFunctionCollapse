@@ -444,7 +444,6 @@ public class WFC : MonoBehaviour
                     
                     if (cell.tileOptions[0].name.Contains("Stairs"))
                     {
-                        Debug.Log("scala");
                         if (cell.tileOptions[0].name.Contains("90"))
                         {
                             Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
@@ -475,7 +474,6 @@ public class WFC : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("instanziato p00 " + x +" "+ y+" " + z);
                             Instantiate(stairs_railing, new Vector3(x - 0.5f, (float)y + 0.5f, (float)z + 0.5f),
                                 Quaternion.Euler(0f, 90f, 0f));
                             Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
@@ -486,9 +484,17 @@ public class WFC : MonoBehaviour
                     }
                     else if (cell.tileOptions[0].name.Contains("Wall"))
                     {
-                        Debug.Log("wall " + cell.tileOptions[0].name);
-                        cell.tileOptions[0].transform.Find("torch").gameObject.SetActive(false);
+						if(_rand.Next(0,2) == 1)
+                        	cell.transform.GetChild(0).transform.Find("torch").gameObject.SetActive(true);
                     }
+					else if (cell.tileOptions[0].name.Contains("Corner"))
+					{
+						int spawnObject = _rand.Next(0,7);
+						if(spawnObject != 0)
+						{
+							cell.transform.GetChild(0).transform.GetChild(spawnObject).gameObject.SetActive(true);
+						}
+					}
                 }
             }
         }
