@@ -7,11 +7,11 @@ using UnityEngine;
 
 public class WFC : MonoBehaviour
 {
-    [SerializeField] private int dimX;
-    [SerializeField] private int dimY;
-    [SerializeField] private int dimZ;
+    [SerializeField] public int dimX;
+    [SerializeField] public int dimY;
+    [SerializeField] public int dimZ;
     [SerializeField] private Tile[] tileObjects;
-    [SerializeField] private List<Cell> gridComponents;
+    [SerializeField] public List<Cell> gridComponents;
     [SerializeField] private Cell cellObj;
     [SerializeField] private Tile backupTile;
     [SerializeField] private GameObject railing;
@@ -19,22 +19,25 @@ public class WFC : MonoBehaviour
 
     private int _iteration;
 	private int _count;
+	public bool creatingPath = true;
+	public Vector3 startingCell;
     
     private readonly Random _rand = new Random();
 
 
-    private void Awake()
+    //private void Awake()
+    //{
+     //   RunWfc();
+    //}
+
+    public void RunWfc()
     {
-        RunWfc();
+        //gridComponents = new List<Cell>();
+        //InitializeGrid();
+		StartCoroutine(Observe());
     }
 
-    private void RunWfc()
-    {
-        gridComponents = new List<Cell>();
-        InitializeGrid();
-    }
-
-    private void InitializeGrid()
+    public void InitializeGrid()
     {
         for (int x = 0; x < dimX; x++)
         {
@@ -131,7 +134,7 @@ public class WFC : MonoBehaviour
             //rimuove scale dai lati dell'edificio
             if (x == 0 || x == dimX - 1 || z == 0 || z == dimZ - 1)
             {
-                weightedOptions.RemoveAll(tile => tile.name.Contains("Stairs"));
+                //weightedOptions.RemoveAll(tile => tile.name.Contains("Stairs"));
             }
             
             selectedTile = weightedOptions[_rand.Next(0, weightedOptions.Count)];
@@ -165,7 +168,7 @@ public class WFC : MonoBehaviour
         Propagate(index);
     }
 
-    private void Propagate(int collapsedCell)
+    public void Propagate(int collapsedCell)
     {
         int x = collapsedCell / (dimY * dimZ);
         int y = (collapsedCell / dimZ) % dimY;
@@ -340,7 +343,8 @@ public class WFC : MonoBehaviour
             }
         }
             
-        StartCoroutine(Observe());
+		if(!creatingPath)
+        	StartCoroutine(Observe());
     }
     
     List<Tile> CheckValidity(List<Tile> optionList, List<Tile> validOption)
@@ -418,27 +422,30 @@ public class WFC : MonoBehaviour
                 for (int z = 0; z < dimZ; z++)
                 {
                     //istanziazione grate
-                    if (z == 0)
+					if(!(startingCell.x == x && startingCell.y == y && startingCell.z == z))
                     {
-                        Instantiate(railing, new Vector3((float)x - 0.45f, (float)y - 0.5f, -0.45f),
-                            Quaternion.identity);
-                    }
-                    if (z == dimZ - 1)
-                    {
-                        Instantiate(railing, new Vector3((float)x - 0.45f, (float)y - 0.5f, z + 0.45f),
-                            Quaternion.identity);
-                    }
-                    if (x == 0)
-                    {
-                        Instantiate(railing, new Vector3(-0.45f, (float)y - 0.5f, (float)z + 0.45f),
-                            Quaternion.Euler(0f, 90f, 0f));
-                    }
-                    if (x == dimX - 1)
-                    {
-                        Instantiate(railing, new Vector3(x + 0.45f, (float)y - 0.5f, (float)z + 0.45f),
-                            Quaternion.Euler(0f, 90f, 0f));
-                    }
-
+                        if (z == 0)
+                        {
+                            Instantiate(railing, new Vector3((float)x - 0.45f, (float)y - 0.5f, -0.45f),
+                                Quaternion.identity);
+                        }
+                        if (z == dimZ - 1)
+                        {
+                            Instantiate(railing, new Vector3((float)x - 0.45f, (float)y - 0.5f, z + 0.45f),
+                                Quaternion.identity);
+                        }
+                        if (x == 0)
+                        {
+                            Instantiate(railing, new Vector3(-0.45f, (float)y - 0.5f, (float)z + 0.45f),
+                                Quaternion.Euler(0f, 90f, 0f));
+                        }
+                        if (x == dimX - 1)
+                        {
+                            Instantiate(railing, new Vector3(x + 0.45f, (float)y - 0.5f, (float)z + 0.45f),
+                                Quaternion.Euler(0f, 90f, 0f));
+                        }
+					}
+                    
                     int index = z + y * dimZ + x * dimY * dimZ;
                     Cell cell = gridComponents[index];
                     
@@ -500,5 +507,19 @@ public class WFC : MonoBehaviour
             }
         }
     }
+
+	public void SetSpecificTile(int index, int tileIndex)
+    {
+        Debug.Log("index = " + index);
+        Cell cellToCollapse = gridComponents[index];
+        Tile selectedTile = tileObjects[tileIndex];
+
+        cellToCollapse.tileOptions = new Tile[] { selectedTile };
+        cellToCollapse.collapsed = true;
+        Tile foundTile = cellToCollapse.tileOptions[0];
+        Tile newTile = Instantiate(foundTile, cellToCollapse.transform.position, foundTile.transform.rotation);
+        newTile.transform.parent = cellToCollapse.transform;
+        Propagate(index);
+	}
     
 }

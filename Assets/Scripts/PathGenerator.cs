@@ -7,14 +7,17 @@ using UnityEngine;
 
 public class PathGenerator : MonoBehaviour
 {
-
-    [SerializeField] private int dimX;
-    [SerializeField] private int dimY;
-    [SerializeField] private int dimZ;
     [SerializeField] private Tile[] tileObjects;
     [SerializeField] private List<Cell> gridComponents;
     [SerializeField] private Cell cellObj;
     [SerializeField] private Tile backupTile;
+    [SerializeField] private WFC wfc;
+
+    private int dimX;
+    private int dimY;
+    private int dimZ;
+
+    private List<Vector3> path;
 
     private bool goneUp;
     private bool goneDown;
@@ -32,9 +35,19 @@ public class PathGenerator : MonoBehaviour
     private int _count;
     private void Start()
     {
+        dimX = wfc.dimX;
+        dimY = wfc.dimY;
+        dimZ = wfc.dimZ;
+
         gridComponents = new List<Cell>();
         InitializePathGrid();
+        wfc.InitializeGrid();
         GeneratePathBetweenStartAndExit();
+        PrecollapsePath();
+
+        wfc.creatingPath = false;
+        wfc.startingCell = path[0];
+        wfc.RunWfc();
     }
 
     private void InitializePathGrid()
@@ -46,7 +59,6 @@ public class PathGenerator : MonoBehaviour
                 for (int z = 0; z < dimZ; z++)
                 {
                     Cell newCell = Instantiate(cellObj, new Vector3(x, y, z), Quaternion.identity);
-                    newCell.name = "Cell_" + _count;
                     newCell.CreateCell(false, tileObjects);
                     gridComponents.Add(newCell);
                     _count++;
@@ -57,12 +69,13 @@ public class PathGenerator : MonoBehaviour
 
     private void GeneratePathBetweenStartAndExit()
     {
-        Vector3 start = new Vector3(dimX / 2, 0, 0);
-        Vector3 exit = new Vector3(dimX / 2, dimY - 1, dimZ - 1);
+        Vector3 start = new Vector3(0, 0, dimZ / 2);
+        Vector3 exit = new Vector3(dimX - 1, dimY - 1, dimZ / 2);
+
+        path = new List<Vector3>();
 
         Vector3 current = start;
         prev = current;
-        List<Vector3> path = new List<Vector3>();
         List<Vector3> untouchable = new List<Vector3>();
 
         goneUp = false;
@@ -80,6 +93,7 @@ public class PathGenerator : MonoBehaviour
         int methodCounter = rand.Next(dimX / 5, dimX / 2);
 
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        cube.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         Destroy(cube);
 
         while (current != exit)
@@ -127,7 +141,6 @@ public class PathGenerator : MonoBehaviour
             untouchable.Add(current);
             if (next == up || next == down)
             {
-                Debug.Log("STAIRS INCOMING");
                 current = next;
                 path.Add(current);
                 untouchable.Add(current);
@@ -164,9 +177,9 @@ public class PathGenerator : MonoBehaviour
                 if (cell.transform.position == pathCell)
                 {
                     // Instantiate the cube
-                    var newCube = Instantiate(cube, pathCell, Quaternion.identity);
-                    // Set the cell as the parent of the cube
-                    newCube.transform.parent = cell.transform;
+                    // var newCube = Instantiate(cube, pathCell, Quaternion.identity);
+                    // // Set the cell as the parent of the cube
+                    // newCube.transform.parent = cell.transform;
                     break; // Exit the loop once we find the corresponding cell
                 }
             }
@@ -251,11 +264,6 @@ public class PathGenerator : MonoBehaviour
     }
 
 
-    private void PrecollapsePath()
-    {
-
-    }
-
     private void ComputeNeighbors(Vector3 current)
     {
         int x = (int)current.x;
@@ -292,10 +300,10 @@ public class PathGenerator : MonoBehaviour
         {
             possibleDirections.Add(left);
         }
-        
+
         Vector3 upNext = up + (current - prev);
         Vector3 downNext = down + (current - prev);
-        
+
         if (CheckInGrid(up) && !untouchable.Contains(up) && CheckInGrid(upNext) && !untouchable.Contains(upNext))
         {
             // Don't allow multiple up steps
@@ -369,5 +377,84 @@ public class PathGenerator : MonoBehaviour
         goneUp = false;
         goneDown = false;
         random = true;
+    }
+
+    private void PrecollapsePath()
+    {
+        int floorIndex = 7;
+        int stairsEastIndex = 8;
+        int stairsSouthIndex = 9;
+        int stairsWestIndex = 10;
+        int stairsNorthIndex = 11;
+
+        Vector3 lastDirection = new Vector3(1, 0, 0);
+
+        for (int i = 0; i < path.Count - 1; i++)
+        {
+            Vector3 current = path[i];
+            Vector3 next = path[i + 1];
+
+            int x = (int)current.x;
+            int y = (int)current.y;
+            int z = (int)current.z;
+
+            int indexCurrent = z + y * dimZ + x * dimY * dimZ;
+
+            x = (int)next.x;
+            y = (int)next.y;
+            z = (int)next.z;
+
+            int indexNext = z + y * dimZ + x * dimY * dimZ;
+
+            if (current.y == next.y)
+            {
+                wfc.SetSpecificTile(indexCurrent, floorIndex);
+                lastDirection = next - current;
+            }
+            else if (current.y < next.y)
+            {
+                // Going Up: Current cell is a stairs cell
+                if (lastDirection == new Vector3(0, 0, 1))
+                {
+                    wfc.SetSpecificTile(indexCurrent, stairsWestIndex);
+                }
+                else if (lastDirection == new Vector3(1, 0, 0))
+                {
+                    wfc.SetSpecificTile(indexCurrent, stairsNorthIndex);
+                }
+                else if (lastDirection == new Vector3(0, 0, -1))
+                {
+                    wfc.SetSpecificTile(indexCurrent, stairsEastIndex);
+                }
+                else if (lastDirection == new Vector3(-1, 0, 0))
+                {
+                    wfc.SetSpecificTile(indexCurrent, stairsSouthIndex);
+                }
+                // Skip the next cell, will have to be empty
+                i++;
+            }
+            else if (current.y > next.y)
+            {
+                // Going Down: Current cell is an empty cell
+                // Skip to the next cell, which will have to be a stairs cell
+                i++;
+                if (lastDirection == new Vector3(0, 0, 1))
+                {
+                    wfc.SetSpecificTile(indexNext, stairsEastIndex);
+                }
+                else if (lastDirection == new Vector3(1, 0, 0))
+                {
+                    wfc.SetSpecificTile(indexNext, stairsSouthIndex);
+                }
+                else if (lastDirection == new Vector3(0, 0, -1))
+                {
+                    wfc.SetSpecificTile(indexNext, stairsWestIndex);
+                }
+                else if (lastDirection == new Vector3(-1, 0, 0))
+                {
+                    wfc.SetSpecificTile(indexNext, stairsNorthIndex);
+                }
+            }
+        }
     }
 }
