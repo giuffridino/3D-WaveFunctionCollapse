@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   railing: {fileID: 919132149155446097, guid: 98dce5ec25c71b348a62b1a754bcf4e8, type: 3}
   stairsRailing: {fileID: 919132149155446097, guid: bf602ac4334ede644898a982137a3bc7, type: 3}
+  treasureChest: {fileID: 5319679808335543978, guid: 07401f380b8b29d4989786ad1d34808a, type: 3}
 --- !u!4 &94252122
 Transform:
   m_ObjectHideFlags: 0
@@ -199,7 +200,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gateObject: {fileID: 4754259872940277232, guid: 8461cea620c53074b95cccc615c2603d, type: 3}
-  treasureObject: {fileID: 5319679808335543978, guid: 07401f380b8b29d4989786ad1d34808a, type: 3}
   wfc: {fileID: 1815676203}
 --- !u!4 &205099721
 Transform:
@@ -256,12 +256,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257796434}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.91842085, y: -1.1643623, z: 1.3327215}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.095574, y: -2.2305374, z: -0.24390948}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 519261928}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &274018226
 GameObject:
@@ -448,7 +448,7 @@ GameObject:
   m_Component:
   - component: {fileID: 519261928}
   m_Layer: 0
-  m_Name: CastleCreatorScripts
+  m_Name: CastleCreation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -470,6 +470,7 @@ Transform:
   - {fileID: 1815676204}
   - {fileID: 94252122}
   - {fileID: 205099721}
+  - {fileID: 257796436}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &547613023
@@ -1119,11 +1120,11 @@ MonoBehaviour:
   - {fileID: 4356923061893202960, guid: f43abfc1f12d5eb47afcfabe36a18ab8, type: 3}
   - {fileID: 1439444298453499698, guid: 5b7cd8ebad753674599580d962172a9a, type: 3}
   - {fileID: -1435582351038818164, guid: 0b2b1dab2ab37104bb60ec3b5b506135, type: 3}
-  gridComponents: []
   cellObj: {fileID: 257796435}
   backupTile: {fileID: 8957248759545574633, guid: 3f2a7c73628e21343a94405fd49cc493, type: 3}
-  decorationsCreator: {fileID: 94252121}
   player: {fileID: 1117849386}
+  decorationsCreator: {fileID: 94252121}
+  gridComponents: []
   creatingPath: 1
   startingCell: {x: 0, y: 0, z: 0}
   finishCell: {x: 0, y: 0, z: 0}
@@ -1146,7 +1147,6 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 257796436}
   - {fileID: 1117849385}
   - {fileID: 1800066112}
   - {fileID: 477372602}

@@ -8,7 +8,6 @@ using UnityEngine;
 public class PathGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject gateObject;
-    [SerializeField] private GameObject treasureObject;
     [SerializeField] private WFC wfc;
 
 
@@ -40,15 +39,14 @@ public class PathGenerator : MonoBehaviour
         dimZ = wfc.dimZ;
 
         wfc.InitializeGrid();
-        Debug.Log("Generating Path...");
         GeneratePathBetweenStartAndExit();
-        Debug.Log("Path Generated");
         PrecollapsePath();
         wfc.creatingPath = false;
         wfc.startingCell = path[0];
         wfc.finishCell = path.Last();
-        Instantiate(gateObject, wfc.startingCell + new Vector3(-0.5f,-0.3f,0), gateObject.transform.rotation);
-        Instantiate(treasureObject, wfc.finishCell + new Vector3(0,-0.22f,0), treasureObject.transform.rotation);
+        var decorations = new GameObject("Decorations");
+        var gate = Instantiate(gateObject, wfc.startingCell + new Vector3(-0.5f,-0.3f,0), gateObject.transform.rotation);
+        gate.transform.parent = decorations.transform;
         wfc.RunWfc();
     }
 

@@ -9,11 +9,15 @@ public class DecorationsCreator : MonoBehaviour
     private readonly Random _rand = new Random();
     [SerializeField] private GameObject railing;
     [SerializeField] private GameObject stairsRailing;
+    [SerializeField] private GameObject treasureChest;
     
     public void AddDecorations(int dimX, int dimY, int dimZ, Cell[] gridComponents, Vector3 startingCell)
     {
+        var decorations = GameObject.Find("Decorations").transform;
         GameObject railings = new GameObject("Railings");
+        railings.transform.parent = decorations;
         GameObject stairsRailings = new GameObject("Stairs Railings");
+        stairsRailings.transform.parent = decorations;
         
         for (int x = 0; x < dimX; x++)
         {
@@ -140,5 +144,24 @@ public class DecorationsCreator : MonoBehaviour
                 }
             }
         }
+        AddTreasureChest(dimX, dimY, dimZ, gridComponents);
+    }
+    private void AddTreasureChest(int dimX, int dimY, int dimZ, Cell[] gridComponents)
+    {
+        var spawnPoint = new Vector3(dimX / 2, dimY - 1, dimZ / 2);
+        while (true)
+        {
+            int index = (int)spawnPoint.z + ((int)spawnPoint.y - 1) * dimZ + (int)spawnPoint.x * dimY * dimZ;
+            if (gridComponents[index].tileOptions[0].name.Contains("Stairs"))
+            {
+                spawnPoint += new Vector3(0, 0, -1);
+            }
+            else
+            {
+                break;
+            }
+        }
+        var treasure = Instantiate(treasureChest, spawnPoint + new Vector3(0,-0.22f,0), Quaternion.identity);
+        treasure.transform.parent = GameObject.Find("Decorations").transform;
     }
 }
