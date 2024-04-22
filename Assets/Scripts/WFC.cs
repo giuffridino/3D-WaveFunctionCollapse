@@ -11,16 +11,21 @@ public class WFC : MonoBehaviour
     [SerializeField] public int dimY;
     [SerializeField] public int dimZ;
     [SerializeField] private Tile[] tileObjects;
-    [SerializeField] public List<Cell> gridComponents;
     [SerializeField] private Cell cellObj;
     [SerializeField] private Tile backupTile;
-    [SerializeField] private DecorationsCreator decorationsCreator;
     [SerializeField] private PlayerMovement player;
+    [SerializeField] private DecorationsCreator decorationsCreator;
 
     private int _iteration;
     private int _count;
+    
+    [HideInInspector]
+    public List<Cell> gridComponents;
+    [HideInInspector]
     public bool creatingPath = true;
+    [HideInInspector]
     public Vector3 startingCell;
+    [HideInInspector]
     public Vector3 finishCell;
 
     private readonly Random _rand = new Random();
