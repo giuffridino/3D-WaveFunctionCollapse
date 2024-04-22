@@ -74,7 +74,6 @@ public class WFC : MonoBehaviour
             }
         }
 
-
         if (!allCollapsed)
         {
             float time = 0.001f;
@@ -119,13 +118,11 @@ public class WFC : MonoBehaviour
                 }
                 else
                 {
-                    //non mette empty al piano terra dell'edificio
                     if (!(y == 0 && tile == tileObjects[6]))
                         weightedOptions.Add(tile);
                 }
             }
 
-            //rimuove scale dai lati dell'edificio
             if (x == 0 || x == dimX - 1)
             {
                 weightedOptions.RemoveAll(tile => tile.name.Equals("Stairs_p90"));
@@ -140,26 +137,13 @@ public class WFC : MonoBehaviour
 
             selectedTile = weightedOptions[_rand.Next(0, weightedOptions.Count)];
 
-            //mette solo pavimenti all'ultimo piano(lascia gli empty per le scale)
             if (y == dimY - 1 && selectedTile != tileObjects[6])
             {
                 selectedTile = tileObjects[7];
             }
-
-            //angoli dell'edificio
-            if (x == 0 && z == 0)
-            {
-                //selectedTile = tileObjects[0];
-            }
-
-            if (x == dimX - 1 && z == dimZ - 1)
-            {
-                //selectedTile = tileObjects[2];
-            }
         }
         else
         {
-            //Debug.Log("error");
             selectedTile = backupTile;
         }
 
@@ -184,7 +168,6 @@ public class WFC : MonoBehaviour
             Cell back = gridComponents[z + y * dimZ + (x - 1) * dimY * dimZ];
             if (!back.collapsed)
             {
-                //Debug.Log("back");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].backNeighbors;
                 back.RecreateCell(newEntropy(back.tileOptions, tileOfCollapsedCell, valid));
@@ -196,7 +179,6 @@ public class WFC : MonoBehaviour
             Cell front = gridComponents[z + y * dimZ + (x + 1) * dimY * dimZ];
             if (!front.collapsed)
             {
-                //Debug.Log("front");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].frontNeighbors;
                 front.RecreateCell(newEntropy(front.tileOptions, tileOfCollapsedCell, valid));
@@ -208,7 +190,6 @@ public class WFC : MonoBehaviour
             Cell down = gridComponents[z + (y - 1) * dimZ + x * dimY * dimZ];
             if (!down.collapsed)
             {
-                //Debug.Log("down");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].downNeighbors;
                 down.RecreateCell(newEntropy(down.tileOptions, tileOfCollapsedCell, valid));
@@ -220,7 +201,6 @@ public class WFC : MonoBehaviour
             Cell up = gridComponents[z + (y + 1) * dimZ + x * dimY * dimZ];
             if (!up.collapsed)
             {
-                //Debug.Log("up");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].upNeighbors;
                 up.RecreateCell(newEntropy(up.tileOptions, tileOfCollapsedCell, valid));
@@ -232,7 +212,6 @@ public class WFC : MonoBehaviour
             Cell right = gridComponents[(z - 1) + y * dimZ + x * dimY * dimZ];
             if (!right.collapsed)
             {
-                //Debug.Log("right");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].rightNeighbors;
                 right.RecreateCell(newEntropy(right.tileOptions, tileOfCollapsedCell, valid));
@@ -244,7 +223,6 @@ public class WFC : MonoBehaviour
             Cell left = gridComponents[(z + 1) + y * dimZ + x * dimY * dimZ];
             if (!left.collapsed)
             {
-                //Debug.Log("left");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].leftNeighbors;
                 left.RecreateCell(newEntropy(left.tileOptions, tileOfCollapsedCell, valid));
@@ -253,97 +231,89 @@ public class WFC : MonoBehaviour
 
         if (x > 0 && y > 0)
         {
-            Cell back_down = gridComponents[z + (y - 1) * dimZ + (x - 1) * dimY * dimZ];
-            if (!back_down.collapsed)
+            Cell backDown = gridComponents[z + (y - 1) * dimZ + (x - 1) * dimY * dimZ];
+            if (!backDown.collapsed)
             {
-                //Debug.Log("back_down");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].back_downNeighbors;
-                back_down.RecreateCell(newEntropy(back_down.tileOptions, tileOfCollapsedCell, valid));
+                backDown.RecreateCell(newEntropy(backDown.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
         if (x > 0 && y < dimY - 1)
         {
-            Cell back_up = gridComponents[z + (y + 1) * dimZ + (x - 1) * dimY * dimZ];
-            if (!back_up.collapsed)
+            Cell backUp = gridComponents[z + (y + 1) * dimZ + (x - 1) * dimY * dimZ];
+            if (!backUp.collapsed)
             {
-                //Debug.Log("back_up");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].back_upNeighbors;
-                back_up.RecreateCell(newEntropy(back_up.tileOptions, tileOfCollapsedCell, valid));
+                backUp.RecreateCell(newEntropy(backUp.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
         if (x < dimX - 1 && y > 0)
         {
-            Cell front_down = gridComponents[z + (y - 1) * dimZ + (x + 1) * dimY * dimZ];
-            if (!front_down.collapsed)
+            Cell frontDown = gridComponents[z + (y - 1) * dimZ + (x + 1) * dimY * dimZ];
+            if (!frontDown.collapsed)
             {
-                //Debug.Log("front_down");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].front_downNeighbors;
-                front_down.RecreateCell(newEntropy(front_down.tileOptions, tileOfCollapsedCell, valid));
+                frontDown.RecreateCell(newEntropy(frontDown.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
         if (x < dimX - 1 && y < dimY - 1)
         {
-            Cell front_up = gridComponents[z + (y + 1) * dimZ + (x + 1) * dimY * dimZ];
-            if (!front_up.collapsed)
+            Cell frontUp = gridComponents[z + (y + 1) * dimZ + (x + 1) * dimY * dimZ];
+            if (!frontUp.collapsed)
             {
-                //Debug.Log("front_up");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].front_upNeighbors;
-                front_up.RecreateCell(newEntropy(front_up.tileOptions, tileOfCollapsedCell, valid));
+                frontUp.RecreateCell(newEntropy(frontUp.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
         if (z > 0 && y > 0)
         {
-            Cell right_down = gridComponents[(z - 1) + (y - 1) * dimZ + x * dimY * dimZ];
-            if (!right_down.collapsed)
+            Cell rightDown = gridComponents[(z - 1) + (y - 1) * dimZ + x * dimY * dimZ];
+            if (!rightDown.collapsed)
             {
-                //Debug.Log("right_down");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].right_downNeighbors;
-                right_down.RecreateCell(newEntropy(right_down.tileOptions, tileOfCollapsedCell, valid));
+                rightDown.RecreateCell(newEntropy(rightDown.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
         if (z > 0 && y < dimY - 1)
         {
-            Cell right_up = gridComponents[(z - 1) + (y + 1) * dimZ + x * dimY * dimZ];
-            if (!right_up.collapsed)
+            Cell rightUp = gridComponents[(z - 1) + (y + 1) * dimZ + x * dimY * dimZ];
+            if (!rightUp.collapsed)
             {
-                //Debug.Log("right_up");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].right_upNeighbors;
-                right_up.RecreateCell(newEntropy(right_up.tileOptions, tileOfCollapsedCell, valid));
+                rightUp.RecreateCell(newEntropy(rightUp.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
         if (z < dimZ - 1 && y > 0)
         {
-            Cell left_down = gridComponents[(z + 1) + (y - 1) * dimZ + x * dimY * dimZ];
-            if (!left_down.collapsed)
+            Cell leftDown = gridComponents[(z + 1) + (y - 1) * dimZ + x * dimY * dimZ];
+            if (!leftDown.collapsed)
             {
-                //Debug.Log("left_down");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].left_downNeighbors;
-                left_down.RecreateCell(newEntropy(left_down.tileOptions, tileOfCollapsedCell, valid));
+                leftDown.RecreateCell(newEntropy(leftDown.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
         if (z < dimZ - 1 && y < dimY - 1)
         {
-            Cell left_up = gridComponents[(z + 1) + (y + 1) * dimZ + x * dimY * dimZ];
-            if (!left_up.collapsed)
+            Cell leftUp = gridComponents[(z + 1) + (y + 1) * dimZ + x * dimY * dimZ];
+            if (!leftUp.collapsed)
             {
-                //Debug.Log("left_up");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].left_upNeighbors;
-                left_up.RecreateCell(newEntropy(left_up.tileOptions, tileOfCollapsedCell, valid));
+                leftUp.RecreateCell(newEntropy(leftUp.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
@@ -355,48 +325,18 @@ public class WFC : MonoBehaviour
 
     List<Tile> CheckValidity(List<Tile> optionList, List<Tile> validOption)
     {
-        //Debug.Log("__________check validity___________");
-        //Debug.Log("options before:" + optionList.Count);
-        string opts = "";
-        foreach (Tile op in optionList)
-        {
-            opts += op.ToString() + " ";
-        }
-
-        //Debug.Log(opts);
-        opts = "";
-
-        //Debug.Log("valid options:" + validOption.Count);
-        foreach (Tile op in validOption)
-        {
-            opts += op.ToString() + " ";
-        }
-
-        //Debug.Log(opts);
-        opts = "";
-
         List<Tile> newOptions = new List<Tile>();
         for (int x = optionList.Count - 1; x >= 0; x--)
         {
             Tile element = optionList[x];
-            //Debug.Log("comparing: "+ element);
             foreach (var opt in validOption)
             {
                 if (element.name == opt.name)
                 {
-                    //Debug.Log("inserito");
                     newOptions.Add(element);
                 }
             }
         }
-
-        //Debug.Log("options after" + optionList.Count);
-        foreach (Tile op in optionList)
-        {
-            opts += op.ToString() + " ";
-        }
-        //Debug.Log(opts);
-
         return newOptions;
     }
 
@@ -422,40 +362,45 @@ public class WFC : MonoBehaviour
     {
         GameObject railings = new GameObject("Railings");
         GameObject stairsRailings = new GameObject("Stairs Railings");
-        GameObject instantiatedTile;
+        
         for (int x = 0; x < dimX; x++)
         {
             for (int y = 0; y < dimY; y++)
             {
                 for (int z = 0; z < dimZ; z++)
                 {
-                    //istanziazione grate
+                    GameObject instantiatedTile;
+                    
                     if (!(startingCell.x == x && startingCell.y == y && startingCell.z == z))
                     {
                         if (z == 0)
                         {
-                            instantiatedTile = Instantiate(railing, new Vector3((float)x - 0.45f, (float)y - 0.5f, -0.45f),
+                            instantiatedTile = Instantiate(railing,
+                                new Vector3((float)x - 0.45f, (float)y - 0.5f, -0.45f),
                                 Quaternion.identity);
                             instantiatedTile.transform.parent = railings.transform;
                         }
 
                         if (z == dimZ - 1)
                         {
-                            instantiatedTile = Instantiate(railing, new Vector3((float)x - 0.45f, (float)y - 0.5f, z + 0.45f),
+                            instantiatedTile = Instantiate(railing,
+                                new Vector3((float)x - 0.45f, (float)y - 0.5f, z + 0.45f),
                                 Quaternion.identity);
                             instantiatedTile.transform.parent = railings.transform;
                         }
 
                         if (x == 0)
                         {
-                            instantiatedTile = Instantiate(railing, new Vector3(-0.45f, (float)y - 0.5f, (float)z + 0.45f),
+                            instantiatedTile = Instantiate(railing,
+                                new Vector3(-0.45f, (float)y - 0.5f, (float)z + 0.45f),
                                 Quaternion.Euler(0f, 90f, 0f));
                             instantiatedTile.transform.parent = railings.transform;
                         }
 
                         if (x == dimX - 1)
                         {
-                            instantiatedTile = Instantiate(railing, new Vector3(x + 0.45f, (float)y - 0.5f, (float)z + 0.45f),
+                            instantiatedTile = Instantiate(railing,
+                                new Vector3(x + 0.45f, (float)y - 0.5f, (float)z + 0.45f),
                                 Quaternion.Euler(0f, 90f, 0f));
                             instantiatedTile.transform.parent = railings.transform;
                         }
@@ -468,49 +413,61 @@ public class WFC : MonoBehaviour
                     {
                         if (cell.tileOptions[0].name.Contains("90"))
                         {
-                            instantiatedTile = Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                            instantiatedTile = Instantiate(stairs_railing,
+                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
                                 Quaternion.Euler(0f, 90f, 0f));
                             instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                            instantiatedTile = Instantiate(stairs_railing,
+                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
                                 Quaternion.Euler(0f, 180f, 0f));
                             instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z - 0.4f),
+                            instantiatedTile = Instantiate(stairs_railing,
+                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z - 0.4f),
                                 Quaternion.Euler(0f, 180f, 0f));
                             instantiatedTile.transform.parent = stairsRailings.transform;
                         }
                         else if (cell.tileOptions[0].name.Contains("270"))
                         {
-                            instantiatedTile = Instantiate(stairs_railing, new Vector3(x - 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                            instantiatedTile = Instantiate(stairs_railing,
+                                new Vector3(x - 0.5f, (float)y + 0.5f, (float)z + 0.5f),
                                 Quaternion.Euler(0f, 90f, 0f));
                             instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                            instantiatedTile = Instantiate(stairs_railing,
+                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
                                 Quaternion.Euler(0f, 180f, 0f));
                             instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z - 0.4f),
+                            instantiatedTile = Instantiate(stairs_railing,
+                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z - 0.4f),
                                 Quaternion.Euler(0f, 180f, 0f));
                             instantiatedTile.transform.parent = stairsRailings.transform;
                         }
                         else if (cell.tileOptions[0].name.Contains("180"))
                         {
-                            instantiatedTile = Instantiate(stairs_railing, new Vector3(x - 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                            instantiatedTile = Instantiate(stairs_railing,
+                                new Vector3(x - 0.5f, (float)y + 0.5f, (float)z + 0.5f),
                                 Quaternion.Euler(0f, 90f, 0f));
                             instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                            instantiatedTile = Instantiate(stairs_railing,
+                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
                                 Quaternion.Euler(0f, 90f, 0f));
                             instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z - 0.4f),
+                            instantiatedTile = Instantiate(stairs_railing,
+                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z - 0.4f),
                                 Quaternion.Euler(0f, 180f, 0f));
                             instantiatedTile.transform.parent = stairsRailings.transform;
                         }
                         else
                         {
-                            instantiatedTile = Instantiate(stairs_railing, new Vector3(x - 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                            instantiatedTile = Instantiate(stairs_railing,
+                                new Vector3(x - 0.5f, (float)y + 0.5f, (float)z + 0.5f),
                                 Quaternion.Euler(0f, 90f, 0f));
                             instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                            instantiatedTile = Instantiate(stairs_railing,
+                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
                                 Quaternion.Euler(0f, 90f, 0f));
                             instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairs_railing, new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
+                            instantiatedTile = Instantiate(stairs_railing,
+                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
                                 Quaternion.Euler(0f, 180f, 0f));
                             instantiatedTile.transform.parent = stairsRailings.transform;
                         }
@@ -525,7 +482,6 @@ public class WFC : MonoBehaviour
                         int spawnObject = _rand.Next(0, 6);
                         if (spawnObject != 0)
                         {
-                            Debug.Log(spawnObject);
                             cell.transform.GetChild(0).transform.GetChild(spawnObject).gameObject.SetActive(true);
                         }
                     }
@@ -536,7 +492,6 @@ public class WFC : MonoBehaviour
 
     public void SetSpecificTile(int index, int tileIndex)
     {
-        Debug.Log("index = " + index);
         Cell cellToCollapse = gridComponents[index];
         Tile selectedTile = tileObjects[tileIndex];
 
