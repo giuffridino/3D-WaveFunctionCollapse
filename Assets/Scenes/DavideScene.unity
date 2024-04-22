@@ -462,7 +462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1117849384}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0.064, z: 3.864}
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
@@ -470,7 +470,7 @@ Transform:
   - {fileID: 274018227}
   - {fileID: 1660224487}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1117849386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,7 +493,7 @@ MonoBehaviour:
   defaultHeight: 0.75
   crouchHeight: 1
   crouchSpeed: 3
-  wfc: {fileID: 0}
+  wfc: {fileID: 1815676203}
 --- !u!143 &1117849387
 CharacterController:
   m_ObjectHideFlags: 0
@@ -747,9 +747,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60ba0227f2338d40bbf1328386d85bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dimX: 7
+  dimX: 20
   dimY: 10
-  dimZ: 8
+  dimZ: 25
   tileObjects:
   - {fileID: 8425963000673321734, guid: 7439e3d22a53f4c4991b54f6d67d316e, type: 3}
   - {fileID: 8425963000673321734, guid: 7c5cb17b3ff82c54b9f32f377388c31d, type: 3}
