@@ -33,6 +33,7 @@ public class PathGenerator : MonoBehaviour
     private Vector3 down2;
 
     private int _count;
+    private Random rand = new Random();
     private void Start()
     {
         
@@ -48,8 +49,7 @@ public class PathGenerator : MonoBehaviour
 
         wfc.creatingPath = false;
         wfc.startingCell = path[0];
-
-		
+        
         wfc.RunWfc();
     }
 
@@ -72,17 +72,19 @@ public class PathGenerator : MonoBehaviour
 
     private void GeneratePathBetweenStartAndExit()
     {
+        int exit_X = rand.Next(0, dimX);
+        int exit_Z = rand.Next(0, dimZ);
         Vector3 start = new Vector3(0, 0, dimZ / 2);
-        Vector3 exit = new Vector3(dimX - 1, dimY - 1, dimZ / 2);
+        Vector3 exit = new Vector3(exit_X, dimY-1, exit_Z);
 
         path = new List<Vector3>();
 
         List<Vector3> untouchable = new List<Vector3>();
 
-		path.Add(start);
-		untouchable.Add(start);
-		untouchable.Add(start + new Vector3(0,1,0));
-		start.z++;
+		//path.Add(start);
+		//untouchable.Add(start);
+		//untouchable.Add(start + new Vector3(0,1,0));
+		//start.z++;
 
 		Vector3 current = start;
         prev = current;
@@ -98,7 +100,6 @@ public class PathGenerator : MonoBehaviour
         int tolerance = dimX * dimY;
 
         // Initialize random counter to switch between random and minimizing distance
-        Random rand = new Random();
         int methodCounter = rand.Next(dimX / 5, dimX / 2);
 
         GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -137,6 +138,13 @@ public class PathGenerator : MonoBehaviour
             {
                 // Choose a random direction from possibleDirections
                 index = rand.Next(0, possibleDirections.Count);
+            }
+
+            if (globalCounter == 0)
+            {
+                possibleDirections.Clear();
+                possibleDirections.Add(forward);
+                index = 0;
             }
 
             Vector3 next = possibleDirections[index];
@@ -381,10 +389,11 @@ public class PathGenerator : MonoBehaviour
     {
         path.Clear();
         untouchable.Clear();
-		path.Add(start);
-		untouchable.Add(start);
-		untouchable.Add(start + new Vector3(0,1,0));
-		start.z++;
+        //path.Add(start);
+        //untouchable.Add(start);
+        //untouchable.Add(start + new Vector3(0,1,0));
+        //start.z++;
+
         current = start;
         prev = current;
         globalCounter = 0;

@@ -53,7 +53,6 @@ public class WFC : MonoBehaviour
                 }
             }
         }
-        StartCoroutine(Observe());
     }
 
     IEnumerator Observe()
@@ -132,9 +131,16 @@ public class WFC : MonoBehaviour
             }
 
             //rimuove scale dai lati dell'edificio
-            if (x == 0 || x == dimX - 1 || z == 0 || z == dimZ - 1)
+            if (x == 0 || x == dimX - 1)
             {
-                weightedOptions.RemoveAll(tile => tile.name.Contains("Stairs"));
+                weightedOptions.RemoveAll(tile => tile.name.Equals("Stairs_p90"));
+				weightedOptions.RemoveAll(tile => tile.name.Equals("Stairs_p270"));
+            }
+
+			if (z == 0 || z == dimZ - 1)
+            {
+                weightedOptions.RemoveAll(tile => tile.name.Equals("Stairs_p"));
+            	weightedOptions.RemoveAll(tile => tile.name.Equals("Stairs_p180"));
             }
             
             selectedTile = weightedOptions[_rand.Next(0, weightedOptions.Count)];
@@ -342,9 +348,12 @@ public class WFC : MonoBehaviour
                 left_up.RecreateCell(newEntropy(left_up.tileOptions, tileOfCollapsedCell,valid));
             }
         }
+
+        if (!creatingPath)
+        {
             
-		if(!creatingPath)
-        	StartCoroutine(Observe());
+            StartCoroutine(Observe());
+        }
     }
     
     List<Tile> CheckValidity(List<Tile> optionList, List<Tile> validOption)
