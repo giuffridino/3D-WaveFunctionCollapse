@@ -24,16 +24,17 @@ public class PlayerMovement : MonoBehaviour
 
     private bool canMove = true;
     public bool gameStarted = false;
-    private float timer = 0f;
-
-    [SerializeField] private GameObject timerText;
+    private float time = 0f;
+    [SerializeField] private GameObject textObj;
+    private TextMeshPro timeText;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-		transform.position = wfc.startingCell + new Vector3(-4,0,0);
+        transform.position = wfc.startingCell + new Vector3(-4,0,0);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        timeText = textObj.GetComponent<TextMeshPro>();
     }
 
     void Update()
@@ -41,14 +42,14 @@ public class PlayerMovement : MonoBehaviour
 		if(gameStarted){
             Vector3 forward = transform.TransformDirection(Vector3.forward);
             Vector3 right = transform.TransformDirection(Vector3.right);
-			timer += Time.deltaTime;
+			time += Time.deltaTime;
             
-            int minutes = Mathf.FloorToInt(timer / 60f);
-            int seconds = Mathf.FloorToInt(timer % 60f);
-            int milliseconds = Mathf.FloorToInt((timer * 1000f) % 1000f);
-
-            //timerText.text = minutes + ":" + seconds + ":" + milliseconds;
-            Debug.Log(minutes + ":" + seconds + ":" + milliseconds);
+            int minutes = Mathf.FloorToInt(time / 60f);
+            int seconds = Mathf.FloorToInt(time % 60f);
+            int milliseconds = Mathf.FloorToInt((time * 1000f) % 1000f);
+            string formattedTime = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
+            
+            timeText.text = formattedTime;
 
             bool isRunning = Input.GetKey(KeyCode.LeftShift);
             float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
