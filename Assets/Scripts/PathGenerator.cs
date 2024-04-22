@@ -35,6 +35,7 @@ public class PathGenerator : MonoBehaviour
     private int _count;
     private void Start()
     {
+        
         dimX = wfc.dimX;
         dimY = wfc.dimY;
         dimZ = wfc.dimZ;
