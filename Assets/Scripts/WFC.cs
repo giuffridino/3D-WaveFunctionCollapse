@@ -134,7 +134,7 @@ public class WFC : MonoBehaviour
             //rimuove scale dai lati dell'edificio
             if (x == 0 || x == dimX - 1 || z == 0 || z == dimZ - 1)
             {
-                //weightedOptions.RemoveAll(tile => tile.name.Contains("Stairs"));
+                weightedOptions.RemoveAll(tile => tile.name.Contains("Stairs"));
             }
             
             selectedTile = weightedOptions[_rand.Next(0, weightedOptions.Count)];
@@ -491,7 +491,7 @@ public class WFC : MonoBehaviour
                     }
                     else if (cell.tileOptions[0].name.Contains("Wall"))
                     {
-						if(_rand.Next(0,2) == 1)
+						if(_rand.Next(0,4) == 6)
                         	cell.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
                     }
 					else if (cell.tileOptions[0].name.Contains("Corner"))

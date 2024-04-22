@@ -47,6 +47,8 @@ public class PathGenerator : MonoBehaviour
 
         wfc.creatingPath = false;
         wfc.startingCell = path[0];
+
+		
         wfc.RunWfc();
     }
 
@@ -74,9 +76,15 @@ public class PathGenerator : MonoBehaviour
 
         path = new List<Vector3>();
 
-        Vector3 current = start;
-        prev = current;
         List<Vector3> untouchable = new List<Vector3>();
+
+		path.Add(start);
+		untouchable.Add(start);
+		untouchable.Add(start + new Vector3(0,1,0));
+		start.z++;
+
+		Vector3 current = start;
+        prev = current;
 
         goneUp = false;
         goneDown = false;
@@ -139,6 +147,7 @@ public class PathGenerator : MonoBehaviour
 
             path.Add(current);
             untouchable.Add(current);
+
             if (next == up || next == down)
             {
                 current = next;
@@ -371,6 +380,10 @@ public class PathGenerator : MonoBehaviour
     {
         path.Clear();
         untouchable.Clear();
+		path.Add(start);
+		untouchable.Add(start);
+		untouchable.Add(start + new Vector3(0,1,0));
+		start.z++;
         current = start;
         prev = current;
         globalCounter = 0;

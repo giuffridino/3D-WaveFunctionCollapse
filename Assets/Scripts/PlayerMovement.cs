@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float defaultHeight = 2f;
     public float crouchHeight = 1f;
     public float crouchSpeed = 3f;
+	[SerializeField] private WFC wfc;
 
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX = 0;
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+		transform.position = wfc.startingCell + new Vector3(-4,0,0);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
