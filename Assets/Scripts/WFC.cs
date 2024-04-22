@@ -16,11 +16,13 @@ public class WFC : MonoBehaviour
     [SerializeField] private Tile backupTile;
     [SerializeField] private GameObject railing;
     [SerializeField] private GameObject stairs_railing;
+	[SerializeField] private PlayerMovement player;
 
     private int _iteration;
 	private int _count;
 	public bool creatingPath = true;
 	public Vector3 startingCell;
+	public Vector3 finishCell;
     
     private readonly Random _rand = new Random();
 
@@ -90,6 +92,7 @@ public class WFC : MonoBehaviour
         {
             Debug.Log("Entropy is 1 everywhere");
             AddDecorations();
+			player.gameStarted = true;
         }
     }
 
@@ -500,7 +503,7 @@ public class WFC : MonoBehaviour
                     }
                     else if (cell.tileOptions[0].name.Contains("Wall"))
                     {
-						if(_rand.Next(0,4) == 6)
+						if(_rand.Next(0,10) == 1)
                         	cell.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
                     }
 					else if (cell.tileOptions[0].name.Contains("Corner"))

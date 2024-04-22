@@ -10,8 +10,10 @@ public class PathGenerator : MonoBehaviour
     [SerializeField] private Tile[] tileObjects;
     [SerializeField] private List<Cell> gridComponents;
     [SerializeField] private Cell cellObj;
-    [SerializeField] private GameObject gateTile;
+    [SerializeField] private GameObject gateObject;
+    [SerializeField] private GameObject treasureObject;
     [SerializeField] private WFC wfc;
+
 
     private int dimX;
     private int dimY;
@@ -48,10 +50,9 @@ public class PathGenerator : MonoBehaviour
         PrecollapsePath();
         wfc.creatingPath = false;
         wfc.startingCell = path[0];
-        Instantiate(gateTile, wfc.startingCell + new Vector3(-0.5f,-0.3f,0), gateTile.transform.rotation);
-        
-        
-        
+        wfc.finishCell = path.Last();
+        Instantiate(gateObject, wfc.startingCell + new Vector3(-0.5f,-0.3f,0), gateObject.transform.rotation);
+        Instantiate(treasureObject, wfc.finishCell + new Vector3(0,-0.22f,0), treasureObject.transform.rotation);
         wfc.RunWfc();
     }
 
