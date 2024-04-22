@@ -177,7 +177,10 @@ MonoBehaviour:
   backupTile: {fileID: 8957248759545574633, guid: 3f2a7c73628e21343a94405fd49cc493, type: 3}
   railing: {fileID: 7595772471860429095, guid: 0e22a380fd100b44db7799f7a0460c52, type: 3}
   stairs_railing: {fileID: 2265427450687807189, guid: f82e3cf8a1bc7a84fbd27b5e61b97c77, type: 3}
+  player: {fileID: 0}
   creatingPath: 1
+  startingCell: {x: 0, y: 0, z: 0}
+  finishCell: {x: 0, y: 0, z: 0}
 --- !u!4 &109985714
 Transform:
   m_ObjectHideFlags: 0
@@ -333,7 +336,8 @@ MonoBehaviour:
   - {fileID: -1435582351038818164, guid: 0b2b1dab2ab37104bb60ec3b5b506135, type: 3}
   gridComponents: []
   cellObj: {fileID: 2079315330}
-  backupTile: {fileID: 0}
+  gateObject: {fileID: 0}
+  treasureObject: {fileID: 0}
   wfc: {fileID: 109985713}
 --- !u!4 &906821332
 Transform:
@@ -366,7 +370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &1470871866
 Light:
   m_ObjectHideFlags: 0

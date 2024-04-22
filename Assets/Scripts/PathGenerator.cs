@@ -44,7 +44,6 @@ public class PathGenerator : MonoBehaviour
         dimZ = wfc.dimZ;
 
         gridComponents = new List<Cell>();
-        InitializePathGrid();
         wfc.InitializeGrid();
         GeneratePathBetweenStartAndExit();
         PrecollapsePath();
@@ -54,23 +53,6 @@ public class PathGenerator : MonoBehaviour
         Instantiate(gateObject, wfc.startingCell + new Vector3(-0.5f,-0.3f,0), gateObject.transform.rotation);
         Instantiate(treasureObject, wfc.finishCell + new Vector3(0,-0.22f,0), treasureObject.transform.rotation);
         wfc.RunWfc();
-    }
-
-    private void InitializePathGrid()
-    {
-        for (int x = 0; x < dimX; x++)
-        {
-            for (int y = 0; y < dimY; y++)
-            {
-                for (int z = 0; z < dimZ; z++)
-                {
-                    Cell newCell = Instantiate(cellObj, new Vector3(x, y, z), Quaternion.identity);
-                    newCell.CreateCell(false, tileObjects);
-                    gridComponents.Add(newCell);
-                    _count++;
-                }
-            }
-        }
     }
 
     private void GeneratePathBetweenStartAndExit()
