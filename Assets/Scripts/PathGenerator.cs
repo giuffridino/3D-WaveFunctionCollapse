@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class PathGenerator : MonoBehaviour
 {
-    [SerializeField] private Tile[] tileObjects;
     [SerializeField] private GameObject gateObject;
     [SerializeField] private GameObject treasureObject;
     [SerializeField] private WFC wfc;
