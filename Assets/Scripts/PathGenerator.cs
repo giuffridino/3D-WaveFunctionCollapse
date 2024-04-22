@@ -8,8 +8,6 @@ using UnityEngine;
 public class PathGenerator : MonoBehaviour
 {
     [SerializeField] private Tile[] tileObjects;
-    [SerializeField] private List<Cell> gridComponents;
-    [SerializeField] private Cell cellObj;
     [SerializeField] private GameObject gateObject;
     [SerializeField] private GameObject treasureObject;
     [SerializeField] private WFC wfc;
@@ -43,7 +41,6 @@ public class PathGenerator : MonoBehaviour
         dimY = wfc.dimY;
         dimZ = wfc.dimZ;
 
-        gridComponents = new List<Cell>();
         wfc.InitializeGrid();
         GeneratePathBetweenStartAndExit();
         PrecollapsePath();
@@ -165,21 +162,6 @@ public class PathGenerator : MonoBehaviour
             else
             {
                 random = false;
-            }
-        }
-        foreach (Vector3 pathCell in path)
-        {
-            // var newCube = Instantiate(cube, pathCell, Quaternion.identity);
-            foreach (Cell cell in gridComponents)
-            {
-                if (cell.transform.position == pathCell)
-                {
-                    // Instantiate the cube
-                    // var newCube = Instantiate(cube, pathCell, Quaternion.identity);
-                    // // Set the cell as the parent of the cube
-                    // newCube.transform.parent = cell.transform;
-                    break; // Exit the loop once we find the corresponding cell
-                }
             }
         }
     }
