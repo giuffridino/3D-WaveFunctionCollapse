@@ -158,7 +158,7 @@ public class WFC : MonoBehaviour
         Propagate(index);
     }
 
-    public void Propagate(int collapsedCell)
+    private void Propagate(int collapsedCell)
     {
         int x = collapsedCell / (dimY * dimZ);
         int y = (collapsedCell / dimZ) % dimY;
@@ -174,7 +174,7 @@ public class WFC : MonoBehaviour
             {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].backNeighbors;
-                back.RecreateCell(newEntropy(back.tileOptions, tileOfCollapsedCell, valid));
+                back.RecreateCell(NewEntropy(back.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
@@ -185,7 +185,7 @@ public class WFC : MonoBehaviour
             {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].frontNeighbors;
-                front.RecreateCell(newEntropy(front.tileOptions, tileOfCollapsedCell, valid));
+                front.RecreateCell(NewEntropy(front.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
@@ -196,7 +196,7 @@ public class WFC : MonoBehaviour
             {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].downNeighbors;
-                down.RecreateCell(newEntropy(down.tileOptions, tileOfCollapsedCell, valid));
+                down.RecreateCell(NewEntropy(down.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
@@ -207,7 +207,7 @@ public class WFC : MonoBehaviour
             {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].upNeighbors;
-                up.RecreateCell(newEntropy(up.tileOptions, tileOfCollapsedCell, valid));
+                up.RecreateCell(NewEntropy(up.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
@@ -218,7 +218,7 @@ public class WFC : MonoBehaviour
             {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].rightNeighbors;
-                right.RecreateCell(newEntropy(right.tileOptions, tileOfCollapsedCell, valid));
+                right.RecreateCell(NewEntropy(right.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
@@ -229,7 +229,7 @@ public class WFC : MonoBehaviour
             {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].leftNeighbors;
-                left.RecreateCell(newEntropy(left.tileOptions, tileOfCollapsedCell, valid));
+                left.RecreateCell(NewEntropy(left.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
@@ -240,7 +240,7 @@ public class WFC : MonoBehaviour
             {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].back_downNeighbors;
-                backDown.RecreateCell(newEntropy(backDown.tileOptions, tileOfCollapsedCell, valid));
+                backDown.RecreateCell(NewEntropy(backDown.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
@@ -251,7 +251,7 @@ public class WFC : MonoBehaviour
             {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].back_upNeighbors;
-                backUp.RecreateCell(newEntropy(backUp.tileOptions, tileOfCollapsedCell, valid));
+                backUp.RecreateCell(NewEntropy(backUp.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
@@ -262,7 +262,7 @@ public class WFC : MonoBehaviour
             {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].front_downNeighbors;
-                frontDown.RecreateCell(newEntropy(frontDown.tileOptions, tileOfCollapsedCell, valid));
+                frontDown.RecreateCell(NewEntropy(frontDown.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
@@ -273,7 +273,7 @@ public class WFC : MonoBehaviour
             {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].front_upNeighbors;
-                frontUp.RecreateCell(newEntropy(frontUp.tileOptions, tileOfCollapsedCell, valid));
+                frontUp.RecreateCell(NewEntropy(frontUp.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
@@ -284,7 +284,7 @@ public class WFC : MonoBehaviour
             {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].right_downNeighbors;
-                rightDown.RecreateCell(newEntropy(rightDown.tileOptions, tileOfCollapsedCell, valid));
+                rightDown.RecreateCell(NewEntropy(rightDown.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
@@ -295,7 +295,7 @@ public class WFC : MonoBehaviour
             {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].right_upNeighbors;
-                rightUp.RecreateCell(newEntropy(rightUp.tileOptions, tileOfCollapsedCell, valid));
+                rightUp.RecreateCell(NewEntropy(rightUp.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
@@ -306,7 +306,7 @@ public class WFC : MonoBehaviour
             {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].left_downNeighbors;
-                leftDown.RecreateCell(newEntropy(leftDown.tileOptions, tileOfCollapsedCell, valid));
+                leftDown.RecreateCell(NewEntropy(leftDown.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
@@ -317,7 +317,7 @@ public class WFC : MonoBehaviour
             {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].left_upNeighbors;
-                leftUp.RecreateCell(newEntropy(leftUp.tileOptions, tileOfCollapsedCell, valid));
+                leftUp.RecreateCell(NewEntropy(leftUp.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
@@ -329,7 +329,7 @@ public class WFC : MonoBehaviour
 
     List<Tile> CheckValidity(List<Tile> optionList, List<Tile> validOption)
     {
-        List<Tile> newOptions = new List<Tile>();
+        var newOptions = new List<Tile>();
         for (int x = optionList.Count - 1; x >= 0; x--)
         {
             Tile element = optionList[x];
@@ -344,16 +344,16 @@ public class WFC : MonoBehaviour
         return newOptions;
     }
 
-    Tile[] newEntropy(Tile[] oldOptions, Tile tileOfCollapsedCell, Tile[] valid)
+    Tile[] NewEntropy(Tile[] oldOptions, Tile tileOfCollapsedCell, Tile[] valid)
     {
-        List<Tile> validOptions = new List<Tile>();
-        List<Tile> options = oldOptions.ToList();
+        var validOptions = new List<Tile>();
+        var options = oldOptions.ToList();
 
         validOptions = validOptions.Concat(valid).ToList();
 
         options = CheckValidity(options, validOptions);
 
-        Tile[] newTileList = new Tile[options.Count];
+        var newTileList = new Tile[options.Count];
         for (int i = 0; i < options.Count; i++)
         {
             newTileList[i] = options[i];
@@ -364,13 +364,13 @@ public class WFC : MonoBehaviour
 
     public void SetSpecificTile(int index, int tileIndex)
     {
-        Cell cellToCollapse = gridComponents[index];
-        Tile selectedTile = tileObjects[tileIndex];
+        var cellToCollapse = gridComponents[index];
+        var selectedTile = tileObjects[tileIndex];
 
         cellToCollapse.tileOptions = new Tile[] { selectedTile };
         cellToCollapse.collapsed = true;
-        Tile foundTile = cellToCollapse.tileOptions[0];
-        Tile newTile = Instantiate(foundTile, cellToCollapse.transform.position, foundTile.transform.rotation);
+        var foundTile = cellToCollapse.tileOptions[0];
+        var newTile = Instantiate(foundTile, cellToCollapse.transform.position, foundTile.transform.rotation);
         newTile.transform.parent = cellToCollapse.transform;
         Propagate(index);
     }

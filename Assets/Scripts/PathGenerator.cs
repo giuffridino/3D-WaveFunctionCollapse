@@ -32,7 +32,7 @@ public class PathGenerator : MonoBehaviour
     private Vector3 down2;
 
     private int _count;
-    private Random rand = new Random();
+    private readonly Random _rand = new Random();
     private void Start()
     {
         
@@ -53,10 +53,10 @@ public class PathGenerator : MonoBehaviour
 
     private void GeneratePathBetweenStartAndExit()
     {
-        int exit_X = rand.Next(0, dimX);
-        int exit_Z = rand.Next(0, dimZ);
+        int exitX = _rand.Next(0, dimX);
+        int exitZ = _rand.Next(0, dimZ);
         Vector3 start = new Vector3(0, 0, dimZ / 2);
-        Vector3 exit = new Vector3(exit_X, dimY-1, exit_Z);
+        Vector3 exit = new Vector3(exitX, dimY-1, exitZ);
 
         path = new List<Vector3>();
 
@@ -71,33 +71,24 @@ public class PathGenerator : MonoBehaviour
         int index;
 
         bool random = true;
-        // Initialize global counter to close the path after a tolerance
         int globalCounter = 0;
         int tolerance = dimX * dimY;
 
-        // Initialize random counter to switch between random and minimizing distance
-        int methodCounter = rand.Next(dimX / 5, dimX / 2);
-
-        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        cube.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        Destroy(cube);
+        int methodCounter = _rand.Next(dimX / 5, dimX / 2);
 
         while (current != exit)
         {
             ComputeNeighbors(current);
             List<Vector3> possibleDirections = PossibleDirections(current, untouchable);
 
-            // Restart if no possible directions
             if (possibleDirections.Count == 0)
             {
-                Debug.Log("No possible directions, restarting");
                 ResetPathGeneration(start, ref current, ref prev, ref path, ref untouchable, ref random, ref globalCounter);
                 continue;
             }
 
             if (!random)
             {
-                // Choose the minimizing distance direction from possibleDirections
                 float minDistance = float.MaxValue;
                 index = 0;
                 for (int i = 0; i < possibleDirections.Count; i++)
@@ -112,8 +103,7 @@ public class PathGenerator : MonoBehaviour
             }
             else
             {
-                // Choose a random direction from possibleDirections
-                index = rand.Next(0, possibleDirections.Count);
+                index = _rand.Next(0, possibleDirections.Count);
             }
 
             if (globalCounter == 0)
@@ -143,11 +133,6 @@ public class PathGenerator : MonoBehaviour
             prev = current;
             current = next;
 
-            // foreach (var item in untouchable)
-            // {
-            //     Instantiate(backupTile, item, Quaternion.identity);
-            // }
-
             if (globalCounter < tolerance)
             {
                 globalCounter++;
@@ -155,7 +140,7 @@ public class PathGenerator : MonoBehaviour
                 if (methodCounter == 0)
                 {
                     random = !random;
-                    methodCounter = rand.Next(dimX / 6, dimX / 3);
+                    methodCounter = _rand.Next(dimX / 6, dimX / 3);
                 }
             }
             else
@@ -285,7 +270,6 @@ public class PathGenerator : MonoBehaviour
 
         if (CheckInGrid(up) && !untouchable.Contains(up) && CheckInGrid(upNext) && !untouchable.Contains(upNext))
         {
-            // Don't allow multiple up steps
             if (!goneUp)
             {
                 possibleDirections.Add(up);
@@ -297,7 +281,6 @@ public class PathGenerator : MonoBehaviour
         }
         if (CheckInGrid(down) && !untouchable.Contains(down) && CheckInGrid(downNext) && !untouchable.Contains(downNext))
         {
-            // Don't allow multiple down steps
             if (!goneDown)
             {
                 possibleDirections.Add(down);
@@ -313,19 +296,16 @@ public class PathGenerator : MonoBehaviour
 
     private void AddUntouchables(Vector3 next, Vector3 current, List<Vector3> possibleDirections, List<Vector3> untouchable)
     {
-        // Check the chosen direction
         if (next == up)
         {
             goneUp = true;
             AddYRing(current, untouchable);
-            // Avoid next cells to be up;
             AddYRing(up2, untouchable);
         }
         else if (next == down)
         {
             goneDown = true;
             AddYRing(current, untouchable);
-            // Avoid next cells to be down;
             AddYRing(down2, untouchable);
         }
         else if (next == forward || next == back)
@@ -336,7 +316,6 @@ public class PathGenerator : MonoBehaviour
         {
             AddZRing(current, untouchable);
         }
-        // Now add every cell of possibleDirections to untouchable (except for index)
         foreach (var direction in possibleDirections)
         {
             if (direction != next)
@@ -350,11 +329,6 @@ public class PathGenerator : MonoBehaviour
     {
         path.Clear();
         untouchable.Clear();
-        //path.Add(start);
-        //untouchable.Add(start);
-        //untouchable.Add(start + new Vector3(0,1,0));
-        //start.z++;
-
         current = start;
         prev = current;
         globalCounter = 0;
@@ -390,14 +364,13 @@ public class PathGenerator : MonoBehaviour
 
             int indexNext = z + y * dimZ + x * dimY * dimZ;
 
-            if (current.y == next.y)
+            if ((int)current.y == (int)next.y)
             {
                 wfc.SetSpecificTile(indexCurrent, floorIndex);
                 lastDirection = next - current;
             }
             else if (current.y < next.y)
             {
-                // Going Up: Current cell is a stairs cell
                 if (lastDirection == new Vector3(0, 0, 1))
                 {
                     wfc.SetSpecificTile(indexCurrent, stairsWestIndex);
@@ -414,13 +387,10 @@ public class PathGenerator : MonoBehaviour
                 {
                     wfc.SetSpecificTile(indexCurrent, stairsSouthIndex);
                 }
-                // Skip the next cell, will have to be empty
                 i++;
             }
             else if (current.y > next.y)
             {
-                // Going Down: Current cell is an empty cell
-                // Skip to the next cell, which will have to be a stairs cell
                 i++;
                 if (lastDirection == new Vector3(0, 0, 1))
                 {
