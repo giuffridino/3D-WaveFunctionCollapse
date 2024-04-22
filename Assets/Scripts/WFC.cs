@@ -505,7 +505,7 @@ public class WFC : MonoBehaviour
                     }
 					else if (cell.tileOptions[0].name.Contains("Corner"))
 					{
-						int spawnObject = _rand.Next(0,7);
+						int spawnObject = _rand.Next(0,6);
 						if(spawnObject != 0)
 						{
 							Debug.Log(spawnObject);

@@ -10,7 +10,7 @@ public class PathGenerator : MonoBehaviour
     [SerializeField] private Tile[] tileObjects;
     [SerializeField] private List<Cell> gridComponents;
     [SerializeField] private Cell cellObj;
-    [SerializeField] private Tile backupTile;
+    [SerializeField] private GameObject gateTile;
     [SerializeField] private WFC wfc;
 
     private int dimX;
@@ -46,9 +46,11 @@ public class PathGenerator : MonoBehaviour
         wfc.InitializeGrid();
         GeneratePathBetweenStartAndExit();
         PrecollapsePath();
-
         wfc.creatingPath = false;
         wfc.startingCell = path[0];
+        Instantiate(gateTile, wfc.startingCell + new Vector3(-0.5f,-0.3f,0), gateTile.transform.rotation);
+        
+        
         
         wfc.RunWfc();
     }
@@ -80,12 +82,7 @@ public class PathGenerator : MonoBehaviour
         path = new List<Vector3>();
 
         List<Vector3> untouchable = new List<Vector3>();
-
-		//path.Add(start);
-		//untouchable.Add(start);
-		//untouchable.Add(start + new Vector3(0,1,0));
-		//start.z++;
-
+        
 		Vector3 current = start;
         prev = current;
 
