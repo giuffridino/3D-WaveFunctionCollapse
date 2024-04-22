@@ -35,13 +35,14 @@ public class PathGenerator : MonoBehaviour
     private readonly Random _rand = new Random();
     private void Start()
     {
-        
         dimX = wfc.dimX;
         dimY = wfc.dimY;
         dimZ = wfc.dimZ;
 
         wfc.InitializeGrid();
+        Debug.Log("Generating Path...");
         GeneratePathBetweenStartAndExit();
+        Debug.Log("Path Generated");
         PrecollapsePath();
         wfc.creatingPath = false;
         wfc.startingCell = path[0];
@@ -53,10 +54,8 @@ public class PathGenerator : MonoBehaviour
 
     private void GeneratePathBetweenStartAndExit()
     {
-        int exitX = _rand.Next(0, dimX);
-        int exitZ = _rand.Next(0, dimZ);
         Vector3 start = new Vector3(0, 0, dimZ / 2);
-        Vector3 exit = new Vector3(exitX, dimY-1, exitZ);
+        Vector3 exit = new Vector3(dimX - 1, dimY-1, dimZ / 2);
 
         path = new List<Vector3>();
 

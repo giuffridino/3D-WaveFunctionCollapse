@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 2973521495558695803}
   - component: {fileID: 7188886829097401768}
   m_Layer: 0
-  m_Name: torch(Clone)
+  m_Name: torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
