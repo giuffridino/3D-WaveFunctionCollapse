@@ -5,29 +5,42 @@ using UnityEngine;
 
 public class DoorInteraction : MonoBehaviour
 {
-    public void OpenDoor()
+    private bool rotatingDoor = false;
+    private int direction = 1;
+    private Quaternion initialRotation;
+    private Quaternion targetRotation;
+    private float rotationSpeed = 90f; // Adjust rotation speed as needed
+
+    private void Start()
     {
-        StartCoroutine(RotateDoor());
-    }
-    
-    public void CloseDoor()
-    {
-        Debug.Log("Door closed!");
+        initialRotation = transform.rotation;
     }
 
-    IEnumerator RotateDoor()
+    private void Update()
     {
-        float rotationSpeed = 90f;
-        float rotationDuration = 3f;
-        Quaternion targetRotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 90, 0);
-        float stepDuration = rotationDuration / rotationSpeed;
-        int steps = Mathf.RoundToInt(rotationDuration / stepDuration);
-        for (int i = 0; i < steps; i++)
+        if (rotatingDoor)
         {
-            float stepRotation = Quaternion.Lerp(transform.rotation, targetRotation, (float)i / steps).eulerAngles.y;
-            transform.rotation = Quaternion.Euler(0, stepRotation, 0);
-            yield return new WaitForSeconds(stepDuration);
+            float step = rotationSpeed * Time.deltaTime;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, step);
+
+            if (transform.rotation == targetRotation)
+            {
+                rotatingDoor = false;
+            }
         }
-        transform.rotation = targetRotation;
+    }
+
+    public void OpenDoor()
+    {
+        Debug.Log("Opening door!");
+        targetRotation = initialRotation * Quaternion.Euler(0, 90 * direction, 0);
+        rotatingDoor = true;
+    }
+
+    public void CloseDoor()
+    {
+        Debug.Log("Closing door!");
+        targetRotation = initialRotation;
+        rotatingDoor = true;
     }
 }
