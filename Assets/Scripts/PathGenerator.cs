@@ -40,7 +40,7 @@ public class PathGenerator : MonoBehaviour
     private void GeneratePathBetweenStartAndExit()
     {
         Vector3 start = new Vector3(0, 0, dimZ / 2);
-        Vector3 exit = new Vector3(dimX - 2, dimY-2, dimZ / 2);
+        Vector3 exit = new Vector3(dimX - 2, dimY-1, dimZ / 2);
 
         path = new List<Vector3>();
 
