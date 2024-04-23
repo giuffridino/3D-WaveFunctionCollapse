@@ -5,17 +5,17 @@ using UnityEngine;
 public class ClockInteractor : MonoBehaviour
 {
     
-    private PlayerMovement player;
+    private UIManager ui;
 
     void Start()
     {
-        player = GameObject.Find("PlayerController").GetComponent<PlayerMovement>();
+        ui = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         
-        player.time -= 5.0f;
-        gameObject.SetActive(false);
+        ui.RemoveTime(5.0f);
+        Destroy(gameObject);
     }
 }

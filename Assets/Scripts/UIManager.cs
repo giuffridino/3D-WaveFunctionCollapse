@@ -26,6 +26,15 @@ public class UIManager : MonoBehaviour
         string formattedTime = $"{minutes:00}:{seconds:00}";
         timerText.text = formattedTime;
     }
+
+    public void RemoveTime(float timeToRemove)
+    {
+        _time -= timeToRemove;
+        if (_time < 0)
+        {
+            _time = 0;
+        }
+    }
     
     public void SetEndGameText()
     {

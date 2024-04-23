@@ -24,8 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove = true;
     public bool gameStarted = false;
     private bool gameEnded = false;
-    public float time = 0f;
-    
+
     [SerializeField] UIManager uiManager;
 
     void Start()

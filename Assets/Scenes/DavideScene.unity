@@ -726,7 +726,7 @@ GameObject:
   - component: {fileID: 1117849389}
   - component: {fileID: 1117849388}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -770,6 +770,7 @@ MonoBehaviour:
   defaultHeight: 0.75
   wfc: {fileID: 1815676203}
   gameStarted: 0
+  time: 0
   uiManager: {fileID: 1490747666}
 --- !u!143 &1117849387
 CharacterController:
