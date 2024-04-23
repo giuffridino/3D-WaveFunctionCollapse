@@ -6,7 +6,7 @@ public class DoorInteraction : MonoBehaviour
 {
     public void OpenDoor()
     {
-        Debug.Log("Door opened!");
+        StartCoroutine(RotateDoor());
     }
     
     public void CloseDoor()
@@ -14,8 +14,10 @@ public class DoorInteraction : MonoBehaviour
         Debug.Log("Door closed!");
     }
 
-    IEnumerator RotatingDoor()
+    IEnumerator RotateDoor()
     {
+        var doorRotation = transform.rotation.eulerAngles;
+        
         yield return new WaitForSeconds(0.05f);
     }
 }
