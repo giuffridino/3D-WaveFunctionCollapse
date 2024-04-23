@@ -4,6 +4,7 @@ using System.Collections;
 using Random = System.Random;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WFC : MonoBehaviour
 {
@@ -15,18 +16,15 @@ public class WFC : MonoBehaviour
     [SerializeField] private Tile backupTile;
     [SerializeField] private PlayerMovement player;
     [SerializeField] private DecorationsCreator decorationsCreator;
+    [SerializeField] private DoorInteraction doorInteraction;
 
     private int _iteration;
     private int _count;
-    
-    [HideInInspector]
-    public List<Cell> gridComponents;
-    [HideInInspector]
-    public bool creatingPath = true;
-    [HideInInspector]
-    public Vector3 startingCell;
-    [HideInInspector]
-    public Vector3 finishCell;
+
+    [HideInInspector] public List<Cell> gridComponents;
+    [HideInInspector] public bool creatingPath = true;
+    [HideInInspector] public Vector3 startingCell;
+    [HideInInspector] public Vector3 finishCell;
 
     private readonly Random _rand = new Random();
 
@@ -89,6 +87,11 @@ public class WFC : MonoBehaviour
             Debug.Log("Entropy is 1 everywhere");
             decorationsCreator.AddDecorations(dimX, dimY, dimZ, gridComponents.ToArray(), startingCell);
             player.gameStarted = true;
+            var door = GameObject.Find("Door");
+            if (door)
+            {
+                door.GetComponent<DoorInteraction>().OpenDoor();
+            }
         }
     }
 
@@ -334,6 +337,7 @@ public class WFC : MonoBehaviour
                 }
             }
         }
+
         return newOptions;
     }
 
