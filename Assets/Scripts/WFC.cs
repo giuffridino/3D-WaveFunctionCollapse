@@ -371,4 +371,5 @@ public class WFC : MonoBehaviour
         newTile.transform.parent = cellToCollapse.transform;
         Propagate(index);
     }
+
 }

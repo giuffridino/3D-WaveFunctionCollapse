@@ -140,6 +140,7 @@ public class DecorationsCreator : MonoBehaviour
                         if (spawnObject != 0)
                         {
                             cell.transform.GetChild(0).transform.GetChild(spawnObject).gameObject.SetActive(true);
+                            cell.hasObject = true;
                         }
                     }
                 }
@@ -179,9 +180,9 @@ public class DecorationsCreator : MonoBehaviour
                     int index = z + y * dimZ + x * dimY * dimZ;
                     Cell cell = gridComponents[index];
 
-                    if (!cell.tileOptions[0].name.Contains("Stairs") && !cell.tileOptions[0].name.Contains("Empty") && y < dimY-1)
+                    if (!cell.tileOptions[0].name.Contains("Stairs") && !cell.tileOptions[0].name.Contains("Empty") && y < dimY-1 && !cell.hasObject)
                     {
-                        if (_rand.Next(0, 15) == 0)
+                        if (_rand.Next(0, 20) == 0 )
                         {
                             var clockSpawn = new Vector3(x, y, z);
                             var clock = Instantiate(clockObj, clockSpawn + new Vector3(0,-0.25f,0), Quaternion.identity);

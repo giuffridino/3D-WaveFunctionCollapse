@@ -19,7 +19,7 @@ public class ClockInteractor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        ui.RemoveTime(5.0f);
+        ui.RemoveTime(2.0f);
 
         Debug.Log("Clock triggered!");
         clockSound.Play();
