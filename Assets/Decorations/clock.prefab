@@ -236,3 +236,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ec041e5ba3e9e4e9b0b05118aad94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clockSound: {fileID: 0}
+  pingSound: {fileID: 0}

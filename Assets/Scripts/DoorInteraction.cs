@@ -10,6 +10,8 @@ public class DoorInteraction : MonoBehaviour
     private Quaternion initialRotation;
     private Quaternion targetRotation;
     private float rotationSpeed = 90f; // Adjust rotation speed as needed
+    [SerializeField] private AudioSource openDoorSound;
+    [SerializeField] private AudioSource closeDoorSound;
 
     private void Start()
     {
@@ -35,6 +37,7 @@ public class DoorInteraction : MonoBehaviour
         Debug.Log("Opening door!");
         targetRotation = initialRotation * Quaternion.Euler(0, 90 * direction, 0);
         rotatingDoor = true;
+        openDoorSound.Play();
     }
 
     public void CloseDoor()
@@ -42,5 +45,6 @@ public class DoorInteraction : MonoBehaviour
         Debug.Log("Closing door!");
         targetRotation = initialRotation;
         rotatingDoor = true;
+        closeDoorSound.Play();
     }
 }

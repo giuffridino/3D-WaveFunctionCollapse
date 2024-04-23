@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool canMove = true;
     public bool gameStarted = false;
-    private bool gameEnded = false;
+    public bool gameEnded = false;
 
     [SerializeField] UIManager uiManager;
 
@@ -38,9 +38,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // Finish the game if the player reaches the end
-        if (transform.position.y >= wfc.dimY - 1.5)
+        if (gameEnded)
         {
-            gameEnded = true;
             uiManager.SetEndGameText();
         }
 
