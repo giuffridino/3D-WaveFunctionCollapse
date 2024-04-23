@@ -30,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
     private float time = 0f;
 
 
-    // [SerializeField] private GameObject textObj;
     [SerializeField] private TextMeshProUGUI timeText;
 
     void Start()
@@ -39,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
         transform.position = wfc.startingCell + new Vector3(-4, 0, 0);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        // timeText = textObj.GetComponent<TextMeshPro>();
     }
 
     void Update()
@@ -49,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         {
             gameEnded = true;
             Debug.Log("You Won in " + time + " seconds! Press R to restart");
-            timeText.text = "You Won in " + time + " seconds! Press R to restart";
+            timeText.text = $"You Won in\n {time:00} \nseconds! Press R to restart";
         }
 
         if (gameStarted)
