@@ -213,8 +213,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.16031438, z: 1}
-  m_Center: {x: 0, y: -0.4198428, z: 0}
+  m_Size: {x: 1, y: 0.08216837, z: 1}
+  m_Center: {x: 0, y: -0.3807698, z: 0}
 --- !u!65 &-642594577265397943
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -234,8 +234,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.31430548, z: 0.8603611}
-  m_Center: {x: 0, y: -0.34284726, z: -0.06981945}
+  m_Size: {x: 1, y: 0.23804963, z: 0.86036116}
+  m_Center: {x: 1.0401586e-16, y: -0.3047193, z: -0.06981945}
 --- !u!65 &-8368699290558348550
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -255,8 +255,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.47187, z: 0.71196556}
-  m_Center: {x: 0, y: -0.264065, z: -0.14401722}
+  m_Size: {x: 1, y: 0.39102814, z: 0.7119656}
+  m_Center: {x: 2.7025137e-16, y: -0.22364412, z: -0.14401722}
 --- !u!65 &-1764834855460336997
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -276,8 +276,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.6319316, z: 0.5735817}
-  m_Center: {x: 0, y: -0.1840342, z: -0.21320915}
+  m_Size: {x: 1, y: 0.55333924, z: 0.5735817}
+  m_Center: {x: -5.2282855e-16, y: -0.1447382, z: -0.21320915}
 --- !u!65 &9093576924007774445
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -297,8 +297,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.7868659, z: 0.43045044}
-  m_Center: {x: 0, y: -0.106567055, z: -0.28477478}
+  m_Size: {x: 1, y: 0.71053666, z: 0.43045047}
+  m_Center: {x: 4.941802e-16, y: -0.06840244, z: -0.28477478}
 --- !u!65 &-871153313023302787
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -318,8 +318,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.9414067, z: 0.28720284}
-  m_Center: {x: 0, y: -0.029296637, z: -0.35639858}
+  m_Size: {x: 1, y: 0.8624363, z: 0.28720278}
+  m_Center: {x: 1.5120156e-15, y: 0.010188594, z: -0.35639858}
 --- !u!65 &-2963014823009831821
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -339,8 +339,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.099333, z: 0.15572548}
-  m_Center: {x: 0, y: 0.049666524, z: -0.42213726}
+  m_Size: {x: 1, y: 1.0196713, z: 0.15572545}
+  m_Center: {x: -1.1064944e-15, y: 0.0894974, z: -0.42213726}
 --- !u!1001 &7114519633921389264
 PrefabInstance:
   m_ObjectHideFlags: 0
