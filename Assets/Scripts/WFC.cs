@@ -127,16 +127,9 @@ public class WFC : MonoBehaviour
                 }
             }
 
-            if (x == 0 || x == dimX - 1)
+            if (x == 0 || x == dimX - 1 || z == 0 || z == dimZ - 1)
             {
-                weightedOptions.RemoveAll(tile => tile.name.Equals("Stairs_p90"));
-                weightedOptions.RemoveAll(tile => tile.name.Equals("Stairs_p270"));
-            }
-
-            if (z == 0 || z == dimZ - 1)
-            {
-                weightedOptions.RemoveAll(tile => tile.name.Equals("Stairs_p"));
-                weightedOptions.RemoveAll(tile => tile.name.Equals("Stairs_p180"));
+                weightedOptions.RemoveAll(tile => tile.name.Contains("Stairs"));
             }
 
             selectedTile = weightedOptions[_rand.Next(0, weightedOptions.Count)];

@@ -53,7 +53,7 @@ public class PathGenerator : MonoBehaviour
     private void GeneratePathBetweenStartAndExit()
     {
         Vector3 start = new Vector3(0, 0, dimZ / 2);
-        Vector3 exit = new Vector3(dimX - 1, dimY-1, dimZ / 2);
+        Vector3 exit = new Vector3(dimX - 2, dimY-2, dimZ / 2);
 
         path = new List<Vector3>();
 
@@ -149,7 +149,7 @@ public class PathGenerator : MonoBehaviour
 
     private bool CheckInGrid(Vector3 position)
     {
-        if (position.x < dimX && position.y < dimY && position.z < dimZ && position.x >= 0 && position.y >= 0 && position.z >= 0)
+        if (position.x < dimX-1 && position.y < dimY && position.z < dimZ-1 && position.x > 0 && position.y >= 0 && position.z > 0)
         {
             return true;
         }
