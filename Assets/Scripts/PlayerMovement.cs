@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        SetTextToTopLeft();
         characterController = GetComponent<CharacterController>();
         transform.position = wfc.startingCell + new Vector3(-4, 0, 0);
         Cursor.lockState = CursorLockMode.Locked;
@@ -47,7 +48,13 @@ public class PlayerMovement : MonoBehaviour
         {
             gameEnded = true;
             Debug.Log("You Won in " + time + " seconds! Press R to restart");
-            timeText.text = $"You Won in\n {time:00} \nseconds! Press R to restart";
+            int minutes = Mathf.FloorToInt(time / 60f);
+            int seconds = Mathf.FloorToInt(time % 60f);
+            timeText.text = $"You Won in\n{minutes:00}:{seconds:00} seconds!\nPress R to restart";
+            timeText.rectTransform.sizeDelta = new Vector2(432, 50);
+            timeText.fontSize = 24;
+            
+            SetTextToCenter();
         }
 
         if (gameStarted)
@@ -102,5 +109,21 @@ public class PlayerMovement : MonoBehaviour
                 transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
             }
         }
+    }
+
+    private void SetTextToCenter()
+    {
+        timeText.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        timeText.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+        timeText.rectTransform.pivot = new Vector2(0.5f, 0.5f);
+        timeText.rectTransform.anchoredPosition = Vector2.zero;
+    }
+    
+    private void SetTextToTopLeft()
+    {
+        timeText.rectTransform.anchorMin = new Vector2(0, 0.95f);
+        timeText.rectTransform.anchorMax = new Vector2(0, 0.95f);
+        timeText.rectTransform.pivot = new Vector2(0, 1);
+        timeText.rectTransform.anchoredPosition = Vector2.zero;
     }
 }
