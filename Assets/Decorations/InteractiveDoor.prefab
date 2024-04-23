@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4400432401936989142}
   - component: {fileID: 1327435624916032996}
   - component: {fileID: 4844048437796129753}
+  - component: {fileID: 86317652933568210}
   m_Layer: 0
   m_Name: InteractiveDoor
   m_TagString: Untagged
@@ -98,3 +99,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1987be61b0c6ba748826c48c6092e639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &86317652933568210
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6462710809056584836}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.0100000035, y: 0.011000002, z: 0.0015000008}
+  m_Center: {x: -0.0049365163, y: 0.005500001, z: 0.00059577427}

@@ -78,7 +78,7 @@ public class WFC : MonoBehaviour
 
         if (!allCollapsed)
         {
-            float time = 0.001f;
+            float time = 0.0001f;
             yield return new WaitForSeconds(time);
             CollapseCell(cellToCollapse);
         }
