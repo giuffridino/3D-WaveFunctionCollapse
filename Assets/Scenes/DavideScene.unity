@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 2
+  m_AmbientIntensity: 0.25
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -257,6 +257,7 @@ MonoBehaviour:
   railing: {fileID: 7595772471860429095, guid: 0e22a380fd100b44db7799f7a0460c52, type: 3}
   stairsRailing: {fileID: 2265427450687807189, guid: f82e3cf8a1bc7a84fbd27b5e61b97c77, type: 3}
   treasureChest: {fileID: 5319679808335543978, guid: 07401f380b8b29d4989786ad1d34808a, type: 3}
+  clockObj: {fileID: 4888282689679132179, guid: 74e4f00920829834594424c2db1f64aa, type: 3}
 --- !u!4 &94252122
 Transform:
   m_ObjectHideFlags: 0
@@ -728,13 +729,10 @@ MonoBehaviour:
   playerCamera: {fileID: 1660224486}
   walkSpeed: 0.1
   runSpeed: 2
-  jumpPower: 7
   gravity: 10
   lookSpeed: 2
   lookXLimit: 45
   defaultHeight: 0.75
-  crouchHeight: 1
-  crouchSpeed: 3
   wfc: {fileID: 1815676203}
   gameStarted: 0
   timeText: {fileID: 1474953099}

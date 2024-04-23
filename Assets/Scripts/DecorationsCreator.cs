@@ -10,6 +10,7 @@ public class DecorationsCreator : MonoBehaviour
     [SerializeField] private GameObject railing;
     [SerializeField] private GameObject stairsRailing;
     [SerializeField] private GameObject treasureChest;
+    [SerializeField] private GameObject clockObj;
     
     public void AddDecorations(int dimX, int dimY, int dimZ, Cell[] gridComponents, Vector3 startingCell)
     {
@@ -144,7 +145,9 @@ public class DecorationsCreator : MonoBehaviour
                 }
             }
         }
+        
         AddTreasureChest(dimX, dimY, dimZ, gridComponents);
+        AddClocks(dimX, dimY, dimZ, gridComponents);
     }
     private void AddTreasureChest(int dimX, int dimY, int dimZ, Cell[] gridComponents)
     {
@@ -164,4 +167,29 @@ public class DecorationsCreator : MonoBehaviour
         var treasure = Instantiate(treasureChest, spawnPoint + new Vector3(0,-0.22f,0), Quaternion.identity);
         treasure.transform.parent = GameObject.Find("Decorations").transform;
     }
+
+    private void AddClocks(int dimX, int dimY, int dimZ, Cell[] gridComponents)
+    {
+        for (int x = 0; x < dimX; x++)
+        {
+            for (int y = 0; y < dimY; y++)
+            {
+                for (int z = 0; z < dimZ; z++)
+                {
+                    int index = z + y * dimZ + x * dimY * dimZ;
+                    Cell cell = gridComponents[index];
+
+                    if (!cell.tileOptions[0].name.Contains("Stairs") && !cell.tileOptions[0].name.Contains("Empty") && y < dimY-1)
+                    {
+                        if (_rand.Next(0, 15) == 0)
+                        {
+                            var clockSpawn = new Vector3(x, y, z);
+                            var clock = Instantiate(clockObj, clockSpawn + new Vector3(0,-0.25f,0), Quaternion.identity);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
 }

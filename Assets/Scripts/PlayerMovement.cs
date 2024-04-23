@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove = true;
     public bool gameStarted = false;
     private bool gameEnded = false;
-    private float time = 0f;
+    public float time = 0f;
 
     [SerializeField] private TextMeshProUGUI timeText;
 
