@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cell : MonoBehaviour
 {
     public bool collapsed;
-    public bool isStair;
+    public bool hasObject = false;
     public Tile[] tileOptions;
 
     public void CreateCell(bool collapseState, Tile[] tiles)
