@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
@@ -25,8 +26,8 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove = true;
     public bool gameStarted = false;
     private float time = 0f;
-    [SerializeField] private GameObject textObj;
-    private TextMeshPro timeText;
+    // [SerializeField] private GameObject textObj;
+    [SerializeField] private TextMeshProUGUI timeText;
 
     void Start()
     {
@@ -34,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = wfc.startingCell + new Vector3(-4,0,0);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        timeText = textObj.GetComponent<TextMeshPro>();
+        // timeText = textObj.GetComponent<TextMeshPro>();
     }
 
     void Update()
@@ -46,8 +47,8 @@ public class PlayerMovement : MonoBehaviour
             
             int minutes = Mathf.FloorToInt(time / 60f);
             int seconds = Mathf.FloorToInt(time % 60f);
-            int milliseconds = Mathf.FloorToInt((time * 1000f) % 1000f);
-            string formattedTime = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
+            // int milliseconds = Mathf.FloorToInt((time * 1000f) % 1000f);
+            string formattedTime = $"{minutes:00}:{seconds:00}";
             
             timeText.text = formattedTime;
 
