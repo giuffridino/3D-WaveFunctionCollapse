@@ -24,13 +24,11 @@ public class PlayerMovement : MonoBehaviour
     private bool canMove = true;
     public bool gameStarted = false;
     private bool gameEnded = false;
-    private float time = 0f;
-
-    [SerializeField] private TextMeshProUGUI timeText;
+    
+    [SerializeField] UIManager uiManager;
 
     void Start()
     {
-        SetTextToTopLeft();
         characterController = GetComponent<CharacterController>();
         transform.position = wfc.startingCell + new Vector3(-4, 0, 0);
         Cursor.lockState = CursorLockMode.Locked;
@@ -43,14 +41,7 @@ public class PlayerMovement : MonoBehaviour
         if (transform.position.y >= wfc.dimY - 1.5)
         {
             gameEnded = true;
-            Debug.Log("You Won in " + time + " seconds! Press R to restart");
-            int minutes = Mathf.FloorToInt(time / 60f);
-            int seconds = Mathf.FloorToInt(time % 60f);
-            timeText.text = $"You Won in\n{minutes:00}:{seconds:00} seconds!\nPress R to restart";
-            timeText.rectTransform.sizeDelta = new Vector2(432, 50);
-            timeText.fontSize = 24;
-            
-            SetTextToCenter();
+            uiManager.SetEndGameText();
         }
 
         if (gameStarted)
@@ -60,13 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (!gameEnded)
             {
-                time += Time.deltaTime;
-                int minutes = Mathf.FloorToInt(time / 60f);
-                int seconds = Mathf.FloorToInt(time % 60f);
-                // int milliseconds = Mathf.FloorToInt((time * 1000f) % 1000f);
-                string formattedTime = $"{minutes:00}:{seconds:00}";
-                timeText.text = formattedTime;
-
+                uiManager.UpdateTimer();
             }
 
             bool isRunning = Input.GetKey(KeyCode.LeftShift);
@@ -107,19 +92,5 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void SetTextToCenter()
-    {
-        timeText.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
-        timeText.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-        timeText.rectTransform.pivot = new Vector2(0.5f, 0.5f);
-        timeText.rectTransform.anchoredPosition = Vector2.zero;
-    }
     
-    private void SetTextToTopLeft()
-    {
-        timeText.rectTransform.anchorMin = new Vector2(0, 0.95f);
-        timeText.rectTransform.anchorMax = new Vector2(0, 0.95f);
-        timeText.rectTransform.pivot = new Vector2(0, 1);
-        timeText.rectTransform.anchoredPosition = Vector2.zero;
-    }
 }
