@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c18e5bff-df88-4bc0-803e-17107042e9bc" name="Changes" comment="" />
+    <list default="true" id="c18e5bff-df88-4bc0-803e-17107042e9bc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.3DWaveFunctionCollapse/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.3DWaveFunctionCollapse/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DavideScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DavideScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DoorInteraction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DoorInteraction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PathGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PathGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/WFC.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WFC.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -7,8 +7,9 @@ using UnityEngine;
 
 public class PathGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject gateObject;
     [SerializeField] private WFC wfc;
+    [SerializeField] private GameObject gateObject;
+    [SerializeField] private GameObject doorObject;
 
 
     private int dimX;
@@ -396,7 +397,7 @@ public class PathGenerator : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    private void StartGame()
     {
         dimX = wfc.dimX;
         dimY = wfc.dimY;
@@ -413,6 +414,9 @@ public class PathGenerator : MonoBehaviour
         var decorations = new GameObject("Decorations");
         var gate = Instantiate(gateObject, wfc.startingCell + new Vector3(-0.5f, -0.3f, 0), gateObject.transform.rotation);
         gate.transform.parent = decorations.transform;
+        var door = Instantiate(doorObject, wfc.startingCell + new Vector3(-0.5f, -0.5f, 0.35f), doorObject.transform.rotation);
+        door.transform.parent = decorations.transform;
+        door.name = "Door";
         wfc.RunWfc();
     }
 }
