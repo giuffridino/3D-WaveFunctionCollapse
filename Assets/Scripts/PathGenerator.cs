@@ -34,32 +34,19 @@ public class PathGenerator : MonoBehaviour
     private readonly Random _rand = new Random();
     private void Start()
     {
-        dimX = wfc.dimX;
-        dimY = wfc.dimY;
-        dimZ = wfc.dimZ;
-
-        wfc.InitializeGrid();
-        GeneratePathBetweenStartAndExit();
-        PrecollapsePath();
-        wfc.creatingPath = false;
-        wfc.startingCell = path[0];
-        wfc.finishCell = path.Last();
-        var decorations = new GameObject("Decorations");
-        var gate = Instantiate(gateObject, wfc.startingCell + new Vector3(-0.5f,-0.3f,0), gateObject.transform.rotation);
-        gate.transform.parent = decorations.transform;
-        wfc.RunWfc();
+        StartGame();
     }
 
     private void GeneratePathBetweenStartAndExit()
     {
         Vector3 start = new Vector3(0, 0, dimZ / 2);
-        Vector3 exit = new Vector3(dimX - 1, dimY-1, dimZ / 2);
+        Vector3 exit = new Vector3(dimX - 1, dimY - 1, dimZ / 2);
 
         path = new List<Vector3>();
 
         List<Vector3> untouchable = new List<Vector3>();
-        
-		Vector3 current = start;
+
+        Vector3 current = start;
         prev = current;
 
         goneUp = false;
@@ -407,5 +394,25 @@ public class PathGenerator : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void StartGame()
+    {
+        dimX = wfc.dimX;
+        dimY = wfc.dimY;
+        dimZ = wfc.dimZ;
+
+        wfc.gridComponents.Clear();
+
+        wfc.InitializeGrid();
+        GeneratePathBetweenStartAndExit();
+        PrecollapsePath();
+        wfc.creatingPath = false;
+        wfc.startingCell = path[0];
+        wfc.finishCell = path.Last();
+        var decorations = new GameObject("Decorations");
+        var gate = Instantiate(gateObject, wfc.startingCell + new Vector3(-0.5f, -0.3f, 0), gateObject.transform.rotation);
+        gate.transform.parent = decorations.transform;
+        wfc.RunWfc();
     }
 }
