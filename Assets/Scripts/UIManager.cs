@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     private float _time;
     private float bonusTimer = 0f;
     private float _bonus = 0f;
+	private float animationStartTime;
     
     private void Start()
     {
@@ -35,6 +36,9 @@ public class UIManager : MonoBehaviour
         seconds = Mathf.FloorToInt(_bonus % 60f);
         formattedTime = $"-{minutes:00}:{seconds:00}";
         bonusText.text = formattedTime;
+		float lerp = Mathf.PingPong((animationStartTime - Time.time) * 2f, 1f);
+        Color lerpedColor = Color.Lerp(Color.green, Color.white, lerp);
+        bonusText.color = lerpedColor;
             
         if (bonusTimer <= 0f)
         {
@@ -49,8 +53,12 @@ public class UIManager : MonoBehaviour
         _time -= timeToRemove;
         _bonus += timeToRemove;
         if (bonusTimer < 0f)
+		{
             bonusTimer = 0f;
-        bonusTimer = 3.0f;
+			animationStartTime = Time.time;
+		}
+        bonusTimer = 2.0f;
+		
         
         if (_time < 0)
         {
