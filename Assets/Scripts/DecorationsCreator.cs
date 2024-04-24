@@ -11,7 +11,7 @@ public class DecorationsCreator : MonoBehaviour
     [SerializeField] private GameObject stairsRailing;
     [SerializeField] private GameObject treasureChest;
     [SerializeField] private GameObject clockObj;
-    
+
     public void AddDecorations(int dimX, int dimY, int dimZ, Cell[] gridComponents, Vector3 startingCell)
     {
         var decorations = GameObject.Find("Decorations").transform;
@@ -19,7 +19,7 @@ public class DecorationsCreator : MonoBehaviour
         railings.transform.parent = decorations;
         GameObject stairsRailings = new GameObject("Stairs Railings");
         stairsRailings.transform.parent = decorations;
-        
+
         for (int x = 0; x < dimX; x++)
         {
             for (int y = 0; y < dimY; y++)
@@ -27,7 +27,7 @@ public class DecorationsCreator : MonoBehaviour
                 for (int z = 0; z < dimZ; z++)
                 {
                     GameObject instantiatedTile;
-                    
+
                     if (!((int)startingCell.x == x && (int)startingCell.y == y && (int)startingCell.z == z))
                     {
                         if (z == 0)
@@ -146,7 +146,7 @@ public class DecorationsCreator : MonoBehaviour
                 }
             }
         }
-        
+
         AddTreasureChest(dimX, dimY, dimZ, gridComponents);
         AddClocks(dimX, dimY, dimZ, gridComponents);
     }
@@ -165,12 +165,16 @@ public class DecorationsCreator : MonoBehaviour
                 break;
             }
         }
-        var treasure = Instantiate(treasureChest, spawnPoint + new Vector3(0,-0.22f,0), Quaternion.identity);
+        var treasure = Instantiate(treasureChest, spawnPoint + new Vector3(0, -0.22f, 0), Quaternion.identity);
         treasure.transform.parent = GameObject.Find("Decorations").transform;
     }
 
     private void AddClocks(int dimX, int dimY, int dimZ, Cell[] gridComponents)
     {
+        var decorations = GameObject.Find("Decorations").transform;
+        GameObject clocks = new GameObject("Clocks");
+        clocks.transform.parent = decorations;
+
         for (int x = 0; x < dimX; x++)
         {
             for (int y = 0; y < dimY; y++)
@@ -180,17 +184,19 @@ public class DecorationsCreator : MonoBehaviour
                     int index = z + y * dimZ + x * dimY * dimZ;
                     Cell cell = gridComponents[index];
 
-                    if (!cell.tileOptions[0].name.Contains("Stairs") && !cell.tileOptions[0].name.Contains("Empty") && y < dimY-1 && !cell.hasObject)
+                    if (!cell.tileOptions[0].name.Contains("Stairs") && !cell.tileOptions[0].name.Contains("Empty") && y < dimY - 1 && !cell.hasObject)
                     {
-                        if (_rand.Next(0, 20) == 0 )
+                        if (_rand.Next(0, 20) == 0)
                         {
                             var clockSpawn = new Vector3(x, y, z);
-                            var clock = Instantiate(clockObj, clockSpawn + new Vector3(0,-0.25f,0), Quaternion.identity);
+                            var clock = Instantiate(clockObj, clockSpawn + new Vector3(0, -0.25f, 0), Quaternion.identity);
+                            clock.transform.parent = clocks.transform;
+
                         }
                     }
                 }
             }
         }
     }
-    
+
 }
