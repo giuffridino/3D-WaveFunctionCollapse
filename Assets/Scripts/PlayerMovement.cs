@@ -45,6 +45,11 @@ public class PlayerMovement : MonoBehaviour
             uiManager.SetEndGameText();
         }
 
+        if (wfc.isCollapsing)
+        {
+            uiManager.UpdateLoadingProgress((int)wfc.progress);
+        }
+
         if (gameStarted)
         {
             Vector3 forward = transform.TransformDirection(Vector3.forward);

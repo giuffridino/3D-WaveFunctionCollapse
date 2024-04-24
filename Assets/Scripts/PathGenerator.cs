@@ -336,6 +336,7 @@ public class PathGenerator : MonoBehaviour
         {
             Vector3 current = path[i];
             Vector3 next = path[i + 1];
+			wfc.collapsedCells++;
 
             int x = (int)current.x;
             int y = (int)current.y;
@@ -404,7 +405,7 @@ public class PathGenerator : MonoBehaviour
         dimZ = wfc.dimZ;
 
         wfc.gridComponents.Clear();
-
+		wfc.isCollapsing = true;
         wfc.InitializeGrid();
         GeneratePathBetweenStartAndExit();
         PrecollapsePath();

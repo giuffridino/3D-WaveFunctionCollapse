@@ -20,6 +20,14 @@ public class WFC : MonoBehaviour
 
     private int _iteration;
     private int _count;
+	public int collapsedCells;
+	private int totalCells;
+	public int progress;
+	public bool isCollapsing;
+    
+    public delegate void Collapsed();
+    public static event Collapsed OnCollapsed;
+	
 
     [HideInInspector] public List<Cell> gridComponents;
     [HideInInspector] public bool creatingPath = true;
@@ -36,6 +44,8 @@ public class WFC : MonoBehaviour
     public void InitializeGrid()
     {
         GameObject grid = new GameObject("Cells");
+		collapsedCells = 0;
+		totalCells = dimX * dimY * dimZ;
         for (int x = 0; x < dimX; x++)
         {
             for (int y = 0; y < dimY; y++)
@@ -85,6 +95,8 @@ public class WFC : MonoBehaviour
         else
         {
             Debug.Log("Entropy is 1 everywhere");
+			isCollapsing = false;
+            OnCollapsed();
             decorationsCreator.AddDecorations(dimX, dimY, dimZ, gridComponents.ToArray(), startingCell);
             player.gameStarted = true;
             var door = GameObject.Find("Door");
@@ -151,6 +163,8 @@ public class WFC : MonoBehaviour
         Tile foundTile = cellToCollapse.tileOptions[0];
         Tile newTile = Instantiate(foundTile, cellToCollapse.transform.position, foundTile.transform.rotation);
         newTile.transform.parent = cellToCollapse.transform;
+		collapsedCells++;
+		progress = (int)(collapsedCells * 100.0f / totalCells);
         Propagate(index);
     }
 
@@ -371,5 +385,6 @@ public class WFC : MonoBehaviour
         newTile.transform.parent = cellToCollapse.transform;
         Propagate(index);
     }
+    
 
 }

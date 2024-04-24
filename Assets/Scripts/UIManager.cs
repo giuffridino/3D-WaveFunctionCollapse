@@ -11,7 +11,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI bonusText;
     [SerializeField] private TextMeshProUGUI restartText;
+	[SerializeField] private TextMeshProUGUI loadingText;
+	[SerializeField] private TextMeshProUGUI percentageText;
     [SerializeField] private int secondsToFadeOutRestartText = 20;
+
     private float _time;
     private float bonusTimer = 0f;
     private float _bonus = 0f;
@@ -20,6 +23,7 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         SetTextToTopLeft();
+		WFC.OnCollapsed += ShowUI;
         StartCoroutine(FadeOutRestartText());
     }
 
@@ -48,6 +52,22 @@ public class UIManager : MonoBehaviour
 
     }
 
+	private void ShowUI()
+	{
+		loadingText.text = "";	
+		percentageText.text = "";
+		restartText.text = "Press R to\nrestart";
+		WFC.OnCollapsed -= ShowUI;
+	}
+
+
+	public void UpdateLoadingProgress(int percentage)
+	{	
+		loadingText.text = "LOADING";	
+		percentageText.text = percentage.ToString() + "%";
+	}
+
+
     public void RemoveTime(float timeToRemove)
     {
         _time -= timeToRemove;
@@ -71,6 +91,7 @@ public class UIManager : MonoBehaviour
         Debug.Log("You Won in " + _time + " seconds! Press R to restart");
         
         restartText.gameObject.SetActive(false);
+		bonusText.gameObject.SetActive(false);
         
         int minutes = Mathf.FloorToInt(_time / 60f);
         int seconds = Mathf.FloorToInt(_time % 60f);

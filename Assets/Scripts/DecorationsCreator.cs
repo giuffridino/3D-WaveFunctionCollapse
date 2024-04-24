@@ -129,11 +129,6 @@ public class DecorationsCreator : MonoBehaviour
                             instantiatedTile.transform.parent = stairsRailings.transform;
                         }
                     }
-                    else if (cell.tileOptions[0].name.Contains("Wall"))
-                    {
-                        if (_rand.Next(0, 10) == 1)
-                            cell.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
-                    }
                     else if (cell.tileOptions[0].name.Contains("Corner"))
                     {
                         int spawnObject = _rand.Next(0, 6);
