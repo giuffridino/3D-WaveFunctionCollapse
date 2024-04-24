@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     public bool gameEnded = false;
 
     [SerializeField] UIManager uiManager;
+    [SerializeField] AudioSource floorStepsSound;
+    [SerializeField] AudioSource stairsStepsSound;
 
     void Start()
     {
@@ -61,6 +63,18 @@ public class PlayerMovement : MonoBehaviour
 
             moveDirection.y = movementDirectionY;
 
+            if (curSpeedX != 0 || curSpeedY != 0)
+            {
+                if (!floorStepsSound.isPlaying)
+                {
+                    floorStepsSound.Play();
+                }
+            }
+            else
+            {
+                floorStepsSound.Stop();
+            }
+
             if (!characterController.isGrounded)
             {
                 moveDirection.y -= gravity * Time.deltaTime;
@@ -91,5 +105,5 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    
+
 }

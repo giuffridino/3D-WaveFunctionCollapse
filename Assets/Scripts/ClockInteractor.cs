@@ -7,7 +7,8 @@ public class ClockInteractor : MonoBehaviour
 
     private AudioSource clockSound;
     private AudioSource pingSound;
-    
+
+    private PlayerMovement playerMovement;
     private UIManager ui;
 
     void Start()
@@ -15,15 +16,19 @@ public class ClockInteractor : MonoBehaviour
         ui = GameObject.Find("UIManager").GetComponent<UIManager>();
         clockSound = GameObject.Find("Clock").GetComponent<AudioSource>();
         pingSound = GameObject.Find("Ping").GetComponent<AudioSource>();
+        playerMovement = GameObject.Find("PlayerController").GetComponent<PlayerMovement>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        ui.RemoveTime(2.0f);
+        if (!playerMovement.gameEnded)
+        {
+            ui.RemoveTime(2.0f);
 
-        Debug.Log("Clock triggered!");
-        clockSound.Play();
-        pingSound.Play();
-        Destroy(gameObject);
+            Debug.Log("Clock triggered!");
+            clockSound.Play();
+            pingSound.Play();
+            Destroy(gameObject);
+        }
     }
 }
