@@ -44,7 +44,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.9245283, g: 0.22153787, b: 0.22153787, a: 1}
-  m_Intensity: 2
+  m_Intensity: 3
   m_Range: 0.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -159,7 +159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2083040681357089809, guid: ddf554b1e509aef4b884bcc817330eed, type: 3}
+  - {fileID: 2100000, guid: 5f314a50a6e732148ae6ae838da4c3af, type: 2}
   - {fileID: -8896051167825165466, guid: ddf554b1e509aef4b884bcc817330eed, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -236,5 +236,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88ec041e5ba3e9e4e9b0b05118aad94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clockSound: {fileID: 0}
-  pingSound: {fileID: 0}
