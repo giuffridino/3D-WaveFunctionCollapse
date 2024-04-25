@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class treasureInteraction : MonoBehaviour
+public class TreasureInteraction : MonoBehaviour
 {
     [SerializeField] private AudioSource openTreasureSound;
     private bool rotatingChest = false;
