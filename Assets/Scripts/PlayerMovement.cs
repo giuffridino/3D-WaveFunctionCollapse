@@ -33,8 +33,6 @@ public class PlayerMovement : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         transform.position = wfc.startingCell + new Vector3(-4, 0, 0);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     void Update()
@@ -87,6 +85,8 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKey(KeyCode.R))
             {
+				Cursor.visible = true;
+				Cursor.lockState = CursorLockMode.None;
                 Scene scene = SceneManager.GetActiveScene();
                 SceneManager.LoadScene(scene.name);
             }

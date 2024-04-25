@@ -217,7 +217,7 @@ public class DecorationsCreator : MonoBehaviour
                     if (!cell.tileOptions[0].name.Contains("Stairs") && !cell.tileOptions[0].name.Contains("Empty") &&
                         y < dimY - 1 && !cell.hasObject)
                     {
-                        if (_rand.Next(0, 20) == 0)
+                        if (_rand.Next(0, 30) == 0)
                         {
                             var clockSpawn = new Vector3(x, y, z);
                             var clock = Instantiate(clockObj, clockSpawn + new Vector3(0, -0.25f, 0),

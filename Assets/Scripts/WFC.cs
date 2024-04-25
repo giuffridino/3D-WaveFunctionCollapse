@@ -5,12 +5,13 @@ using Random = System.Random;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class WFC : MonoBehaviour
 {
-    [SerializeField] public int dimX;
-    [SerializeField] public int dimY;
-    [SerializeField] public int dimZ;
+    public int dimX;
+    public int dimY;
+    public int dimZ;
     [SerializeField] private Tile[] tileObjects;
     [SerializeField] private Cell cellObj;
     [SerializeField] private Tile backupTile;
@@ -37,7 +38,7 @@ public class WFC : MonoBehaviour
     private readonly Random _rand = new Random();
 
     public void RunWfc()
-    {
+    {	
         StartCoroutine(Observe());
     }
 
@@ -130,10 +131,7 @@ public class WFC : MonoBehaviour
                     weightedOptions.Add(tile);
                     weightedOptions.Add(tile);
                     weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
+
                 }
                 else
                 {

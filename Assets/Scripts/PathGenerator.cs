@@ -33,10 +33,6 @@ public class PathGenerator : MonoBehaviour
 
     private int _count;
     private readonly Random _rand = new Random();
-    private void Start()
-    {
-        StartGame();
-    }
 
     private void GeneratePathBetweenStartAndExit()
     {
@@ -398,7 +394,7 @@ public class PathGenerator : MonoBehaviour
         }
     }
 
-    private void StartGame()
+    public void StartGame()
     {
         dimX = wfc.dimX;
         dimY = wfc.dimY;

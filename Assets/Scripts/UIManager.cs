@@ -11,9 +11,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI bonusText;
     [SerializeField] private TextMeshProUGUI restartText;
-	[SerializeField] private TextMeshProUGUI loadingText;
+	[SerializeField] private GameObject loadingText;
 	[SerializeField] private TextMeshProUGUI percentageText;
+	[SerializeField] private GameObject menu;
     [SerializeField] private int secondsToFadeOutRestartText = 20;
+	[SerializeField] private WFC wfc;
+	[SerializeField] private Slider X;
+	[SerializeField] private Slider Y;
+	[SerializeField] private Slider Z;
 
     private float _time;
     private float bonusTimer = 0f;
@@ -54,8 +59,7 @@ public class UIManager : MonoBehaviour
 
 	private void ShowUI()
 	{
-		loadingText.text = "";	
-		percentageText.text = "";
+		loadingText.SetActive(false);
 		restartText.text = "Press R to\nrestart";
 		WFC.OnCollapsed -= ShowUI;
 	}
@@ -63,7 +67,6 @@ public class UIManager : MonoBehaviour
 
 	public void UpdateLoadingProgress(int percentage)
 	{	
-		loadingText.text = "LOADING";	
 		percentageText.text = percentage.ToString() + "%";
 	}
 
@@ -138,4 +141,15 @@ public class UIManager : MonoBehaviour
         restartText.rectTransform.pivot = new Vector2(0, 1);
         restartText.rectTransform.anchoredPosition = Vector2.zero;
     }
+
+	public void StartGame()
+	{
+		menu.SetActive(false);
+		loadingText.SetActive(true);
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
+		wfc.dimX = (int)X.value;
+		wfc.dimY = (int)Y.value;
+		wfc.dimZ = (int)Z.value;
+	}
 }
