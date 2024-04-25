@@ -131,8 +131,8 @@ public class UIManager : MonoBehaviour
         timerText.rectTransform.pivot = new Vector2(0, 1);
         timerText.rectTransform.anchoredPosition = Vector2.zero;
         
-        bonusText.rectTransform.anchorMin = new Vector2(0.075f, 0.95f);
-        bonusText.rectTransform.anchorMax = new Vector2(0.07f, 0.95f);
+        bonusText.rectTransform.anchorMin = new Vector2(0.08f, 0.95f);
+        bonusText.rectTransform.anchorMax = new Vector2(0.08f, 0.95f);
         bonusText.rectTransform.pivot = new Vector2(0, 1);
         bonusText.rectTransform.anchoredPosition = new Vector2(1f, 0f);
         
