@@ -3366,7 +3366,7 @@ MonoBehaviour:
   bonusText: {fileID: 319191844}
   restartText: {fileID: 1711360260}
   runText: {fileID: 2052933135}
-  loadingText: {fileID: 963347853}
+  loadingText: {fileID: 2052933133}
   percentageText: {fileID: 2032477418}
   menu: {fileID: 539371842}
   secondsToFadeOutText: 20
