@@ -93,6 +93,11 @@ public class PlayerMovement : MonoBehaviour
                 Scene scene = SceneManager.GetActiveScene();
                 SceneManager.LoadScene(scene.name);
             }
+            
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
 
             characterController.Move(moveDirection * Time.deltaTime);
 
