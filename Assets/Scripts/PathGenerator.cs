@@ -59,7 +59,7 @@ public class PathGenerator : MonoBehaviour
         int globalCounter = 0;
         int tolerance = dimX * dimY;
 
-        int methodCounter = _rand.Next(dimX / 5, dimX / 2);
+        int methodCounter = _rand.Next(6,12);
 
         while (current != exit)
         {
@@ -96,6 +96,11 @@ public class PathGenerator : MonoBehaviour
                 possibleDirections.Clear();
                 possibleDirections.Add(forward);
                 index = 0;
+            }
+            else if (globalCounter == 1)
+            {
+                possibleDirections.Remove(up);
+                index = _rand.Next(0, possibleDirections.Count);
             }
 
             Vector3 next = possibleDirections[index];
