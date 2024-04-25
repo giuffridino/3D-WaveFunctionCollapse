@@ -94,8 +94,7 @@ public class WFC : MonoBehaviour
             CollapseCell(cellToCollapse);
         }
         else
-        {
-            Debug.Log("Entropy is 1 everywhere");
+		{
 			isCollapsing = false;
             OnCollapsed();
             decorationsCreator.AddDecorations(dimX, dimY, dimZ, gridComponents.ToArray(), startingCell);

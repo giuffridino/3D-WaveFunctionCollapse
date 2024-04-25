@@ -11,10 +11,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI bonusText;
     [SerializeField] private TextMeshProUGUI restartText;
+    [SerializeField] private TextMeshProUGUI runText;
 	[SerializeField] private GameObject loadingText;
 	[SerializeField] private TextMeshProUGUI percentageText;
 	[SerializeField] private GameObject menu;
-    [SerializeField] private int secondsToFadeOutRestartText = 20;
+    [SerializeField] private int secondsToFadeOutText = 20;
 	[SerializeField] private WFC wfc;
 	[SerializeField] private Slider X;
 	[SerializeField] private Slider Y;
@@ -27,9 +28,7 @@ public class UIManager : MonoBehaviour
     
     private void Start()
     {
-        SetTextToTopLeft();
 		WFC.OnCollapsed += ShowUI;
-        // StartCoroutine(FadeOutRestartText());
     }
 
     public void UpdateTimer()
@@ -60,7 +59,8 @@ public class UIManager : MonoBehaviour
 	{
 		loadingText.SetActive(false);
 		restartText.text = "Press R to\nrestart!";
-        StartCoroutine(FadeOutRestartText());
+		runText.text = "Hold shift to run";
+        StartCoroutine(FadeOutTexts());
 		WFC.OnCollapsed -= ShowUI;
 	}
 
@@ -91,10 +91,10 @@ public class UIManager : MonoBehaviour
     
     public void SetEndGameText()
     {
-        Debug.Log("You Won in " + _time + " seconds! Press R to restart!");
         
         restartText.gameObject.SetActive(false);
 		bonusText.gameObject.SetActive(false);
+		runText.gameObject.SetActive(false);
         
         int minutes = Mathf.FloorToInt(_time / 60f);
         int seconds = Mathf.FloorToInt(_time % 60f);
@@ -105,13 +105,14 @@ public class UIManager : MonoBehaviour
         SetTextToCenter();
     }
 
-    private IEnumerator FadeOutRestartText()
+    private IEnumerator FadeOutTexts()
     {
-        for (float t = 0; t < 1; t += Time.deltaTime / secondsToFadeOutRestartText)
+        for (float t = 0; t < 1; t += Time.deltaTime / secondsToFadeOutText)
         {
             Color color = restartText.color;
             color.a = Mathf.Lerp(1, 0, t);
             restartText.color = color;
+            runText.color = color;
             yield return null;
         }
     }
@@ -122,24 +123,6 @@ public class UIManager : MonoBehaviour
         timerText.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         timerText.rectTransform.pivot = new Vector2(0.5f, 0.5f);
         timerText.rectTransform.anchoredPosition = Vector2.zero;
-    }
-    
-    private void SetTextToTopLeft()
-    {
-        timerText.rectTransform.anchorMin = new Vector2(0.005f, 0.95f);
-        timerText.rectTransform.anchorMax = new Vector2(0.005f, 0.95f);
-        timerText.rectTransform.pivot = new Vector2(0, 1);
-        timerText.rectTransform.anchoredPosition = Vector2.zero;
-        
-        bonusText.rectTransform.anchorMin = new Vector2(0.08f, 0.95f);
-        bonusText.rectTransform.anchorMax = new Vector2(0.08f, 0.95f);
-        bonusText.rectTransform.pivot = new Vector2(0, 1);
-        bonusText.rectTransform.anchoredPosition = new Vector2(1f, 0f);
-        
-        restartText.rectTransform.anchorMin = new Vector2(0.01f, 0.89f);
-        restartText.rectTransform.anchorMax = new Vector2(0.01f, 0.89f);
-        restartText.rectTransform.pivot = new Vector2(0, 1);
-        restartText.rectTransform.anchoredPosition = Vector2.zero;
     }
 
 	public void StartGame()
@@ -153,4 +136,5 @@ public class UIManager : MonoBehaviour
 		wfc.dimZ = (int)Z.value;
 		
 	}
+
 }

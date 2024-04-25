@@ -8,10 +8,8 @@ public class WaitForPlayerEnter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.tag + " " + other.name);
         if (!_triggered && other.CompareTag("Player"))
         {
-            Debug.Log("Player entered!");
             var door = GameObject.Find("Door");
             if (door != null)
             {

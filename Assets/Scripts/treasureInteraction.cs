@@ -43,7 +43,6 @@ public class TreasureInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.tag + " " + other.name);
         if (!_triggered && other.CompareTag("Player"))
         {
             _triggered = true;

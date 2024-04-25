@@ -8,13 +8,12 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    public Camera playerCamera;
-    public float walkSpeed = 0.75f;
-    public float runSpeed = 1.5f;
-    public float gravity = 10f;
-    public float lookSpeed = 2f;
-    public float lookXLimit = 45f;
-    public float defaultHeight = 2f;
+    [SerializeField] private Camera playerCamera;
+    [SerializeField] private float walkSpeed;
+    [SerializeField] private float runSpeed;
+    [SerializeField] private float gravity;
+    [SerializeField] private float lookSpeed;
+    [SerializeField] private float lookXLimit;
     [SerializeField] private WFC wfc;
 
     private Vector3 moveDirection = Vector3.zero;
@@ -32,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        // transform.position = wfc.startingCell + new Vector3(-4, 0, 0);
     }
 
     public void SetPlayerPosition()
@@ -94,13 +92,6 @@ public class PlayerMovement : MonoBehaviour
 				Cursor.lockState = CursorLockMode.None;
                 Scene scene = SceneManager.GetActiveScene();
                 SceneManager.LoadScene(scene.name);
-            }
-
-            else
-            {
-                characterController.height = defaultHeight;
-                walkSpeed = 6f;
-                runSpeed = 12f;
             }
 
             characterController.Move(moveDirection * Time.deltaTime);

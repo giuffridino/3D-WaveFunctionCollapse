@@ -24,8 +24,6 @@ public class ClockInteractor : MonoBehaviour
         if (!playerMovement.gameEnded)
         {
             ui.RemoveTime(5.0f);
-
-            Debug.Log("Clock triggered!");
             clockSound.Play();
             pingSound.Play();
             Destroy(gameObject);
