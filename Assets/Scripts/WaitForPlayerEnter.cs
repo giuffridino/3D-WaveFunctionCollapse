@@ -6,7 +6,7 @@ public class WaitForPlayerEnter : MonoBehaviour
 {
     private bool _triggered = false; // Keep track of whether the trigger has been activated
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.tag + " " + other.name);
         if (!_triggered && other.CompareTag("Player"))
