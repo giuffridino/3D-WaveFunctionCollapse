@@ -7,7 +7,6 @@
     <list default="true" id="c18e5bff-df88-4bc0-803e-17107042e9bc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.3DWaveFunctionCollapse/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.3DWaveFunctionCollapse/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/DecorationsCreator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DecorationsCreator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/treasureInteraction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/treasureInteraction.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +100,7 @@
       <updated>1712836921036</updated>
       <workItem from="1712836923502" duration="20332000" />
       <workItem from="1713448366569" duration="8733000" />
-      <workItem from="1714027787394" duration="2754000" />
+      <workItem from="1714027787394" duration="7268000" />
     </task>
     <servers />
   </component>

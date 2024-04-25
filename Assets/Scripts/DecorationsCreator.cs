@@ -145,15 +145,17 @@ public class DecorationsCreator : MonoBehaviour
         AddTreasureChest(dimX, dimY, dimZ, gridComponents);
         AddClocks(dimX, dimY, dimZ, gridComponents);
     }
+
     private void AddTreasureChest(int dimX, int dimY, int dimZ, Cell[] gridComponents)
     {
         // var spawnPoint = new Vector3(dimX / 2, dimY - 1, dimZ / 2);
         var spawnPoint = new Vector3(_rand.Next(0, dimX - 1), dimY - 1, _rand.Next(0, dimZ - 1));
         var treasure = Instantiate(treasureChest, spawnPoint + new Vector3(0, -0.22f, 0), Quaternion.identity);
         treasure.transform.parent = GameObject.Find("Decorations").transform;
+        int maxIndex = dimX * dimY * dimZ;
         while (true)
         {
-            var pos = treasure.transform.position;
+            var pos = treasure.transform.position + new Vector3(0, 0.22f, 0);
             int index = (int)pos.z + ((int)pos.y - 1) * dimZ + (int)pos.x * dimY * dimZ;
             // Set correct rotation for the treasure chest
             if (pos.x < (dimX / 2) - 1)
@@ -164,23 +166,50 @@ public class DecorationsCreator : MonoBehaviour
             {
                 treasure.transform.rotation = Quaternion.Euler(0, 90, 0);
             }
+
             if (pos.z <= 1)
             {
                 treasure.transform.rotation = Quaternion.Euler(0, 180, 0);
             }
-            
+            else if (pos.z >= dimZ - 2)
+            {
+                treasure.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+
             var forwardPos = pos - treasure.transform.forward;
-            int diagPos = (int)forwardPos.z + ((int)forwardPos.y - 1) * dimZ + (int)forwardPos.x * dimY * dimZ;
-            Debug.Log("treasure position: " + treasure.transform.position);
+            int diagForPos = (int)forwardPos.z + ((int)forwardPos.y - 1) * dimZ + (int)forwardPos.x * dimY * dimZ;
+            var backPos = pos + treasure.transform.forward;
+            int diagBackPos = (int)backPos.z + ((int)backPos.y - 1) * dimZ + (int)backPos.x * dimY * dimZ;
+            var rightPos = pos - treasure.transform.right;
+            int diagRightPos = (int)rightPos.z + ((int)rightPos.y - 1) * dimZ + (int)rightPos.x * dimY * dimZ;
+            var leftPos = pos + treasure.transform.right;
+            int diagLeftPos = (int)leftPos.z + ((int)leftPos.y - 1) * dimZ + (int)leftPos.x * dimY * dimZ;
+
             Debug.Log("Cell under: " + gridComponents[index].tileOptions[0].name + " with cell index: " + index);
-            Debug.Log("Cell down front: " + gridComponents[diagPos].tileOptions[0].name + " with cell index: " + diagPos);
-            if (gridComponents[index].tileOptions[0].name.Contains("Stairs") | gridComponents[diagPos].tileOptions[0].name.Contains("Stairs"))
+            Debug.Log("Cell down front: " + gridComponents[diagForPos].tileOptions[0].name + " with cell index: " + diagForPos);
+            if (diagBackPos >= 0 && diagBackPos < maxIndex)
+            {
+                Debug.Log("Cell down back: " + gridComponents[diagBackPos].tileOptions[0].name + " with cell index: " + diagBackPos);
+            }
+            if (diagLeftPos >= 0 && diagLeftPos < maxIndex)
+            {
+                Debug.Log("Cell down left: " + gridComponents[diagLeftPos].tileOptions[0].name + " with cell index: " + diagLeftPos);
+            }
+            if (diagRightPos >= 0 && diagRightPos < maxIndex)
+            {
+                Debug.Log("Cell down right: " + gridComponents[diagRightPos].tileOptions[0].name + " with cell index: " + diagRightPos);
+            }
+            
+           
+
+            if (gridComponents[index].tileOptions[0].name.Contains("Stairs") ||
+                (diagForPos >= 0 && diagForPos < maxIndex && gridComponents[diagForPos].tileOptions[0].name.Contains("Stairs")) ||
+                (diagBackPos >= 0 && diagBackPos < maxIndex && gridComponents[diagBackPos].tileOptions[0].name.Contains("Stairs")) ||
+                (diagRightPos >= 0 && diagRightPos < maxIndex && gridComponents[diagRightPos].tileOptions[0].name.Contains("Stairs")) ||
+                (diagLeftPos >= 0 && diagLeftPos < maxIndex && gridComponents[diagLeftPos].tileOptions[0].name.Contains("Stairs")))
             {
                 Debug.Log("Position not valid trying again");
-                Debug.Log("Treasure position: " + treasure.transform.position);
-                Debug.Log("Treasure back: " + (-treasure.transform.forward));
-                Debug.Log("diagPos: " + diagPos);
-                treasure.transform.position = new Vector3(_rand.Next(0, dimX - 1), dimY - 1, _rand.Next(0, dimZ - 1));
+                treasure.transform.position = new Vector3(_rand.Next(0, dimX - 1), dimY - 1 - 0.22f, _rand.Next(0, dimZ - 1));
             }
             else
             {
@@ -204,19 +233,19 @@ public class DecorationsCreator : MonoBehaviour
                     int index = z + y * dimZ + x * dimY * dimZ;
                     Cell cell = gridComponents[index];
 
-                    if (!cell.tileOptions[0].name.Contains("Stairs") && !cell.tileOptions[0].name.Contains("Empty") && y < dimY - 1 && !cell.hasObject)
+                    if (!cell.tileOptions[0].name.Contains("Stairs") && !cell.tileOptions[0].name.Contains("Empty") &&
+                        y < dimY - 1 && !cell.hasObject)
                     {
                         if (_rand.Next(0, 20) == 0)
                         {
                             var clockSpawn = new Vector3(x, y, z);
-                            var clock = Instantiate(clockObj, clockSpawn + new Vector3(0, -0.25f, 0), Quaternion.identity);
+                            var clock = Instantiate(clockObj, clockSpawn + new Vector3(0, -0.25f, 0),
+                                Quaternion.identity);
                             clock.transform.parent = clocks.transform;
-
                         }
                     }
                 }
             }
         }
     }
-
 }
