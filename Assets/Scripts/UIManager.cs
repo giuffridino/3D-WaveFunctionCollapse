@@ -151,5 +151,6 @@ public class UIManager : MonoBehaviour
 		wfc.dimX = (int)X.value;
 		wfc.dimY = (int)Y.value;
 		wfc.dimZ = (int)Z.value;
+		
 	}
 }

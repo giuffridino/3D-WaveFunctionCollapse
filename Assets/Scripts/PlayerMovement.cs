@@ -32,7 +32,12 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        transform.position = wfc.startingCell + new Vector3(-4, 0, 0);
+        // transform.position = wfc.startingCell + new Vector3(-4, 0, 0);
+    }
+
+    public void SetPlayerPosition()
+    {
+        transform.position = wfc.startingCell + new Vector3(-4, -0.25f, 0);
     }
 
     void Update()
