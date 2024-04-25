@@ -148,7 +148,6 @@ public class DecorationsCreator : MonoBehaviour
 
     private void AddTreasureChest(int dimX, int dimY, int dimZ, Cell[] gridComponents)
     {
-        // var spawnPoint = new Vector3(dimX / 2, dimY - 1, dimZ / 2);
         var spawnPoint = new Vector3(_rand.Next(0, dimX - 1), dimY - 1, _rand.Next(0, dimZ - 1));
         var treasure = Instantiate(treasureChest, spawnPoint + new Vector3(0, -0.22f, 0), Quaternion.identity);
         treasure.transform.parent = GameObject.Find("Decorations").transform;
@@ -157,7 +156,7 @@ public class DecorationsCreator : MonoBehaviour
         {
             var pos = treasure.transform.position + new Vector3(0, 0.22f, 0);
             int index = (int)pos.z + ((int)pos.y - 1) * dimZ + (int)pos.x * dimY * dimZ;
-            // Set correct rotation for the treasure chest
+            
             if (pos.x < (dimX / 2) - 1)
             {
                 treasure.transform.rotation = Quaternion.Euler(0, 270, 0);
@@ -184,31 +183,13 @@ public class DecorationsCreator : MonoBehaviour
             int diagRightPos = (int)rightPos.z + ((int)rightPos.y - 1) * dimZ + (int)rightPos.x * dimY * dimZ;
             var leftPos = pos + treasure.transform.right;
             int diagLeftPos = (int)leftPos.z + ((int)leftPos.y - 1) * dimZ + (int)leftPos.x * dimY * dimZ;
-
-            Debug.Log("Cell under: " + gridComponents[index].tileOptions[0].name + " with cell index: " + index);
-            Debug.Log("Cell down front: " + gridComponents[diagForPos].tileOptions[0].name + " with cell index: " + diagForPos);
-            if (diagBackPos >= 0 && diagBackPos < maxIndex)
-            {
-                Debug.Log("Cell down back: " + gridComponents[diagBackPos].tileOptions[0].name + " with cell index: " + diagBackPos);
-            }
-            if (diagLeftPos >= 0 && diagLeftPos < maxIndex)
-            {
-                Debug.Log("Cell down left: " + gridComponents[diagLeftPos].tileOptions[0].name + " with cell index: " + diagLeftPos);
-            }
-            if (diagRightPos >= 0 && diagRightPos < maxIndex)
-            {
-                Debug.Log("Cell down right: " + gridComponents[diagRightPos].tileOptions[0].name + " with cell index: " + diagRightPos);
-            }
             
-           
-
             if (gridComponents[index].tileOptions[0].name.Contains("Stairs") ||
                 (diagForPos >= 0 && diagForPos < maxIndex && gridComponents[diagForPos].tileOptions[0].name.Contains("Stairs")) ||
                 (diagBackPos >= 0 && diagBackPos < maxIndex && gridComponents[diagBackPos].tileOptions[0].name.Contains("Stairs")) ||
                 (diagRightPos >= 0 && diagRightPos < maxIndex && gridComponents[diagRightPos].tileOptions[0].name.Contains("Stairs")) ||
                 (diagLeftPos >= 0 && diagLeftPos < maxIndex && gridComponents[diagLeftPos].tileOptions[0].name.Contains("Stairs")))
             {
-                Debug.Log("Position not valid trying again");
                 treasure.transform.position = new Vector3(_rand.Next(0, dimX - 1), dimY - 1 - 0.22f, _rand.Next(0, dimZ - 1));
             }
             else
