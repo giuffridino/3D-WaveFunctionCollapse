@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
     {
         SetTextToTopLeft();
 		WFC.OnCollapsed += ShowUI;
-        StartCoroutine(FadeOutRestartText());
+        // StartCoroutine(FadeOutRestartText());
     }
 
     public void UpdateTimer()
@@ -54,13 +54,13 @@ public class UIManager : MonoBehaviour
             _bonus = 0f;
             bonusText.text = "";
         }
-
     }
 
 	private void ShowUI()
 	{
 		loadingText.SetActive(false);
-		restartText.text = "Press R to\nrestart";
+		restartText.text = "Press R to\nrestart!";
+        StartCoroutine(FadeOutRestartText());
 		WFC.OnCollapsed -= ShowUI;
 	}
 
@@ -91,14 +91,14 @@ public class UIManager : MonoBehaviour
     
     public void SetEndGameText()
     {
-        Debug.Log("You Won in " + _time + " seconds! Press R to restart");
+        Debug.Log("You Won in " + _time + " seconds! Press R to restart!");
         
         restartText.gameObject.SetActive(false);
 		bonusText.gameObject.SetActive(false);
         
         int minutes = Mathf.FloorToInt(_time / 60f);
         int seconds = Mathf.FloorToInt(_time % 60f);
-        timerText.text = $"You Won in\n{minutes:00}:{seconds:00} seconds!\nPress R to restart";
+        timerText.text = $"You Won in\n{minutes:00}:{seconds:00} seconds!\nPress R to restart!";
         timerText.rectTransform.sizeDelta = new Vector2(432, 50);
         timerText.fontSize = 24;
             
@@ -126,8 +126,8 @@ public class UIManager : MonoBehaviour
     
     private void SetTextToTopLeft()
     {
-        timerText.rectTransform.anchorMin = new Vector2(0, 0.95f);
-        timerText.rectTransform.anchorMax = new Vector2(0, 0.95f);
+        timerText.rectTransform.anchorMin = new Vector2(0.005f, 0.95f);
+        timerText.rectTransform.anchorMax = new Vector2(0.005f, 0.95f);
         timerText.rectTransform.pivot = new Vector2(0, 1);
         timerText.rectTransform.anchoredPosition = Vector2.zero;
         
@@ -136,8 +136,8 @@ public class UIManager : MonoBehaviour
         bonusText.rectTransform.pivot = new Vector2(0, 1);
         bonusText.rectTransform.anchoredPosition = new Vector2(1f, 0f);
         
-        restartText.rectTransform.anchorMin = new Vector2(0.05f, 0.87f);
-        restartText.rectTransform.anchorMax = new Vector2(0.05f, 0.87f);
+        restartText.rectTransform.anchorMin = new Vector2(0.01f, 0.89f);
+        restartText.rectTransform.anchorMax = new Vector2(0.01f, 0.89f);
         restartText.rectTransform.pivot = new Vector2(0, 1);
         restartText.rectTransform.anchoredPosition = Vector2.zero;
     }
