@@ -9,7 +9,7 @@ public class DoorInteraction : MonoBehaviour
     private int direction = 1;
     private Quaternion initialRotation;
     private Quaternion targetRotation;
-    private float rotationSpeed = 90f; // Adjust rotation speed as needed
+    private float rotationSpeed = 90f;
     [SerializeField] private AudioSource openDoorSound;
     [SerializeField] private AudioSource closeDoorSound;
 
