@@ -184,18 +184,12 @@ public class Tile : MonoBehaviour
                 }
                 string path = AssetDatabase.GetAssetPath(gameObject);
                 string directory = System.IO.Path.GetDirectoryName(path);
-                Debug.Log(path + " " + directory);
                 tileName = tileName + lastChars + ".prefab";
                 string newPrefabPath = System.IO.Path.Combine(directory, tileName);
-                Debug.Log(newPrefabPath);
                 GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(newPrefabPath);
                 if (prefab != null)
                 {
                     neighbors[i] = prefab.GetComponent<Tile>();
-                }
-                else
-                {
-                    Debug.LogError("Prefab not found: " + tileName);
                 }
             }
 		}
