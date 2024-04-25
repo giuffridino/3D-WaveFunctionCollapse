@@ -34,7 +34,6 @@ public class DoorInteraction : MonoBehaviour
 
     public void OpenDoor()
     {
-        Debug.Log("Opening door!");
         targetRotation = initialRotation * Quaternion.Euler(0, 90 * direction, 0);
         rotatingDoor = true;
         openDoorSound.Play();
@@ -42,7 +41,6 @@ public class DoorInteraction : MonoBehaviour
 
     public void CloseDoor()
     {
-        Debug.Log("Closing door!");
         targetRotation = initialRotation;
         rotatingDoor = true;
         closeDoorSound.Play();

@@ -172,8 +172,8 @@ public class DecorationsCreator : MonoBehaviour
             var forwardPos = pos - treasure.transform.forward;
             int diagPos = (int)forwardPos.z + ((int)forwardPos.y - 1) * dimZ + (int)forwardPos.x * dimY * dimZ;
             Debug.Log("treasure position: " + treasure.transform.position);
-            Debug.Log("Cell under: " + gridComponents[index].tileOptions[0].name);
-            Debug.Log("Cell down front: " + gridComponents[diagPos].tileOptions[0].name);
+            Debug.Log("Cell under: " + gridComponents[index].tileOptions[0].name + " with cell index: " + index);
+            Debug.Log("Cell down front: " + gridComponents[diagPos].tileOptions[0].name + " with cell index: " + diagPos);
             if (gridComponents[index].tileOptions[0].name.Contains("Stairs") | gridComponents[diagPos].tileOptions[0].name.Contains("Stairs"))
             {
                 Debug.Log("Position not valid trying again");
