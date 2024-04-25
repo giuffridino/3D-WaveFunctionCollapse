@@ -34,7 +34,7 @@ public class treasureInteraction : MonoBehaviour
         }
     }
 
-    public void OpenChest()
+    private void OpenChest()
     {
         targetRotation = initialRotation * Quaternion.Euler(-90 * direction, 0, 0);
         rotatingChest = true;

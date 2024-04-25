@@ -147,21 +147,46 @@ public class DecorationsCreator : MonoBehaviour
     }
     private void AddTreasureChest(int dimX, int dimY, int dimZ, Cell[] gridComponents)
     {
-        var spawnPoint = new Vector3(dimX / 2, dimY - 1, dimZ / 2);
+        // var spawnPoint = new Vector3(dimX / 2, dimY - 1, dimZ / 2);
+        var spawnPoint = new Vector3(_rand.Next(0, dimX - 1), dimY - 1, _rand.Next(0, dimZ - 1));
+        var treasure = Instantiate(treasureChest, spawnPoint + new Vector3(0, -0.22f, 0), Quaternion.identity);
+        treasure.transform.parent = GameObject.Find("Decorations").transform;
         while (true)
         {
-            int index = (int)spawnPoint.z + ((int)spawnPoint.y - 1) * dimZ + (int)spawnPoint.x * dimY * dimZ;
-            if (gridComponents[index].tileOptions[0].name.Contains("Stairs"))
+            var pos = treasure.transform.position;
+            int index = (int)pos.z + ((int)pos.y - 1) * dimZ + (int)pos.x * dimY * dimZ;
+            // Set correct rotation for the treasure chest
+            if (pos.x < (dimX / 2) - 1)
             {
-                spawnPoint += new Vector3(0, 0, -1);
+                treasure.transform.rotation = Quaternion.Euler(0, 270, 0);
+            }
+            else if (pos.x >= (dimX / 2))
+            {
+                treasure.transform.rotation = Quaternion.Euler(0, 90, 0);
+            }
+            if (pos.z <= 1)
+            {
+                treasure.transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            
+            var forwardPos = pos - treasure.transform.forward;
+            int diagPos = (int)forwardPos.z + ((int)forwardPos.y - 1) * dimZ + (int)forwardPos.x * dimY * dimZ;
+            Debug.Log("treasure position: " + treasure.transform.position);
+            Debug.Log("Cell under: " + gridComponents[index].tileOptions[0].name);
+            Debug.Log("Cell down front: " + gridComponents[diagPos].tileOptions[0].name);
+            if (gridComponents[index].tileOptions[0].name.Contains("Stairs") | gridComponents[diagPos].tileOptions[0].name.Contains("Stairs"))
+            {
+                Debug.Log("Position not valid trying again");
+                Debug.Log("Treasure position: " + treasure.transform.position);
+                Debug.Log("Treasure back: " + (-treasure.transform.forward));
+                Debug.Log("diagPos: " + diagPos);
+                treasure.transform.position = new Vector3(_rand.Next(0, dimX - 1), dimY - 1, _rand.Next(0, dimZ - 1));
             }
             else
             {
                 break;
             }
         }
-        var treasure = Instantiate(treasureChest, spawnPoint + new Vector3(0, -0.22f, 0), Quaternion.identity);
-        treasure.transform.parent = GameObject.Find("Decorations").transform;
     }
 
     private void AddClocks(int dimX, int dimY, int dimZ, Cell[] gridComponents)
