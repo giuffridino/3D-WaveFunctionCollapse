@@ -4,36 +4,49 @@ using System.Collections;
 using Random = System.Random;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class WFC : MonoBehaviour
 {
-    [SerializeField] private int dimX;
-    [SerializeField] private int dimY;
-    [SerializeField] private int dimZ;
+    public int dimX;
+    public int dimY;
+    public int dimZ;
     [SerializeField] private Tile[] tileObjects;
-    [SerializeField] private List<Cell> gridComponents;
     [SerializeField] private Cell cellObj;
     [SerializeField] private Tile backupTile;
+    [SerializeField] private PlayerMovement player;
+    [SerializeField] private DecorationsCreator decorationsCreator;
+    [SerializeField] private DoorInteraction doorInteraction;
 
     private int _iteration;
-	private int _count;
+    private int _count;
+	public int collapsedCells;
+	private int totalCells;
+	public int progress;
+	public bool isCollapsing;
     
+    public delegate void Collapsed();
+    public static event Collapsed OnCollapsed;
+	
+
+    [HideInInspector] public List<Cell> gridComponents;
+    [HideInInspector] public bool creatingPath = true;
+    [HideInInspector] public Vector3 startingCell;
+    [HideInInspector] public Vector3 finishCell;
+
     private readonly Random _rand = new Random();
 
-
-    private void Awake()
-    {
-        RunWfc();
+    public void RunWfc()
+    {	
+        StartCoroutine(Observe());
     }
 
-    private void RunWfc()
+    public void InitializeGrid()
     {
-        gridComponents = new List<Cell>();
-        InitializeGrid();
-    }
-
-    private void InitializeGrid()
-    {
+        GameObject grid = new GameObject("Cells");
+		collapsedCells = 0;
+		totalCells = dimX * dimY * dimZ;
         for (int x = 0; x < dimX; x++)
         {
             for (int y = 0; y < dimY; y++)
@@ -41,14 +54,14 @@ public class WFC : MonoBehaviour
                 for (int z = 0; z < dimZ; z++)
                 {
                     Cell newCell = Instantiate(cellObj, new Vector3(x, y, z), Quaternion.identity);
+                    newCell.transform.parent = grid.transform;
                     newCell.name = "Cell_" + _count;
                     newCell.CreateCell(false, tileObjects);
                     gridComponents.Add(newCell);
-             		_count++;
+                    _count++;
                 }
             }
         }
-        StartCoroutine(Observe());
     }
 
     IEnumerator Observe()
@@ -56,7 +69,7 @@ public class WFC : MonoBehaviour
         bool allCollapsed = true;
         int cellToCollapse = -1;
         int minEntropy = tileObjects.Length + 1;
-        
+
         for (int x = 0; x < dimX; x++)
         {
             for (int y = 0; y < dimY; y++)
@@ -74,17 +87,23 @@ public class WFC : MonoBehaviour
             }
         }
 
-        //Debug.LogWarning("collapsingCell:" + cellToCollapse + "with entropy:" + minEntropy);
-
-        if(!allCollapsed)
+        if (!allCollapsed)
         {
-            float time = 0.001f;
+            float time = 0.0001f;
             yield return new WaitForSeconds(time);
             CollapseCell(cellToCollapse);
         }
         else
-        {
-            Debug.Log("Entropy is 1 everywhere");
+		{
+			isCollapsing = false;
+            OnCollapsed();
+            decorationsCreator.AddDecorations(dimX, dimY, dimZ, gridComponents.ToArray(), startingCell);
+            player.gameStarted = true;
+            var door = GameObject.Find("Door");
+            if (door)
+            {
+                door.GetComponent<DoorInteraction>().OpenDoor();
+            }
         }
     }
 
@@ -92,44 +111,57 @@ public class WFC : MonoBehaviour
     {
         Cell cellToCollapse = gridComponents[index];
 
+        int x = index / (dimY * dimZ);
+        int y = (index / dimZ) % dimY;
+        int z = index % dimZ;
+
         cellToCollapse.collapsed = true;
         Tile selectedTile;
-        
-        if(cellToCollapse.tileOptions.Length != 0)
+
+        if (cellToCollapse.tileOptions.Length != 0)
         {
             List<Tile> weightedOptions = new List<Tile>();
-            foreach(Tile tile in cellToCollapse.tileOptions)
+
+            foreach (Tile tile in cellToCollapse.tileOptions)
             {
-                if(tile.name == "Floor_p")
+                if (tile.name == "Floor_p")
                 {
                     weightedOptions.Add(tile);
                     weightedOptions.Add(tile);
                     weightedOptions.Add(tile);
                     weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
-                    weightedOptions.Add(tile);
+
                 }
                 else
                 {
-                    weightedOptions.Add(tile);
+                    if (!(y == 0 && tile == tileObjects[6]))
+                        weightedOptions.Add(tile);
                 }
             }
+
+            if (x == 0 || x == dimX - 1 || z == 0 || z == dimZ - 1)
+            {
+                weightedOptions.RemoveAll(tile => tile.name.Contains("Stairs"));
+            }
+
             selectedTile = weightedOptions[_rand.Next(0, weightedOptions.Count)];
+
+            if (y == dimY - 1 && selectedTile != tileObjects[6])
+            {
+                selectedTile = tileObjects[7];
+            }
         }
         else
         {
-            //Debug.Log("error");
             selectedTile = backupTile;
         }
-        
+
         cellToCollapse.tileOptions = new Tile[] { selectedTile };
         Tile foundTile = cellToCollapse.tileOptions[0];
         Tile newTile = Instantiate(foundTile, cellToCollapse.transform.position, foundTile.transform.rotation);
         newTile.transform.parent = cellToCollapse.transform;
+		collapsedCells++;
+		progress = (int)(collapsedCells * 100.0f / totalCells);
         Propagate(index);
     }
 
@@ -138,242 +170,218 @@ public class WFC : MonoBehaviour
         int x = collapsedCell / (dimY * dimZ);
         int y = (collapsedCell / dimZ) % dimY;
         int z = collapsedCell % dimZ;
-        
+
         int index = z + y * dimZ + x * dimY * dimZ;
         Tile tileOfCollapsedCell = gridComponents[collapsedCell].tileOptions[0];
-        
+
         if (x > 0)
         {
             Cell back = gridComponents[z + y * dimZ + (x - 1) * dimY * dimZ];
-            if(!back.collapsed){
-                //Debug.Log("back");
+            if (!back.collapsed)
+            {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].backNeighbors;
-                back.RecreateCell(newEntropy(back.tileOptions, tileOfCollapsedCell,valid));
-                    
+                back.RecreateCell(NewEntropy(back.tileOptions, tileOfCollapsedCell, valid));
             }
-            
-        } 
+        }
+
         if (x < dimX - 1)
         {
             Cell front = gridComponents[z + y * dimZ + (x + 1) * dimY * dimZ];
             if (!front.collapsed)
             {
-                //Debug.Log("front");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].frontNeighbors;
-                front.RecreateCell(newEntropy(front.tileOptions, tileOfCollapsedCell,valid));
+                front.RecreateCell(NewEntropy(front.tileOptions, tileOfCollapsedCell, valid));
             }
+        }
 
-        } 
         if (y > 0)
         {
             Cell down = gridComponents[z + (y - 1) * dimZ + x * dimY * dimZ];
             if (!down.collapsed)
             {
-                //Debug.Log("down");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].downNeighbors;
-                down.RecreateCell(newEntropy(down.tileOptions, tileOfCollapsedCell,valid));
+                down.RecreateCell(NewEntropy(down.tileOptions, tileOfCollapsedCell, valid));
             }
-        } 
+        }
+
         if (y < dimY - 1)
         {
-            
             Cell up = gridComponents[z + (y + 1) * dimZ + x * dimY * dimZ];
             if (!up.collapsed)
             {
-                //Debug.Log("up");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].upNeighbors;
-                up.RecreateCell(newEntropy(up.tileOptions, tileOfCollapsedCell,valid));
+                up.RecreateCell(NewEntropy(up.tileOptions, tileOfCollapsedCell, valid));
             }
         }
+
         if (z > 0)
         {
             Cell right = gridComponents[(z - 1) + y * dimZ + x * dimY * dimZ];
             if (!right.collapsed)
             {
-                //Debug.Log("right");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].rightNeighbors;
-                right.RecreateCell(newEntropy(right.tileOptions, tileOfCollapsedCell,valid));
+                right.RecreateCell(NewEntropy(right.tileOptions, tileOfCollapsedCell, valid));
             }
-        } 
+        }
+
         if (z < dimZ - 1)
         {
             Cell left = gridComponents[(z + 1) + y * dimZ + x * dimY * dimZ];
             if (!left.collapsed)
             {
-                //Debug.Log("left");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].leftNeighbors;
-                left.RecreateCell(newEntropy(left.tileOptions, tileOfCollapsedCell,valid));
+                left.RecreateCell(NewEntropy(left.tileOptions, tileOfCollapsedCell, valid));
             }
         }
-       
+
         if (x > 0 && y > 0)
         {
-            Cell back_down = gridComponents[z + (y - 1) * dimZ + (x - 1) * dimY * dimZ];
-            if(!back_down.collapsed){
-                //Debug.Log("back_down");
+            Cell backDown = gridComponents[z + (y - 1) * dimZ + (x - 1) * dimY * dimZ];
+            if (!backDown.collapsed)
+            {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].back_downNeighbors;
-                back_down.RecreateCell(newEntropy(back_down.tileOptions, tileOfCollapsedCell,valid));
+                backDown.RecreateCell(NewEntropy(backDown.tileOptions, tileOfCollapsedCell, valid));
             }
-            
-        } 
-            
+        }
+
         if (x > 0 && y < dimY - 1)
         {
-            Cell back_up = gridComponents[z + (y + 1) * dimZ + (x - 1) * dimY * dimZ];
-            if(!back_up.collapsed){
-                //Debug.Log("back_up");
+            Cell backUp = gridComponents[z + (y + 1) * dimZ + (x - 1) * dimY * dimZ];
+            if (!backUp.collapsed)
+            {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].back_upNeighbors;
-                back_up.RecreateCell(newEntropy(back_up.tileOptions, tileOfCollapsedCell,valid));
+                backUp.RecreateCell(NewEntropy(backUp.tileOptions, tileOfCollapsedCell, valid));
             }
-            
         }
-        
+
         if (x < dimX - 1 && y > 0)
         {
-            Cell front_down = gridComponents[z + (y - 1) * dimZ + (x + 1) * dimY * dimZ];
-            if(!front_down.collapsed){
-                //Debug.Log("front_down");
+            Cell frontDown = gridComponents[z + (y - 1) * dimZ + (x + 1) * dimY * dimZ];
+            if (!frontDown.collapsed)
+            {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].front_downNeighbors;
-                front_down.RecreateCell(newEntropy(front_down.tileOptions, tileOfCollapsedCell,valid));
+                frontDown.RecreateCell(NewEntropy(frontDown.tileOptions, tileOfCollapsedCell, valid));
             }
-            
         }
-        
+
         if (x < dimX - 1 && y < dimY - 1)
         {
-            Cell front_up = gridComponents[z + (y + 1) * dimZ + (x + 1) * dimY * dimZ];
-            if(!front_up.collapsed){
-                //Debug.Log("front_up");
+            Cell frontUp = gridComponents[z + (y + 1) * dimZ + (x + 1) * dimY * dimZ];
+            if (!frontUp.collapsed)
+            {
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].front_upNeighbors;
-                front_up.RecreateCell(newEntropy(front_up.tileOptions, tileOfCollapsedCell,valid));
+                frontUp.RecreateCell(NewEntropy(frontUp.tileOptions, tileOfCollapsedCell, valid));
             }
-            
         }
 
         if (z > 0 && y > 0)
         {
-            Cell right_down = gridComponents[(z - 1) + (y - 1) * dimZ + x * dimY * dimZ];
-            if (!right_down.collapsed)
+            Cell rightDown = gridComponents[(z - 1) + (y - 1) * dimZ + x * dimY * dimZ];
+            if (!rightDown.collapsed)
             {
-                //Debug.Log("right_down");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].right_downNeighbors;
-                right_down.RecreateCell(newEntropy(right_down.tileOptions, tileOfCollapsedCell,valid));
+                rightDown.RecreateCell(NewEntropy(rightDown.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
         if (z > 0 && y < dimY - 1)
         {
-            Cell right_up = gridComponents[(z - 1) + (y + 1) * dimZ + x * dimY * dimZ];
-            if (!right_up.collapsed)
+            Cell rightUp = gridComponents[(z - 1) + (y + 1) * dimZ + x * dimY * dimZ];
+            if (!rightUp.collapsed)
             {
-                //Debug.Log("right_up");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].right_upNeighbors;
-                right_up.RecreateCell(newEntropy(right_up.tileOptions, tileOfCollapsedCell,valid));
+                rightUp.RecreateCell(NewEntropy(rightUp.tileOptions, tileOfCollapsedCell, valid));
             }
         }
-        
+
         if (z < dimZ - 1 && y > 0)
         {
-            Cell left_down = gridComponents[(z + 1) + (y - 1) * dimZ + x * dimY * dimZ];
-            if (!left_down.collapsed)
+            Cell leftDown = gridComponents[(z + 1) + (y - 1) * dimZ + x * dimY * dimZ];
+            if (!leftDown.collapsed)
             {
-                //Debug.Log("left_down");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].left_downNeighbors;
-                left_down.RecreateCell(newEntropy(left_down.tileOptions, tileOfCollapsedCell,valid));
+                leftDown.RecreateCell(NewEntropy(leftDown.tileOptions, tileOfCollapsedCell, valid));
             }
         }
 
         if (z < dimZ - 1 && y < dimY - 1)
         {
-            Cell left_up = gridComponents[(z + 1) + (y + 1) * dimZ + x * dimY * dimZ];
-            if (!left_up.collapsed)
+            Cell leftUp = gridComponents[(z + 1) + (y + 1) * dimZ + x * dimY * dimZ];
+            if (!leftUp.collapsed)
             {
-                //Debug.Log("left_up");
                 int validOption = Array.FindIndex(tileObjects, obj => obj == tileOfCollapsedCell);
                 Tile[] valid = tileObjects[validOption].left_upNeighbors;
-                left_up.RecreateCell(newEntropy(left_up.tileOptions, tileOfCollapsedCell,valid));
+                leftUp.RecreateCell(NewEntropy(leftUp.tileOptions, tileOfCollapsedCell, valid));
             }
         }
-            
-        StartCoroutine(Observe());
+
+        if (!creatingPath)
+        {
+            StartCoroutine(Observe());
+        }
     }
-    
+
     List<Tile> CheckValidity(List<Tile> optionList, List<Tile> validOption)
     {
-        //Debug.Log("__________check validity___________");
-        //Debug.Log("options before:" + optionList.Count);
-        string opts = "";
-        foreach (Tile op in optionList)
+        var newOptions = new List<Tile>();
+        for (int x = optionList.Count - 1; x >= 0; x--)
         {
-            opts += op.ToString() + " ";
-        }
-
-        //Debug.Log(opts);
-        opts = "";
-        
-        //Debug.Log("valid options:" + validOption.Count);
-        foreach (Tile op in validOption)
-        {
-            opts += op.ToString() + " ";
-        }
-        //Debug.Log(opts);
-        opts = "";
-
-        List<Tile> newOptions = new List<Tile>();
-        for(int x = optionList.Count - 1; x >=0; x--)
-        {
-            
             Tile element = optionList[x];
-            //Debug.Log("comparing: "+ element);
             foreach (var opt in validOption)
             {
                 if (element.name == opt.name)
                 {
-                    //Debug.Log("inserito");
                     newOptions.Add(element);
                 }
             }
-            
         }
-        
-        //Debug.Log("options after" + optionList.Count);
-        foreach (Tile op in optionList)
-        {
-            opts += op.ToString() + " ";
-        }
-        //Debug.Log(opts);
 
         return newOptions;
     }
 
-    Tile[] newEntropy(Tile[] oldOptions, Tile tileOfCollapsedCell, Tile[] valid)
+    Tile[] NewEntropy(Tile[] oldOptions, Tile tileOfCollapsedCell, Tile[] valid)
     {
-        List<Tile> validOptions = new List<Tile>();
-        List<Tile> options = oldOptions.ToList();
-        
+        var validOptions = new List<Tile>();
+        var options = oldOptions.ToList();
+
         validOptions = validOptions.Concat(valid).ToList();
-                
+
         options = CheckValidity(options, validOptions);
-                
-        Tile[] newTileList = new Tile[options.Count];
-        for(int i = 0; i < options.Count; i++) {
+
+        var newTileList = new Tile[options.Count];
+        for (int i = 0; i < options.Count; i++)
+        {
             newTileList[i] = options[i];
         }
 
         return newTileList;
     }
+
+    public void SetSpecificTile(int index, int tileIndex)
+    {
+        var cellToCollapse = gridComponents[index];
+        var selectedTile = tileObjects[tileIndex];
+
+        cellToCollapse.tileOptions = new Tile[] { selectedTile };
+        cellToCollapse.collapsed = true;
+        var foundTile = cellToCollapse.tileOptions[0];
+        var newTile = Instantiate(foundTile, cellToCollapse.transform.position, foundTile.transform.rotation);
+        newTile.transform.parent = cellToCollapse.transform;
+        Propagate(index);
+    }
     
+
 }
