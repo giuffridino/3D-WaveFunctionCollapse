@@ -70,63 +70,27 @@ public class DecorationsCreator : MonoBehaviour
                     {
                         if (cell.tileOptions[0].name.Contains("90"))
                         {
-                            instantiatedTile = Instantiate(stairsRailing,
-                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
-                                Quaternion.Euler(0f, 90f, 0f));
-                            instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairsRailing,
-                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
-                                Quaternion.Euler(0f, 180f, 0f));
-                            instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairsRailing,
-                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z - 0.4f),
-                                Quaternion.Euler(0f, 180f, 0f));
-                            instantiatedTile.transform.parent = stairsRailings.transform;
-                        }
-                        else if (cell.tileOptions[0].name.Contains("270"))
-                        {
-                            instantiatedTile = Instantiate(stairsRailing,
-                                new Vector3(x - 0.5f, (float)y + 0.5f, (float)z + 0.5f),
-                                Quaternion.Euler(0f, 90f, 0f));
-                            instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairsRailing,
-                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
-                                Quaternion.Euler(0f, 180f, 0f));
-                            instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairsRailing,
-                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z - 0.4f),
-                                Quaternion.Euler(0f, 180f, 0f));
-                            instantiatedTile.transform.parent = stairsRailings.transform;
+                            int up_front_idx = index + dimY * dimZ + dimZ;
+                            if (gridComponents[up_front_idx].tileOptions[0].name.Equals("Empty"))
+                                cell.gameObject.transform.GetChild(0).GetChild(3).gameObject.SetActive(false);
                         }
                         else if (cell.tileOptions[0].name.Contains("180"))
                         {
-                            instantiatedTile = Instantiate(stairsRailing,
-                                new Vector3(x - 0.5f, (float)y + 0.5f, (float)z + 0.5f),
-                                Quaternion.Euler(0f, 90f, 0f));
-                            instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairsRailing,
-                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
-                                Quaternion.Euler(0f, 90f, 0f));
-                            instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairsRailing,
-                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z - 0.4f),
-                                Quaternion.Euler(0f, 180f, 0f));
-                            instantiatedTile.transform.parent = stairsRailings.transform;
+                            int up_right_idx = index - 1 + dimZ;
+                            if (gridComponents[up_right_idx].tileOptions[0].name.Equals("Empty"))
+                                cell.gameObject.transform.GetChild(0).GetChild(3).gameObject.SetActive(false);
+                        }
+                        else if (cell.tileOptions[0].name.Contains("270"))
+                        {
+                            int up_back_idx = index - dimY * dimZ + dimZ;
+                            if (gridComponents[up_back_idx].tileOptions[0].name.Equals("Empty"))
+                                cell.gameObject.transform.GetChild(0).GetChild(3).gameObject.SetActive(false);
                         }
                         else
                         {
-                            instantiatedTile = Instantiate(stairsRailing,
-                                new Vector3(x - 0.5f, (float)y + 0.5f, (float)z + 0.5f),
-                                Quaternion.Euler(0f, 90f, 0f));
-                            instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairsRailing,
-                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
-                                Quaternion.Euler(0f, 90f, 0f));
-                            instantiatedTile.transform.parent = stairsRailings.transform;
-                            instantiatedTile = Instantiate(stairsRailing,
-                                new Vector3(x + 0.5f, (float)y + 0.5f, (float)z + 0.5f),
-                                Quaternion.Euler(0f, 180f, 0f));
-                            instantiatedTile.transform.parent = stairsRailings.transform;
+                            int up_left_idx = index + 1 + dimZ;
+                            if (gridComponents[up_left_idx].tileOptions[0].name.Equals("Empty"))
+                                cell.gameObject.transform.GetChild(0).GetChild(3).gameObject.SetActive(false);
                         }
                     }
                     else if (cell.tileOptions[0].name.Contains("Corner"))

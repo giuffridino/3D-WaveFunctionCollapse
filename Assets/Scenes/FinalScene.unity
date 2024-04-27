@@ -2180,7 +2180,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.2
+  m_Intensity: 0.25
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3366,7 +3366,7 @@ MonoBehaviour:
   bonusText: {fileID: 319191844}
   restartText: {fileID: 1711360260}
   runText: {fileID: 2052933135}
-  loadingText: {fileID: 2052933133}
+  loadingText: {fileID: 963347853}
   percentageText: {fileID: 2032477418}
   menu: {fileID: 539371842}
   secondsToFadeOutText: 20
