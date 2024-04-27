@@ -20,6 +20,8 @@ public class CustomSetupEditorWindow : EditorWindow
             if (prefab.name.Contains("90") | prefab.name.Contains("180") | prefab.name.Contains("270"))
             {
                 prefabTile.UploadAndRotateNeighborhood();
+                // PrefabUtility.RecordPrefabInstancePropertyModifications(prefabTile);
+                PrefabUtility.SavePrefabAsset(prefabTile.gameObject);
             }
             
         }
