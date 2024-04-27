@@ -88,12 +88,12 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKey(KeyCode.R))
             {
-				Cursor.visible = true;
-				Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 Scene scene = SceneManager.GetActiveScene();
                 SceneManager.LoadScene(scene.name);
             }
-            
+
             if (Input.GetKey(KeyCode.Escape))
             {
                 Application.Quit();
@@ -108,6 +108,11 @@ public class PlayerMovement : MonoBehaviour
                 playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
                 transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
         }
     }
 
